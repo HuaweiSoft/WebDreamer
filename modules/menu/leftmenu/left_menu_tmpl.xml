@@ -1,0 +1,28 @@
+<!-- the backbone template of the left menu and the model defined in the 
+	model.json -->
+<div id="<%= id%>" class="menu_leftmenu_container">
+	<div id="menu_leftmenu_container_start" class="menu_leftmenu_container_start">
+	</div>
+	<div class="menu_leftmenu_close" />
+	<div class="menu_leftmenu_container_middle">
+		<% _.each(datas, function(item) { %>
+
+		<%if(item.type=="menu"){%>
+		<div class="menu_leftmenu_item_twolevel_container" msg="<%= item.triggerMsg%>">
+			<div msg="<%= item.triggerMsg%>" class="menu_leftmenu_item_threelevel_container">
+				<img msg="<%= item.triggerMsg%>" src="<%= item.icon%>" class="menu_lfetmenu_item_icon"><%=
+					item.text%>
+			</div>
+		</div>
+		<%}%>
+
+		<%if(item.type=="group"){%>
+		<hr class="menu_leftmenu_group" />
+		<%}%>
+
+
+		<% }); %>
+	</div>
+	<div id="menu_leftmenu_container_end" class="menu_leftmenu_container_end">
+	</div>
+</div>

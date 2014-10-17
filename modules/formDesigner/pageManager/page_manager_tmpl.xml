@@ -1,0 +1,28 @@
+<div id='page_manage_bar' class="page_manage_bar">
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_add" title=" Add Page" id="page_manage_add"></div>
+	</div>
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_delete" title="Delete Current Page" id="page_manage_delete"></div>
+	</div>
+	<div class="page_nav_container">
+		<ul id="page_nav_container_ul">
+			<li>
+				<div page='1' class="page_nav_item_selected"></div>
+			</li>
+		</ul>
+	</div>
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_next" title="Next Page"  id="page_manage_next"></div>
+	</div>
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_up" title="Previous Page" id="page_manage_up"></div>
+	</div>
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_view_all" id="page_manage_view_all"></div>
+	</div>
+	<div class="page_manage_item">
+		<div class="page_manage_item_img page_manage_run" id="page_manage_run"></div>
+	</div>
+
+</div>

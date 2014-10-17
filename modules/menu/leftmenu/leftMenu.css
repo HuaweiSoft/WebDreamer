@@ -1,0 +1,84 @@
+/*******************************************************************************
+ * Web Dreamer Copyright (c) Huawei Technologies Co., Ltd. 1998-2014. All Rights
+ * Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
+.menu_leftmenu_container {
+	z-index: 2;
+	position: absolute;
+	left: -1px;
+	top: 28px;
+	width: 283px;
+	display: none;
+}
+
+.menu_leftmenu_container_start {
+	width: 100%;
+	height: 25px;
+	background: url(images/leftbg.png);
+}
+
+.menu_leftmenu_container_middle {
+	width: 100%;
+	background: url(images/leftmiddlebg.png);
+}
+
+.menu_leftmenu_container_end {
+	width: 100%;
+	height: 25px;
+	background: url(images/leftbottombg.png);
+}
+
+.menu_leftmenu_item_twolevel_container {
+	width: 100%;
+	height: 40px;
+	cursor: pointer;
+	position: relative;
+	left: 9px;
+}
+
+.menu_leftmenu_item_twolevel_container:hover {
+	background: url(images/hoverbg.png);
+	background-size: 286px 50px;
+}
+
+.menu_leftmenu_item_threelevel_container {
+	position: relative;
+	top: 3px;
+	left: 2px;
+	font-size: 14px;
+}
+
+.menu_lfetmenu_item_icon {
+	vertical-align: middle;
+	margin-right: 15px;
+	width: 35px;
+}
+
+.menu_leftmenu_group {
+	width: 258px;
+	position: relative;
+	left: -2px;
+}
+
+.menu_leftmenu_close {
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	left: 260px;
+	top: 0px;
+	background: url(images/quit.png);
+	background-size: 22px 22px;
+	cursor: pointer;
+}

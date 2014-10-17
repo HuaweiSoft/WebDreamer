@@ -1,0 +1,17 @@
+<!-- the backbone template of the tab menu and the model defined in the model.json -->
+<div class="menu_tabmenu_container">
+
+	<% _.each(datas, function(item) { %>
+
+	<%if(item.selected){%>
+	<div class="menu_tabmenu_container_item" msg="<%= item.triggerMsg%>">
+		<%}%>
+
+		<%if(!item.selected){%>
+		<div class="menu_tabmenu_container_item_unselect" msg="<%= item.triggerMsg%>">
+			<%}%>
+			<%=
+			item.text%>
+		</div>
+		<% }); %>
+	</div>

@@ -1,0 +1,45 @@
+[
+  {
+    "position": "top",
+    "body": "layout_top_container",
+    "height": 143,
+    "scroll": false,
+    "zIndex": 1,
+    "background": "url(modules/layout/images/topbg.png)",
+    "containerId":"layout_top_container"
+  },
+  {
+    "position": "left",
+    "body": "layout_left_container",
+    "width": 230,
+    "animate": true,
+    "scroll": true,
+    "zIndex": 1,
+    "resize": true,
+    "collapse": false,
+    "gutter": "0px 0px 0px 0px",
+    "background": "#ffffff",
+    "containerId":"layout_left_container"
+  },
+  {
+    "position": "center",
+    "body": "layout_center_container",
+    "scroll": false,
+    "zIndex": 1,
+    "background": "url(modules/layout/images/centerbg.png)",
+    "containerId":"layout_center_container"
+  },
+  {
+    "position": "right",
+    "body": "layout_right_container",
+    "width": 240,
+    "resize": true,
+    "scroll": false,
+    "close": false,
+    "collapse": false,
+    "gutter": "0px 0px 0px 0px",
+    "zIndex": 1,
+    "background": "#ffffff",
+    "containerId":"layout_right_container"
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "id": "menu_leftmenu_container",
+  "datas": [
+    {
+      
+      "text": "New",
+      "title": "New Project",
+      "triggerMsg": "model/new",
+      "icon": "modules/menu/leftmenu/images/new.png",
+      "type": "menu"
+    },
+    {
+     
+      "text": "Open",
+      "title": "Open Project",
+      "triggerMsg": "model/open",
+      "icon": "modules/menu/leftmenu/images/open.png",
+      "type": "menu"
+    },
+    {
+      
+      "text": "Save",
+      "title": "Save Project",
+      "triggerMsg": "model/save",
+      "icon": "modules/menu/leftmenu/images/save.png",
+      "type": "menu"
+    },
+    {
+      
+      "text": "Save As..",
+      "title": "Save As New Project",
+      "triggerMsg": "model/saveAs",
+      "icon": "modules/menu/leftmenu/images/save_as.png",
+      "type": "menu"
+    },
+    {
+     
+      "text": "Save As Template",
+      "title": "Save As A New Template",
+      "triggerMsg": "model/saveAsTempalte",
+      "icon": "modules/menu/leftmenu/images/save_as_template.png",
+      "type": "menu"
+    },
+     {
+      "type": "group"
+    },
+    {
+     
+      "text": "Open Outline",
+      "title": "Open outline of project",
+      "triggerMsg": "outline/open",
+      "icon": "modules/menu/leftmenu/images/outline.png",
+      "type": "menu"
+    },
+    {
+      "text": "Close Outline",
+      "title": "Save As A New Template",
+      "triggerMsg": "outline/close",
+      "icon": "modules/menu/leftmenu/images/outline_close.png",
+      "type": "menu"
+    },
+    {
+      "type": "group"
+    },
+    {
+     
+      "text": "Open Property Editor",
+      "title": "Open PropertyEditor of Control",
+      "triggerMsg": "propertyEditor/open",
+      "icon": "modules/menu/leftmenu/images/configurator.png",
+      "type": "menu"
+    },
+    {
+      "text": "Close Property Editor",
+      "title": "Close Property Editor",
+      "triggerMsg": "propertyEditor/close",
+      "icon": "modules/menu/leftmenu/images/configurator_close.png",
+      "type": "menu"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<!-- the backbone template of the loading panel view and the model reference 
+	the loading_panel_model.json -->
+<div id='<%= loadingPanelId%>'
+	style="cursor:pointer;position:absolute;top:0px;left:0px;z-index:200;background: #474647;width:<%= documentWidth%>;height:<%= documentHeight%>">
+	<div
+		style='position:absolute;left:<%= loadingPanelLeft%>;top:<%= loadingPanelTop%>;width:<%= loadingPanelWidth%>;height:<%= loadingPanelHeight%>'>
+		<img class='loadingPanelImage' src='<%= loadingGifPath%>' />
+		<span
+			style='position:absolute;color:<%= loadingPanelFontColor%>;left:<%= loadingPanelfontLeft%>;top:<%= loadingPanelFontTop%>;background:<%= loadingPanelFontBgColor%>;font-size:<%= loadingPanelFontSize%>; z-index:10'><%= loadingPanelText%></span>
+	</div>
+</div>

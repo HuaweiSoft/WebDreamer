@@ -1,0 +1,71 @@
+<!-- the backbone template of the toolbar the model defined in the model.json -->
+<div id="toolbar" class="toolbar">
+	<div subMsg="<%= designer.subMsg%>" class="toolbar_tab" style="display:block">
+		<div class="toolbar_item_left toolbar_container_lfet"></div>
+		<div class="toolbar_item_midle toolbar_container_midle">
+			<div class="toolbar_sub_left"></div>
+			<div class="toolbar_sub_middle" id="<%= designer.controlsBoardId%>"></div>
+			<div title="Previous Line" class="toolbar_event down_page_div"
+				msg="<%= designer.upMsg%>"></div>
+			<div class="toolbar_event up_page_div" msg="<%= designer.downMsg%>"></div>
+			<div class="toolbar_event all_page" msg="<%= designer.allMsg%>"></div>
+			<div class="toolbar_item_textbar"><%= designer.text%></div>
+
+		</div>
+		<div class="toolbar_item_right toolbar_container_right">
+
+		</div>
+		<% _.each(designer.items, function(item) { %>
+
+		<div class="toolbar_event" msg="<%= item.triggerMsg%>"
+			style="position:absolute;left:<%= item.left%>;width:80px;display:<%= item.display%>">
+			<div style="position:absolute;left:10px" class="toolbar_item_left">
+			</div>
+			<div msg="<%= item.triggerMsg%>" style=" position:absolute ;
+				left:15px "
+				class="toolbar_item_midle">
+				<div msg="<%= item.triggerMsg%>" class="
+					toolbar_item_image_container ">
+					<img msg="<%= item.triggerMsg%>" src="<%= item.icon%>" class="toolbar_item_image">
+				</div>
+				<div class="toolbar_item_textbar"><%= item.text%></div>
+			</div>
+			<div style="position:absolute;left:80px" class="toolbar_item_right">
+			</div>
+		</div>
+		<% }); %>
+	</div>
+	<div subMsg="<%= service.subMsg%>" class="toolbar_tab" style="display:none">
+		<div class="toolbar_item_left toolbar_container_lfet"></div>
+		<div class="toolbar_item_midle toolbar_container_midle">
+			<div class="toolbar_sub_left"></div>
+			<div class="toolbar_sub_middle" id="<%= service.servicesBoardId%>"></div>
+			<div title="Previous Line" class="toolbar_event down_page_div"
+				msg="<%= service.upMsg%>"></div>
+			<div class="toolbar_event up_page_div" msg="<%= service.downMsg%>"></div>
+			<div class="toolbar_event all_page" msg="<%= service.allMsg%>"></div>
+			<div class="toolbar_item_textbar"><%= service.text%></div>
+
+		</div>
+		<div class="toolbar_item_right toolbar_container_right">
+		</div>
+		<% _.each(service.items, function(item) { %>
+
+		<div class="toolbar_event" msg="<%= item.triggerMsg%>"
+			style="position:absolute;left:<%= item.left%>;width:80px;display:<%= item.display%>">
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:10px"
+				class="toolbar_item_left">
+			</div>
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:15px"
+				class="toolbar_item_midle">
+				<div msg="<%= item.triggerMsg%>" class="toolbar_item_image_container">
+					<img msg="<%= item.triggerMsg%>" src="<%= item.icon%>" class="toolbar_item_image">
+				</div>
+				<div class="toolbar_item_textbar"><%= item.text%></div>
+			</div>
+			<div style="position:absolute;left:80px" class="toolbar_item_right">
+			</div>
+		</div>
+		<% }); %>
+
+	</div>
