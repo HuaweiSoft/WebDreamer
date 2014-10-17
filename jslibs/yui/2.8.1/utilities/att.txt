@@ -1,2 +1,0 @@
-原因为AJAX请求缓存问题，类库里处理缓存判断条件需要做修改。
-将if(G.toUpperCase()=="GET"&&(F&&F.cache===false)) 判断条件为  if(G.toUpperCase()=="GET")

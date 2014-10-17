@@ -1,9 +1,0 @@
-<div id="property_editor_title" class="property_editor_title">
-	<div class="property_editor_legend">
-	</div>
-	<div class="property_editor_text">Control Properties</div>
-</div>
-<div id="property_editor_wrapper" class="yui-skin-sam">
-	<div id="property_editor_body" class="property_editor_body yui-skin-sam">
-	</div>
-</div>

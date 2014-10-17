@@ -1,8 +1,0 @@
-<!-- the backbone template of the outline -->
-<div id="outline_title" class="outline_title">
-	<div class="outline_legend">
-	</div>
-	<div class="outline_text">Project OutLine</div>
-</div>
-<div id="outline_body" class="outline_body">
-</div>

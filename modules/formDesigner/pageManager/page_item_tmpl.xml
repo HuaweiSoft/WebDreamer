@@ -1,3 +1,0 @@
-<li>
-	<div page='<%= pageNo%>' class="page_nav_item_unselected"></div>
-</li>
