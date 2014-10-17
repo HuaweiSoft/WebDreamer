@@ -1,0 +1,147 @@
+/*******************************************************************************
+ *     Web Dreamer
+ *     Copyright (c) Huawei Technologies Co., Ltd. 1998-2014. All Rights Reserved.
+ *
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+ *******************************************************************************/
+.toolbar {
+	position: absolute;
+	top: 55px;
+	width: 100%;
+	height: 87px;
+}
+
+.toolbar_item_left {
+	background: url(images/left.png);
+	height: 87px;
+	width: 5px
+}
+
+.toolbar_item_midle {
+	background: url(images/midle.png);
+	height: 87px;
+	width: 67px;
+	z-index: 3;
+}
+
+.toolbar_item_right {
+	background: url(images/right.png);
+	height: 87px;
+	width: 8px;
+}
+
+.toolbar_sub_left {
+	background: url(images/sub_left.png);
+	height: 63px;
+	width: 5px;
+	position: absolute;
+	top: 5px;
+}
+
+.toolbar_sub_middle {
+	background: url(images/sub_middle.png);
+	height: 63px;
+	width: 656px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+.down_page_div {
+	position: absolute;
+	top: 6px;
+	left: 660px;
+	background: url(images/sub_down.png);
+	height: 23px;
+	width: 20px;
+	cursor: pointer;
+}
+
+.down_page_div:hover {
+	background: url(images/sub_down_light.png);
+}
+
+.up_page_div {
+	position: absolute;
+	top: 25px;
+	left: 660px;
+	background: url(images/sub_up.png);
+	height: 23px;
+	width: 20px;
+	cursor: pointer;
+}
+
+.up_page_div:hover {
+	background: url(images/sub_up_light.png);
+}
+
+.all_page {
+	position: absolute;
+	top: 46px;
+	left: 660px;
+	background: url(images/sub_all.png);
+	height: 23px;
+	width: 20px;
+	cursor: pointer;
+}
+
+.toolbar_container_lfet {
+	position: absolute;
+	left: 0px;
+}
+
+.all_page:hover {
+	background: url(images/sub_all_light.png);
+}
+
+.toolbar_container_midle {
+	width: 680px;
+	position: absolute;
+	left: 5px;
+}
+
+.toolbar_container_right {
+	position: absolute;
+	left: 684px;
+}
+
+.toolbar_item_textbar {
+	position: absolute;
+	top: 70px;
+	color: white;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	text-shadow: 1px 1px 1px #0C0202;
+}
+
+.toolbar_item_image_container {
+	position: absolute;
+	width: 68px;
+	height: 66px;
+	top: 2px;
+	cursor: pointer;
+}
+
+.toolbar_item_image_container:hover {
+	background: url(images/itembg_selected.png);
+	background-size: 66px 65px;
+}
+
+.toolbar_item_image {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 8px;
+	left: 8px;
+}

@@ -1,0 +1,110 @@
+.page_manage_bar {
+	display: block;
+	position: absolute;
+	z-index: 10;
+	background-color: #C7C6C6;
+	-moz-opacity: 0.9;
+	opacity: 0.9;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,
+		startColorStr=#6C8195, endColorStr=#f6f6f8);
+	border: 0px #22840F dotted;
+	background: -moz-linear-gradient(top, #000000, #f6f6f8);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000),
+		to(rgba(246, 246, 248, 0.56)));
+	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 4px 4px 0
+		#ffffff, inset 0 2px 4px 0 rgba(0, 0, 0, 0.4), inset 0 -2px 2px 0
+		rgba(255, 255, 255, 1);
+	-moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), inset 0 4px 4px 0
+		#ffffff, inset 0 2px 4px 0 rgba(0, 0, 0, 0.4), inset 0 -2px 2px 0
+		rgba(255, 255, 255, 0.9);
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	cursor: pointer;
+	width: 320px;
+	height: 35px;
+	top: 102px;
+	left: 35px;
+}
+
+.page_manage_item {
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+
+.page_manage_item_img {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+	top: 6px;
+	left: 4px;
+	position: relative;
+}
+
+.page_manage_add {
+	background: url(images/newpage.png);
+	background-size: 25px 25px;
+}
+
+.page_manage_delete {
+	background: url(images/delpage.png);
+	background-size: 25px 25px;
+}
+
+.page_manage_next {
+	background: url(images/next.png);
+	background-size: 25px 25px;
+}
+
+.page_manage_up {
+	background: url(images/previouspage.png);
+	background-size: 25px 25px;
+}
+
+.page_manage_view_all {
+	background: url(images/viewallpages.png);
+	background-size: 25px 25px;
+	display: none;
+}
+
+.page_manage_run {
+	background: url(images/run.png);
+	background-size: 25px 25px;
+	display: none;
+}
+
+.page_nav_container {
+	float: left;
+	width: 198px;
+	overflow: hidden;
+	margin-top: 14px;
+}
+
+.page_nav_container ul {
+	float: left;
+	left: 30%;
+	margin: 0 auto;
+	position: relative;
+	list-style: none;
+}
+
+.page_nav_container ul li {
+	float: left;
+	position: relative;
+	right: 50%;
+	margin-left: 2px;
+}
+
+.page_nav_item_unselected {
+	width: 10px;
+	height: 10px;
+	background: url(images/unselecteditem.png);
+}
+
+.page_nav_item_selected {
+	margin-top: 1px;
+	width: 10px;
+	height: 10px;
+	background: url(images/selecteditem.png);
+	width: 10px;
+}

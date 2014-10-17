@@ -1,0 +1,8 @@
+<!-- the template of control which should display on the control board of 
+	toolbar -->
+<% _.each(controls, function(control) { %>
+<div class="control_item" effectIcon="<%= control.effectIcon%>"
+	title="<%= control.description%>" name="<%= control.name%>">
+	<img src="<%= control.toolbarIcon%>" class="control_item_img"/>
+</div>
+<% }); %>

@@ -1,0 +1,10 @@
+<!-- the backbone template of the layout the model defined in the model.json -->
+<% _.each(datas, function(item) { %>
+<div style="width:100%;height:100%" id="<%= item.body%>">
+</div>
+<% }); %>
+
+<!-- mouse drag and move the control from toolbar -->
+<div id="mouseMoving"
+	style="position: absolute; z-index: 1000; top: 105px; left: 83px; visibility: hidden; opacity: 0.8;">
+</div>

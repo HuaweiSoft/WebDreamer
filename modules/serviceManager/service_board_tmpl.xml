@@ -1,0 +1,9 @@
+<!--Template of service board model defined in serices/metadata.json-->
+<% _.each(services, function(service) { %>
+<div class="api_item" id="service_board_<%= service.name%>" title="<%= service.description%>"
+	type="<%= service.name%>">
+	<img src="<%= service.icon%>" type="<%= service.name%>" class="
+		api_item_img " />
+	<span class="api_item_text" type="<%= service.name%>"><%= service.displayName%></span>
+</div>
+<% }); %>

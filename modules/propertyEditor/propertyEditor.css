@@ -1,0 +1,41 @@
+.property_editor_title {
+	width: 100%;
+	height: 29px;
+	/*position: absolute*/;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(145, 142, 142, 0.84);
+	background: url(images/top_nav_bg.png);
+}
+
+.property_editor_body {
+	width: 100%;
+	height: 90%;
+	/*position: absolute*/;
+	top: 0px;
+	left: 0px;
+	padding-left: 1px;
+	font-size:14px;
+}
+
+.property_editor_legend {
+	position: absolute;
+	left: 7px;
+	top: 4px;
+	height: 20px;
+	width: 20px;
+	background: url(images/configurator_icon.png);
+	background-size: 20px 20px;
+}
+
+.property_editor_text {
+	position: absolute;
+	text-align: left;
+	color: #332D2D;
+	left: 30px;
+	top: 6px;
+	height: 30px;
+	font-weight: 700;
+	width: 80%;
+	font-size: 15px;
+}

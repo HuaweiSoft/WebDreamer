@@ -1,0 +1,66 @@
+{
+
+  "designer": {  
+    "subMsg": "menu/tab/designer",
+    "upMsg":"toolbar/designer/container/up",
+    "downMsg":"toolbar/designer/container/down",
+    "allMsg":"toolbar/designer/container/all",
+    "controlsBoardId":"toolbar_controls_board",
+    "text":"Controls",
+    "items": [
+      {
+        "left": "700px",
+        "triggerMsg": "outline/open",
+        "text": "OutLine",
+        "icon": "modules/toolbar/images/outline.png",
+        "display":"block"
+      },
+      {
+        "left": "700px",
+        "triggerMsg": "outline/close",
+        "text": "OutLine",
+        "icon": "modules/toolbar/images/outline_close.png",
+        "display":"none"
+      },
+      {
+        "left": "780px",
+        "triggerMsg": "propertyEditor/open",
+        "text": "Properties",
+        "icon": "modules/toolbar/images/configurator.png",
+        "display":"block"
+      },
+       {
+        "left": "780px",
+        "triggerMsg": "propertyEditor/close",
+        "text": "Properties",
+        "icon": "modules/toolbar/images/configurator_close.png",
+        "display":"none"
+      },
+       {
+        "left": "860px",
+        "triggerMsg": "toolbar/delete",
+        "text": "Delete",
+        "icon": "modules/toolbar/images/delete.png",
+        "display":"block"
+      }
+      
+    ]
+  },
+  "service": {
+    "subMsg": "menu/tab/service",
+    "upMsg":"toolbar/service/container/up",
+    "downMsg":"toolbar/service/container/down",
+    "allMsg":"toolbar/service/container/all",
+    "servicesBoardId":"toolbar_services_board",
+    "text":"services",
+    "items": [
+      {
+        "left": "700px",
+        "triggerMsg": "toolbar/service/import",
+        "text": "Import",
+        "icon": "modules/toolbar/images/service_import.png",
+        "display":"block"
+      }
+    ]
+  }
+}

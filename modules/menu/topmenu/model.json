@@ -1,0 +1,23 @@
+{"startMsg":"menu/leftmenu/switch",
+ "datas":
+[
+  {
+    "id": "menu_top_menu_new",
+    "title": "New Project",
+    "triggerMsg": "model/new",
+    "icon": "modules/menu/topmenu/images/new.png"
+  },
+  {
+    "id": "menu_top_menu_open",
+    "title": "Open Project",
+    "triggerMsg": "control/open",
+    "icon": "modules/menu/topmenu/images/open.png"
+  },
+  {
+    "id": "menu_top_menu_save",
+    "title": "Save Project",
+    "triggerMsg": "model/save",
+    "icon": "modules/menu/topmenu/images/save.png"
+  }
+]
+}
