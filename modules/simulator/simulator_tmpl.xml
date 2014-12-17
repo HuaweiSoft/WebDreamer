@@ -1,0 +1,8 @@
+<div id="project_simulator_panel" class="project_simulator_panel">
+	<div id="project_simulator_panel_close" class="project_simulator_panel_close"></div>
+	<div id="project_simulator" class="project_simulator">
+		<iframe id="project_simulator_iframe" class="project_simulator_iframe"
+			marginheight="0" marginwidth="0" frameborder="0" scrolling="yes" src="">
+		</iframe>
+	</div>
+</div>

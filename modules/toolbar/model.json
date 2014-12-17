@@ -52,7 +52,7 @@
     "downMsg":"toolbar/service/container/down",
     "allMsg":"toolbar/service/container/all",
     "servicesBoardId":"toolbar_services_board",
-    "text":"services",
+    "text":"My Services",
     "items": [
       {
         "left": "700px",
@@ -62,5 +62,50 @@
         "display":"block"
       }
     ]
+  },
+  "deploy": {
+    "subMsg": "menu/tab/deploy",
+    "deployBoardId":"toolbar_deploy_board",
+    "text":"Deploy",
+    "items": [
+      {
+        "left": "-10px",
+        "triggerMsg": "toolbar/deploy/war",
+        "text": "Export",
+        "icon": "modules/toolbar/images/war.png",
+        "display":"block"
+      },
+      {
+        "left": "90px",
+        "triggerMsg": "toolbar/deploy/cf",
+        "text": "Publish",
+        "icon": "modules/toolbar/images/cf.png",
+        "display":"block"
+      }
+    ]
   }
+,
+   "setting": {
+    "subMsg": "menu/tab/setting",
+    "settingBoardId":"toolbar_setting_board",
+    "items": [
+      {
+        "id": "toolbar_proxy_setting",
+        "left": "-10px",
+        "triggerMsg": "toolbar/setting/proxy",
+        "text": "Proxy",
+        "icon": "modules/toolbar/images/proxy.png",
+        "display":"block"
+      },
+      {
+          "id": "toolbar_cf_runtime_setting",
+          "left": "90px",
+        "triggerMsg": "toolbar/setting/cf",
+        "text": "CFRuntime",
+        "icon": "modules/toolbar/images/cf.png",
+        "display":"block"
+      }
+    ]
+  }
+ 
 }

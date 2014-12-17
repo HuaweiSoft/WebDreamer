@@ -1,0 +1,19 @@
+<div id="project_mgr_view_panel" class="project_mgr_view_panel">
+	<table id="project_mgr_view_panel_head" class="project_mgr_view_panel_head">
+		<tr>
+			<td align="left">
+				<div class="project_mgr_view_panel_create" id="project_mgr_view_panel_create">
+					<span class="project_mgr_view_panel_create_text" id="project_mgr_view_panel_create_text">New
+						Project
+					</span>
+				</div>
+			</td>
+			<td align="right">
+				<div class="project_mgr_view_panel_close" id="project_mgr_view_panel_close"></div>
+			</td>
+		</tr>
+	</table>
+	<hr class="project_mgr_view_panel_head_hr" />
+	<div id="project_mgr_container_body" class="project_mgr_container_body">
+	</div>
+</div>

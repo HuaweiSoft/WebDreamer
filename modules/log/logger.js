@@ -23,51 +23,45 @@ var Logger = (function() {
 
     return {
 
-	/**
-	 * Writing debug information on console of browser
-	 * 
-	 * @param moudle
-	 * @param msg
-	 */
-	debug : function(modlue, msg) {
-	    console
-		    .debug(this.__getTime__() + " [" + modlue + "]" + "  "
-			    + msg);
-	},
+        /**
+         * Writing debug information on console of browser
+         * 
+         * @param module
+         * @param msg
+         */
+        debug: function(module, msg) {
+            console.debug(this.__getTime__() + " [" + module + "]" + "  " + msg);
+        },
 
-	/**
-	 * Writing information information on console of browser
-	 * 
-	 * @param moudle
-	 * @param msg
-	 */
-	info : function(modlue, msg) {
-	    console.info(this.__getTime__() + " [" + modlue + "]" + "  " + msg);
-	},
+        /**
+         * Writing information information on console of browser
+         * 
+         * @param module
+         * @param msg
+         */
+        info: function(module, msg) {
+            console.info(this.__getTime__() + " [" + module + "]" + "  " + msg);
+        },
 
-	/**
-	 * Writing error information on console of browser
-	 * 
-	 * @param moudle
-	 * @param msg
-	 */
-	error : function(modlue, msg) {
-	    console
-		    .error(this.__getTime__() + " [" + modlue + "]" + "  "
-			    + msg);
-	},
+        /**
+         * Writing error information on console of browser
+         * 
+         * @param module
+         * @param msg
+         */
+        error: function(module, msg) {
+            console.error(this.__getTime__() + " [" + module + "]" + "  " + msg);
+        },
 
-	/**
-	 * Formating the time of log
-	 */
-	__getTime__ : function() {
-	    var myDate = new Date();
-	    return myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-"
-		    + myDate.getDate() + " " + myDate.getHours() + ":"
-		    + myDate.getMinutes() + ":" + myDate.getSeconds() + "."
-		    + myDate.getMilliseconds();
+        /**
+         * Formating the time of log
+         */
+        __getTime__: function() {
+            var myDate = new Date();
+            return myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate() + " "
+                    + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds() + "."
+                    + myDate.getMilliseconds();
 
-	}
+        }
     };
 })();
-;

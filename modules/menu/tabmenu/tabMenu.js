@@ -17,84 +17,76 @@
 /**
  * Define the tab menu bar function in this,when user click the tab to switch the defined function
  */
-define(
-	[ "css!modules/menu/tabmenu/tabMenu",
-		"text!modules/menu/tabmenu/model.json",
-		"text!modules/menu/tabmenu/tab_menu_tmpl.xml" ],
-	function(css, model, tmpl) {
+define([ "css!modules/menu/tabmenu/tabMenu", "text!modules/menu/tabmenu/model.json",
+        "text!modules/menu/tabmenu/tab_menu_tmpl.xml" ], function(css, model, tmpl) {
 
-	    var init = function() {
+    var init = function() {
 
-		Arbiter.subscribe("layout/top/rendered", {
-		    async : true
-		}, function(data) {
+        Arbiter.subscribe("layout/top/rendered", {
+            async: true
+        }, function(data) {
 
-		    /**
-		     * Instance one view and render the view
-		     */
-		    var view = new TabMenuView({
-			el : $("#" + data.body)
-		    });
-		    view.render();
-		});
-	    };
-	    /**
-	     * Define the tab menu view class in backbone model
-	     */
-	    var TabMenuView = Backbone.View
-		    .extend({
+            /**
+             * Instance one view and render the view
+             */
+            var view = new TabMenuView({
+                el: $("#" + data.body)
+            });
+            view.render();
+        });
+    };
+    /**
+     * Define the tab menu view class in backbone model
+     */
+    var TabMenuView = Backbone.View.extend({
 
-			/**
-			 * Render the view base model defined in the model.json and template defined in the tab_menu_tmpl.xml
-			 * 1、Get HTML through backbone template
-			 * 2、Append the HTML to container 
-			 */
-			render : function() {
-			    var datas = {
-				"datas" : JSON.parse(model)
-			    };
-			    var itemHTML = _.template(tmpl, datas);
-			    this.$el.append(itemHTML);
-			},
+        /**
+         * Render the view base model defined in the model.json and template defined in the tab_menu_tmpl.xml
+         * 1、Get HTML through backbone template
+         * 2、Append the HTML to container 
+         */
+        render: function() {
+            var datas = {
+                "datas": JSON.parse(model)
+            };
+            var itemHTML = _.template(tmpl, datas);
+            this.$el.append(itemHTML);
+        },
 
-			/**
-			 * When user click the tab item to switch to it defined function
-			 * @param {event} event,mouse click event
-			 */
-			tab : function(event) {
-			    var msg = $(event.target).attr("msg");
-			    var tabs = $("div[class^='menu_tabmenu_container_item']");
-			    for ( var i = 0; i < tabs.length; i++) {
+        /**
+         * When user click the tab item to switch to it defined function
+         * @param {event} event,mouse click event
+         */
+        tab: function(event) {
+            var msg = $(event.target).attr("msg");
+            var tabs = $("div[class^='menu_tabmenu_container_item']");
+            for ( var i = 0; i < tabs.length; i++) {
 
-				var $tab = $(tabs[i]);
-				if ($tab.attr("msg") == msg
-					&& $tab.attr("class") == "menu_tabmenu_container_item") {
+                var $tab = $(tabs[i]);
+                if ($tab.attr("msg") == msg && $tab.attr("class") == "menu_tabmenu_container_item") {
 
-				} else {
+                } else {
 
-				    if ($tab.attr("msg") == msg) {
-					$tab.attr("class",
-						"menu_tabmenu_container_item");
-					Arbiter.publish(msg, null, {
-					    async : true
-					});
-				    } else {
-					$tab
-						.attr("class",
-							"menu_tabmenu_container_item_unselect");
-				    }
+                    if ($tab.attr("msg") == msg) {
+                        $tab.attr("class", "menu_tabmenu_container_item");
+                        Arbiter.publish(msg, null, {
+                            async: true
+                        });
+                    } else {
+                        $tab.attr("class", "menu_tabmenu_container_item_unselect");
+                    }
 
-				}
-			    }
-			},
+                }
+            }
+        },
 
-			events : {
-			    "click div[class^='menu_tabmenu_container_item']" : "tab"
-			}
-		    });
+        events: {
+            "click div[class^='menu_tabmenu_container_item']": "tab"
+        }
+    });
 
-	    return {
-		init : init,
-	    };
+    return {
+        init: init
+    };
 
-	});
+});

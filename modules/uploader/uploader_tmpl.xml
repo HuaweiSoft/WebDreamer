@@ -1,0 +1,20 @@
+<div id="upload_view_panel" class="upload_view_panel">
+	<span class="upload_head_txt">Please Upload Resource</span>
+	<div id="upload_view_panel_close" class="upload_view_panel_close"></div>
+	<hr class="upload_head_hr" />
+	<div class="uploader_drop_box" id="uploader_drop_box">
+		<span id="uploader_drop_box_text" class="uploader_drop_box_text">Drop file here to upload
+		</span>
+	</div>
+	<div id="uplad_proccess_tip" class="uplad_proccess_tip">
+		<img src="modules/uploader/images/processing.gif" class="uplad_proccess_tip_gif" />
+		<span id="upload_proccess_tip_text" class="upload_proccess_tip_text">0%</span>
+	</div>
+	<div id="upload_detail" class="upload_detail">
+		<span id="upload_detail_name" class="upload_detail_name"></span>
+		<span id="upload_detail_size" class="upload_detail_size"></span>
+		<div id="delete_uploaded_file" class="uplad_detail_delete"></div>
+	</div>
+	<div id="upload_success_tip" class="upload_success_tip"></div>
+	<div class="uplad_btn_ok" id="uplad_btn_ok">OK</div>
+</div>

@@ -1,0 +1,177 @@
+@CHARSET "UTF-8";
+
+.service-create-panel {
+	position: absolute;
+	z-index: 10;
+	width: 700px;
+	height: 600px;
+	background-color: #ffffff;
+	padding: 10px;
+	border: 3px solid #6B6868;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	display: none;
+}
+
+.service-create-panel-head {
+	font-size: 20px;
+	border-bottom: 2px dotted #000;
+	padding: 10px 0px;
+}
+
+.service-create-panel-form {
+	max-height: 600px;
+	overflow: auto;
+}
+
+.service-create-panel-form  table tr {
+	border-bottom: 1px dotted #ccc;
+}
+
+.service-create-panel-form .service-param {
+	width: 40%;
+	padding-right: 15px;
+	text-align: right;
+	font-size: 16px;
+	color: #4D4D4D;
+}
+
+.service-create-panel-form .input-text {
+	display: block;
+	width: 90%;
+	height: 20px;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.service-create-panel-form .parameter-input {
+	padding: 3px 3px;
+	margin-bottom: 5px;
+}
+
+.odd {
+	background-color: #ccc;
+}
+
+.service-create-panel-form .input-text-parameter-key {
+	display: inline;
+	width: 15%;
+	height: 20px;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #3497D1;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.service-create-panel-form .input-text-parameter-value {
+	display: inline;
+	width: 20%;
+	height: 20px;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #3497D1;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.service-create-panel-form .parameter-input .input-select {
+	display: inline;
+	width: 25%;
+	height: auto;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #3497D1;
+	border-radius: 4px;
+}
+
+.service-create-panel-form .input-select {
+	display: inline;
+	width: 40%;
+	height: auto;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.service-create-panel-form .input-textarea {
+	display: block;
+	width: 90%;
+	height: auto;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.service-create-panel-form .input-button {
+	display: block;
+	height: auto;
+	font-size: 14px;
+	padding: 4px 5px;
+	border: 0px;
+	border-radius: 4px;
+	background-color: #5bc0de;
+	color: #fff;
+	cursor: pointer;
+}
+
+.service-create-panel-form .input-button:hover {
+	background-color: #0080ff;
+}
+
+.service-create-panel-form .icon-display {
+	width: 30px;
+	height: 30px;
+	background: url(images/close.png) no-repeat;
+	background-size: 30px 30px;
+	cursor: pointer;
+	border: 2px solid #000;
+}
+
+.service-create-panel-form .icon-name {
+	font-size: 16px;
+	color: #000;
+}
+
+.service-create-operation {
+	border-top: 2px dotted #000;
+	margin-top: 5px;
+	padding: 5px 10px;
+	text-align: right;
+}
+
+.service-create-operation .service-operation-btn {
+	margin: 10px 1px;
+	height: auto;
+	font-size: 20px;
+	padding: 10px 10px;
+	border: 0px;
+	border-radius: 4px;
+	background-color: green;
+	color: #fff;
+	cursor: pointer;
+}
+
+.service-create-operation .service-operation-btn:hover {
+	background-color: #0080ff;
+}
+
+.service-create-result {
+	padding: 15px;
+	margin: 10px 10px;
+}
+
+.success {
+	background-color: #dff0d8;
+}
+
+.error {
+	background-color: #f2dede;
+}

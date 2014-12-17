@@ -18,116 +18,173 @@
 /**
  * Dynamically load all javascript files of controls depend on to runtime
  */
-define([ "jquery", "util" ], function($, util) {
+define([ "jquery", "util", "HashMap" ],
+    function($, util, HashMap) {
 
-    var init = function() {
-	Arbiter.subscribe(EVENT_CONTROLS_LOAD_METADATA, {
-	    async : true
-	}, function(controlData) {
-	    var jsLoader = new JSFilesLoader();
-	    jsLoader.loadJS(controlData)
-	});
-    };
+        return {
+            init: function() {
+                var _this = this;
+                Arbiter.subscribe(EVENT_CONTROLS_LOAD_METADATA, {
+                    async: false
+                }, function(controlData) {
+                    _this.loadJS(controlData);
+                });
 
-    var JSFilesLoader = Backbone.View.extend({
-	loadJS : function(controlData) {
-	    var loader = new this.jsLoader();
-	    var controlJSArray = this.getValidJS(controlData.controls);
-	    for ( var i = 0; i < controlJSArray.length; i++) {
-		loader.addURL(controlJSArray[i]);
-	    }
-	    loader.traverse();
-	},
+            },
 
-	/**
-	 * Resort the loading sequence of controls javascript files base on controls meta data
-	 * @param {ObjectArray} jsArray 
-	 */
-	getValidJS : function(jsArray) {
-	    var controlJSArray = [];
-	    for ( var i = 0; i < jsArray.length; i++) {
+            loadJS: function(controlData) {
+                var controlJSArray = this.getAllControlJS(controlData);
+                this.loadAllJsByDom(controlJSArray);
+                var cssArray = [];
+                if( controlData.controlBase.runtime.css){
+                    for (var i = 0; i < controlData.controlBase.runtime.css.length; i++) {
+                        cssArray.push(controlData.controlBase.runtime.css[i] );
+                    }
+                }
+                if(controlData.controlBase.designer.css){
+                    for (var i = 0; i < controlData.controlBase.designer.css.length; i++) {
+                        cssArray.push(controlData.controlBase.designer.css[i]);
+                    }
+                }
+                this.loadAllControlCss(cssArray);
+            },
 
-		var control = jsArray[i];
-		var designerJS = window.location.pathname + "controls/"
-			+ control.dir + "/" + control.designerJS + ".js";
-		var runtimeJS = window.location.pathname + "controls/"
-			+ control.dir + "/" + control.runtimeJS + ".js";
-		var dependJS = control.dependJS;
-		for ( var p = 0; p < dependJS.length; p++) {
+            /**
+             * Resort the loading sequence of controls javascript files base on controls meta data
+             * @param {ObjectArray} jsArray
+             */
+            getAllControlJS: function(controlData) {
 
-		    var dependX = window.location.pathname + dependJS[p]
-			    + ".js";
-		    if (!util.inArray(controlJSArray, dependX)) {
-			controlJSArray.push(dependX);
-		    }
+                var controlJSArray = [];
+                for (var i = 0; i < controlData.controlBase.runtime.js.length; i++) {
+                    controlJSArray.push(controlData.controlBase.runtime.js[i] );
+                }
+                for (var i = 0; i < controlData.controlBase.designer.js.length; i++) {
+                    controlJSArray.push(controlData.controlBase.designer.js[i]);
+                }
 
-		}
-		if (!util.inArray(controlJSArray, runtimeJS)) {
-		    controlJSArray.push(runtimeJS);
-		}
-		if (!util.inArray(controlJSArray, designerJS)) {
-		    controlJSArray.push(designerJS);
-		}
-	    }
-	    return controlJSArray;
+                var controlArray = controlData.controls;
+                var indexMap = new HashMap();
+                for (var i = 0; i < controlArray.length; i++) {
+                    var control = controlArray[i];
+                    if (control && control.name) {
+                        indexMap.put(control.name, control);
+                    }
+                }
+                var containedMap = new HashMap();
 
-	},
 
-	/**
-	 * Asynchronously load Javascript file to runtime class through Jquery AJAX 
-	 */
-	jsLoader : function() {
+                for (var i = 0; i < controlArray.length; i++) {
+                    var control = controlArray[i];
+                    if (!control || !control.name)
+                        continue;
+                    var dependJSArray = [];
+                    this.collectControlJS(control, dependJSArray, indexMap, containedMap);
+                    for (var p = dependJSArray.length - 1; p >= 0; p--) {
+                        //if (!util.inArray(controlJSArray, dependJSArray[p]))
+                        {
+                            controlJSArray.push(dependJSArray[p]);
+                        }
+                    }
+                }
+                return controlJSArray;
+            },
 
-	    return {
+            collectControlJS: function(control, jsArray, indexMap, containedMap) {
+                if (containedMap.containsKey(control.name))
+                    return;
 
-		dataURLs : new Array(),
-		datasCount : 0,
-		count : 0,
-		traverse : function(obj) {
-		    if (!obj)
-			obj = this;
-		    var dataURL = obj.dataURLs[this.datasCount];
-		    if (!dataURL) {
+                for (var i = control.designer.js.length - 1; i >= 0; i--) {
+                    var designerJS = "controls/" + control.dir
+                        + "/" + control.designer.js[i];
+                    jsArray.push(designerJS);
+                }
 
-			this.clear(obj);
-			return;
-		    }
-		    obj.datasCount += 1;
-		    $.ajax({
-			url : window.location.origin + dataURL.url,
-			dataType : dataURL.type ? dataURL.type : "script",
-			success : function(data, textStatus) {
-			    obj.traverse(obj);
-			},
-			error : function(e) {
-			    Logger.error("Load Control JS", e);
-			}
-		    });
-		},
-		eventCount : 0,
-		ready : function(callBack) {
-		    this.eventCount += 1;
-		},
-		onCompletes : new Array(),
-		addURL : function(_url) {
+                for (var i = control.runtime.js.length - 1; i >= 0; i--) {
+                    var runtimeJS = "controls/" + control.dir + "/" + control.runtime.js[i];
+                    jsArray.push(runtimeJS);
+                }
 
-		    this.dataURLs[this.count] = {
-			url : _url
-		    };
-		    this.count += 1;
-		    return this;
-		},
-		clear : function(obj) {
-		    if (obj)
-			obj = this;
-		    obj == null;
-		}
-	    }
-	}
+                if (control.hasOwnProperty("dependControl") && control.dependControl.length > 0) {
+                    for (var i = control.dependControl.length - 1; i >= 0; i--) {
+                        var dependName = control.dependControl[i];
+                        if (!indexMap.containsKey(dependName)) {
+                            console.error("No metadata for '%s' control, and '%s' control would can not to work!",
+                                dependName, control.name);
+                            continue;
+                        }
+                        var dependControl = indexMap.get(dependName);
+                        this.collectControlJS(dependControl, jsArray, indexMap, containedMap);
+                        containedMap.put(dependName, true);
+                    }
+                }
+                containedMap.put(control.name, true);
+            },
+
+
+            /**
+             * Asynchronously load Javascript file to runtime class through Jquery AJAX
+             */
+            loadAllJsByDom: function(controlJSArray) {
+                var index = -1;
+                function loadNext(){
+                    index ++ ;
+                    if(index>=controlJSArray.length)
+                        return;
+                    var scriptElm = document.createElement('script');
+                    scriptElm.type = 'text/javascript';
+                    scriptElm.async = 'async';
+                    scriptElm.src =  controlJSArray[index];
+                    scriptElm.onload = scriptElm.onreadystatechange = function(){
+                         if ((!this.readyState) || this.readyState == "complete" || this.readyState == "loaded" ){
+                            //script loaded
+                         }
+                        else{
+                             console.warn("Control js may load failed: " + controlJSArray[index]);
+                         }
+                        loadNext();
+                    };
+                    scriptElm.onerror = function(){
+                        //console.error( "Control js loaded error: " + controlJSArray[index] );
+                        loadNext();
+                    };
+                    var headElm = document.head || document.getElementsByTagName('head')[0];
+                    headElm.appendChild(scriptElm);
+                }
+                loadNext();
+            },
+
+            loadAllJsXHR: function(controlJSArray) {
+                var index = -1;
+                function loadNext(){
+                    index ++ ;
+                    if(index>=controlJSArray.length)
+                        return;
+                    $.ajax({
+                        url: controlJSArray[index],
+                        dataType: "script",
+                        success: function(data, textStatus) {
+                            loadNext();
+                        },
+                        error: function(e) {
+                            console.error("Load js error: %o", e);
+                            loadNext();
+                        }
+                    });
+                }
+                loadNext();
+            },
+
+            loadAllControlCss: function(cssArray){
+                var paths = [];
+                for (var i = 0; i < cssArray.length; i++) {
+                    paths.push("css!" + cssArray[i]) ;
+                }
+                require(paths, function(){
+                   console.debug("All css of ui controls have been loaded!");
+                });
+            }
+        };
+
+
     });
-    return {
-	init : init,
-	JSFilesLoader : JSFilesLoader
-    };
-
-});

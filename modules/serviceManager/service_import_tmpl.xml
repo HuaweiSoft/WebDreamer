@@ -1,1 +1,63 @@
-<!--TO DO-->
+<TemplateSet>
+	<div id="service-import-panel-tmpl">
+		<div id="service-import-panel" class="service-import-panel">
+			<div id="service_list_create" class="service_list_create">Create New Service</div>
+			<table id="service-import-panel-head" class="service-import-panel-head">
+				<tr>
+					<td align="left" class="serivce-import-panel-head-title">
+						<span>Services List</span>
+					</td>
+					<td align="right" id="serivce-import-panel-close-btn" class="serivce-import-panel-close-btn"></td>
+				</tr>
+			</table>
+			<div id="service_group_tab_container" class="service_group_tab_container">
+				<div>System</div>
+				<div style="position:absolute;height:3px;background:#ffaadd"></div>
+			</div>
+			<div id="service_list_container" class="service_list_container">
+			</div>
+		</div>
+	</div>
+	<div id="list_services_tmpl">
+		<% _.each(services, function(service) { %>
+
+		<div class="service_list_item_container" name="<%= service.serviceName%>">
+			<img class="service_list_item_icon" name="<%= service.serviceName%>"
+				imagesource="./services/<%= service.serviceName%>/icon/<%= service.icon%>" />
+			<div class="service_list_item_menu" title="Click to operate service"
+				group="<%= service.type%>" name="<%= service.serviceName%>"></div>
+			<hr class="service_list_item_bottom_hr" name="<%= service.serviceName%>" />
+			<div class="service_list_item_name" name="<%= service.serviceName%>"><%=
+				service.serviceName%></div>
+		</div>
+
+		<% }); %>
+	</div>
+	<div id="menuset">
+		<div id="service_list_operate_menu_container" class="service_list_operate_menu_container">
+			<div class="service_list_operate_menu_container_title">Service Operate Menu</div>
+			<hr class="service_list_operate_menu_hr_head" />
+			<div id="service_list_operate_menu_container_close" class="service_list_operate_menu_container_close"></div>
+			<div operate="add"
+				class="service_list_operate_menu_div service_list_operate_menu_import">
+				<div operate="add"
+					class="service_list_operate_menu_icon service_list_operate_menu_icon_import"></div>
+				<div operate="add" class="service_list_operate_menu_text">Add To My Services</div>
+			</div>
+			<hr class="service_list_operate_menu_import_hr" />
+			<div operate="edit "
+				class="service_list_operate_menu_div service_list_operate_menu_edit">
+				<div operate="edit"
+					class="service_list_operate_menu_icon service_list_operate_menu_icon_edit"></div>
+				<div operate="edit" class="service_list_operate_menu_text">Edit This Service</div>
+			</div>
+			<hr class="service_list_operate_menu_edit_hr" />
+			<div operate="delete"
+				class="service_list_operate_menu_div service_list_operate_menu_delete">
+				<div operate="delete"
+					class="service_list_operate_menu_icon service_list_operate_menu_icon_delete"></div>
+				<div operate="delete" class="service_list_operate_menu_text">Delete This Service</div>
+			</div>
+		</div>
+	</div>
+</TemplateSet>

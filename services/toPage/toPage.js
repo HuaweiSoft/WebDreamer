@@ -19,41 +19,35 @@
  * @dependency  jquery.js
  */
 
-var changePage = (function() {
+var toPage = (function() {
     var currentPageNo = 1;
 
-    /** 
-     *Switch application to the specified page number 
+    /**
+     *Switch application to the specified page number
      *@param {Number} pageNo,target page number
-     *@param {function} successCallback,this function WebDreamer will automatically set it when build application
-     *@param {function} errorCallback, his function WebDreamer will automatically set it when build application
      */
-    function changePage(pageNo, successCallback, errorCallback) {
-	if (window.location.href.indexOf("#PAGE") > 0) {
-	    try {
-		currentPageNo = parseInt(window.location.href.substring(
-			window.location.href.indexOf("#PAGE") + 5,
-			window.location.href.length), 10);
-	    } catch (e) {
-		// ....
-	    }
-	}
-	if (typeof pageNo == "string") {
-	    pageNo = parseInt(pageNo);
-	    if (pageNo == NaN) {
-		return;
-	    }
-	}
-	var reverse = pageNo < currentPageNo;
-	jQuery.mobile.changePage("#PAGE" + pageNo, {
-	    transition : "slide",
-	    reverse : reverse,
-	    changeHash : true
-	});
-	currentPageNo = pageNo;
-	if (successCallback) {
-	    successCallback(pageNo);
-	}
+    function changePage(pageNo) {
+        var href = window.location.href;
+        if (href.indexOf("#PAGE") > 0) {
+            try {
+                currentPageNo = parseInt(href.substring(href.indexOf("#PAGE") + 6, href.length), 10);
+            } catch (e) {
+                // ....
+            }
+        }
+        if (typeof pageNo == "string") {
+            pageNo = parseInt(pageNo);
+            if (isNaN(pageNo)) {
+                return;
+            }
+        }
+        var reverse = pageNo < currentPageNo;
+        jQuery.mobile.changePage("#PAGE" + pageNo, {
+            transition: "slide",
+            reverse: reverse,
+            changeHash: true
+        });
+        currentPageNo = pageNo;
     }
 
     return changePage;

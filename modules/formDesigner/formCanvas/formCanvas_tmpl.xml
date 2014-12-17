@@ -1,9 +1,10 @@
-<div id='form_designer_container' class="designer_bg">
-	<div id='canvasDesign' class="designer_workshop">
+<div id='form_designer_container' class="designer_bg" onselectstart="return false;" >
+	<div id='canvasDesign' class="designer_workshop" >
 		<!-- Hold the actual controls we drag on -->
 		<div id="controlContainer">
 			<div id="controlSelected" class="control_selected"></div>
-			<div id="page_1"></div>
+			<div id="controlHighlight" class="control_highlight"></div>
+			<div id="page_1" class="page_view"></div>
 		</div>
 	</div>
 </div>

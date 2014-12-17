@@ -1,0 +1,45 @@
+
+.loading-overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9000;
+    overflow: hidden;
+    display: none;
+}
+
+.loading-overlay .loading-backdrop{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+.loading-overlay .loading-container{
+    width: 100%;
+    height: 100px;
+    z-index: 100;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    margin-top: -50px;
+}
+
+.loading-overlay .loading-container .loading-gif{
+    background: url(images/ajax-loader2.gif) no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.loading-overlay .loading-container .loading-text{
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}

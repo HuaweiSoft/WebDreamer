@@ -1,56 +1,176 @@
-[
-  {
-    "category": "Form",
-    "controls": [
-      {
-        "name": "UI.Label",
-        "dir": "ui.label",
-        "outlineIcon": "ui.label.png",
-        "toolbarIcon": "ui.label.png",
-        "effectIcon": "ui.label.ef.png",
-        "designerJS": "ui.label_designer",
-        "runtimeJS": "ui.label",
-        "dependJS": [
-          "controls/lib/common",
-          "controls/lib/ui.control",
-          "controls/lib/ui.designer",
-          "controls/lib/ui.container",
-          "controls/lib/ui.container_designer",
-          "controls/ui.div/ui.div",
-          "controls/ui.div/ui.div_designer"
-        ],
-        "description": "Text label control"
-      },
-      {
-        "name": "UI.TextBox",
-        "dir": "ui.text",
-        "outlineIcon": "ui.textbox.png",
-        "toolbarIcon": "ui.textbox.png",
-        "effectIcon": "ui.textbox.ef.png",
-        "designerJS": "ui.textbox_designer",
-        "runtimeJS": "ui.textbox",
-        "dependJS": [
-          "controls/lib/common",
-          "controls/lib/ui.control",
-          "controls/lib/ui.designer"
-        ],
-        "description": "Input text control"
-      },
-      {
-        "name": "UI.TextButton",
-        "dir": "ui.textbutton",
-        "outlineIcon": "ui.textbutton.png",
-        "toolbarIcon": "ui.textbutton.png",
-        "effectIcon": "ui.textbutton.ef.png",
-        "designerJS": "ui.textbutton_designer",
-        "runtimeJS": "ui.textbutton",
-        "dependJS": [
-          "controls/lib/common",
-          "controls/lib/ui.control",
-          "controls/lib/ui.designer"
-        ],
-        "description": "Text Button control"
-      }
+{
+    "controlBase": {
+        "runtime": {
+            "js": [
+                "controls/lib/common.js",
+                "controls/lib/ui.control.js",
+                "controls/lib/ui.container.js"
+            ],
+            "css":["controls/css/control.css"]
+        },
+        "designer": {
+            "js": [
+                "controls/lib/ui.designer.js",
+                "controls/lib/ui.container_designer.js"
+            ]
+        }
+    },
+    "categories": [
+        {
+            "category": "Form",
+            "controls": [
+                {
+                    "name": "UI.Label",
+                    "dir": "ui.label",
+                    "outlineIcon": "ui.label.png",
+                    "toolbarIcon": "ui.label.png",
+                    "effectIcon": "ui.label.ef.png",
+                    "runtime": {
+                        "js": ["ui.label.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.label_designer.js"]
+                    },
+                    "dependControl": [
+                        "UI.Div"
+                    ],
+                    "description": "Label control"
+                },
+                {
+                    "name": "UI.Text",
+                    "dir": "ui.text",
+                    "outlineIcon": "ui.text.png",
+                    "toolbarIcon": "ui.text.png",
+                    "effectIcon": "ui.text.ef.png",
+                    "runtime": {
+                        "js": ["ui.text.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.text_designer.js"]
+                    },
+                    "description": "Input text control"
+                },
+                {
+                    "name": "UI.TextButton",
+                    "dir": "ui.textbutton",
+                    "outlineIcon": "ui.textbutton.png",
+                    "toolbarIcon": "ui.textbutton.png",
+                    "effectIcon": "ui.textbutton.ef.png",
+                    "runtime": {
+                        "js": ["ui.textbutton.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.textbutton_designer.js"]
+                    },
+                    "description": "Text Button control"
+                },
+                {
+                    "name": "UI.Image",
+                    "dir": "ui.image",
+                    "outlineIcon": "ui.image.png",
+                    "toolbarIcon": "ui.image.png",
+                    "effectIcon": "ui.image.ef.png",
+                    "runtime": {
+                        "js": ["ui.image.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.image_designer.js"]
+                    },
+                    "description": "Image Display Component"
+                },
+                {
+                    "name": "UI.Div",
+                    "dir": "ui.div",
+                    "outlineIcon": "ui.div.png",
+                    "toolbarIcon": "ui.div.png",
+                    "effectIcon": "ui.div.ef.png",
+                    "runtime": {
+                        "js": ["ui.div.js" ]
+                    },
+                    "designer": {
+                        "js": ["ui.div_designer.js"]
+                    },
+                    "description": "Div control"
+                },
+                {
+                    "name": "UI.Switch",
+                    "dir": "ui.switch",
+                    "outlineIcon": "ui.switch.png",
+                    "toolbarIcon": "ui.switch.png",
+                    "effectIcon": "ui.switch.ef.png",
+                    "runtime": {
+                        "js": ["ui.switch.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.switch_designer.js"]
+                    },
+                    "description": "Switch Component"
+                }
+            ]
+        },
+        {
+            "category": "List",
+            "controls":[
+                {
+                    "name": "UI.TextList",
+                    "dir": "ui.textlist",
+                    "outlineIcon": "ui.textlist.png",
+                    "toolbarIcon": "ui.textlist.png",
+                    "effectIcon": "ui.textlist.ef.png",
+                    "runtime": {
+                        "js": ["ui.textlist.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.textlist_designer.js"]
+                    },
+                    "description": "Text List"
+                },
+                {
+                    "name": "UI.NumberList",
+                    "dir": "ui.numberlist",
+                    "outlineIcon": "ui.numberlist.png",
+                    "toolbarIcon": "ui.numberlist.png",
+                    "effectIcon": "ui.numberlist.ef.png",
+                    "runtime": {
+                        "js": ["ui.numberlist.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.numberlist_designer.js"]
+                    },
+                    "dependControl":[ "UI.TextList"],
+                    "description": "Number List"
+                },
+                {
+                    "name": "UI.ThumbList",
+                    "dir": "ui.thumblist",
+                    "outlineIcon": "ui.thumblist.png",
+                    "toolbarIcon": "ui.thumblist.png",
+                    "effectIcon": "ui.thumblist.ef.png",
+                    "runtime": {
+                        "js": ["ui.thumblist.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.thumblist_designer.js"]
+                    },
+                    "description": "Thumb List",
+                    "displayed": true
+                },
+                {
+                    "name": "UI.IconList",
+                    "dir": "ui.iconlist",
+                    "outlineIcon": "ui.iconlist.png",
+                    "toolbarIcon": "ui.iconlist.png",
+                    "effectIcon": "ui.iconlist.ef.png",
+                    "runtime": {
+                        "js": ["ui.iconlist.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.iconlist_designer.js"]
+                    },
+                    "dependControl":[ "UI.ThumbList"],
+                    "description": "Icon List"
+                }
+            ]
+        }
     ]
-  }
-]
+}

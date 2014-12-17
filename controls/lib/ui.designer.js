@@ -12,36 +12,30 @@ UI.DisplayMode = {
 };
 
 UI.DesignEventType = {
-    Resize:  "Resize"
+    Resize: "Resize"
 };
 
 
-UI.extendMeta = function (baseMeta, meta) {
+UI.extendMeta = function(baseMeta, meta) {
     var obj = deepCopy({}, baseMeta);
     return merge(obj, meta, true);
 };
 
-UI.Designer = function (control) {
+UI.Designer = function(control) {
     if (typeof arguments.callee.baseConstructor == "function")
         arguments.callee.baseConstructor.call(this, control);
 
     this._control = control;
-
-    this.defaultWidth = 320;
-    this.defaultHeight = 0;
-    this.displayMode = UI.DisplayMode.Renderer;
 };
 
 UI.Designer.prototype = {
 
     _control: null,
 
-    objIndex: 0,
-    defaultWidth: 320,
+    defaultWidth: 0,
     defaultHeight: 0,
     displayMode: UI.DisplayMode.Renderer,
     displayImage: "",
-    eventHandlers: {},
 
     /**
      * metadata description for current kind of control,
@@ -57,47 +51,177 @@ UI.Designer.prototype = {
         /**
          * control property features
          * @type {Object}
-         * @property {String} datatype
-         * @property defaultValue
-         * @property readOnly
-         * @property browseable
-         * @property designable
-         * @property description
-         * @property displayName
-         * @property category
-         * @property editor
-         * @property valueRange
-         * @property formatter
-         * @property serializable
+         * @property datatype
+         *                                          {String}  the data type of property value
+         * @property [readOnly=false]
+         *                                          {Boolean}   read only or write able
+         * @property [browsable=true]
+         *                                          {Boolean}   whether to show this property in property editor
+         * @property [designable=true]
+         *                                          {Boolean}   whether to show this property in logic designer
+         * @property [displayName]
+         *                                          {String}    the displayed name in designer
+         * @property [defaultValue]
+         *                                          {*}   default value of this property
+         * @property [description]
+         *                                          {String}
+         * @property [category='Custom']
+         *                                          {String} Property category:Common, Custom, CSS.
+         * @property [editor]
+         *                                         {String} type of property editor, which is created to edit value
+         *                                         of current property
+         * @property [valueRange]
+         *                                        {Array}  String Array, currently only support to declare a string
+         *                                        array to describe the value range of string property. For example,
+         *                                        the valueRange of textbox input type can be ["text", "password", "date"] .
+         * @property [formatter]
+         *                                       {Function} formatting function, use to show displayed text in property text.
+         * @property [serializable=true]
+         *                                       {Boolean}  Whether to save into serialization data such as json.
+         * @property [isCssProperty=false]
+         *                                       {Boolean}  If the property is a css property, the control doesn't really to
+         *                                       implement the property declaration,  just make the property name is valid
+         *                                       in properties of element.style object, and the property value is string type.
+         * @property [useGetterSetter=false]
+         *                                       {Boolean}  Whether to get/set the property value by invoking getter/setter
+         *                                       function, instead of accessing property.
          */
-        props: {},
+        props: {
+            "id": {
+                datatype: "String",
+                readOnly: true,
+                browsable: true,
+                designable: false,
+                category: "Common",
+                description: "the id of UI component, which is equal as DOM object id",
+                serializable: false
+            },
+
+            "type": {
+                datatype: "String",
+                readOnly: true,
+                browsable: true,
+                designable: false,
+                category: "Common",
+                description: "the type of UI component",
+                serializable: false
+            },
+
+            "width": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                category: "Common",
+                description: "the width of UI component",
+                serializable: true,
+                defaultValue: "98%"
+            },
+
+            "height": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                category: "Common",
+                description: "the height of UI component",
+                serializable: true,
+                defaultValue: "20px"
+            },
+
+            "position": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                browsable: false,
+                category: "Common",
+                defaultValue: "relative"
+            },
+
+            "left": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                browsable: false,
+                category: "Common",
+                description: "the left position of UI component",
+                serializable: true
+            },
+
+            "top": {
+                datatype: "String",
+                readOnly: false,
+                browsable: false,
+                designable: false,
+                category: "Common",
+                description: "the top position of UI component",
+                serializable: true
+            },
+
+            "align": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                category: "Common",
+                description: "",
+                valueRange: [ "left", "center", "right" ],
+                defaultValue: "left",
+                serializable: true
+            },
+
+            "zIndex": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                browsable: false,
+                category: "Common",
+                description: "the stack order of UI component",
+                serializable: true
+            },
+
+            "visibility": {
+                datatype: "String",
+                readOnly: false,
+                designable: false,
+                category: "Common",
+                description: "",
+                valueRange: [ "visible", "hidden" ],
+                serializable: true,
+                defaultValue: "visible"
+            }
+        },
 
         events: {
-            /*
-             * for example onClick:{params:[]}
-             */
+            onClick: {params: [], icon:"controls/eventicon/click.png",  alias: "click"}
         },
 
         methods: {
-            /*
-             * for example enable:{params:["enabled"]}
-             */
+            show: {
+                alias: "show",
+                params: []
+            },
+            hide: {
+                alias: "hide",
+                params: []
+            },
+            changeDisplay: {
+                alias: "changeDisplay",
+                params: []
+            }
         },
 
         defaultProperty: "",
-        defaultEvent: "",
+        defaultEvent: "onClick",
         defaultMethod: ""
     },
 
-    containProp: function (propName) {
+    containProp: function(propName) {
         return this.meta.props.hasOwnProperty(propName);
     },
 
-    containEvent: function (eventName) {
+    containEvent: function(eventName) {
         return this.meta.events.hasOwnProperty(eventName);
     },
 
-    containMethod: function (methodName) {
+    containMethod: function(methodName) {
         return this.meta.methods.hasOwnProperty(methodName);
     },
 
@@ -107,7 +231,7 @@ UI.Designer.prototype = {
      *  this property will not be serialized.
      * @return {String} text content in json format
      */
-    getProps: function () {
+    getProps: function() {
         var obj = {};
         var ps = this.meta.props;
         for (var key in ps) {
@@ -121,7 +245,7 @@ UI.Designer.prototype = {
      * Bulk set property value of ui control by json data
      * @param  {String} jsonText
      */
-    setProps: function (jsonText) {
+    setProps: function(jsonText) {
         var obj = parseFromJsonText(jsonText);
         if (!obj)
             return false;
@@ -131,90 +255,64 @@ UI.Designer.prototype = {
         return true;
     },
 
-    getEventHandlers: function () {
-        var obj = {};
-        var ents = this.meta.events;
-        for (var key in ents) {
-            var fun = this.eventHandlers[key] || "";
-            if (fun.indexOf("_object") > 0) {
-                var objid = this._control._elementId.replace("object", "");
-                fun = this.eventHandlers[key].substring(0,
-                    this.eventHandlers[key].indexOf("_object") + 7)
-                    + objid;
-            }
-            obj[key] = fun;
-        }
-        return stringifyToJsonText(obj);
-    },
-
-    setEventHandler: function (eventName, handlerFuncName) {
-        if (this.containEvent(eventName) && typeof handlerFuncName == "string") {
-            this.eventHandlers[eventName] = handlerFuncName;
-        }
-    },
-
-    setEventHandlers: function (jsonText) {
-        var obj = parseFromJsonText(jsonText);
-        if (!obj)
-            return false;
-        for (var eventName in obj) {
-            this.setEventHandler(eventName, obj[eventName]);
-        }
-        return true;
-    },
 
     /************************************************************************/
     /*  These following functions can be overrided by subclass.                    */
     /************************************************************************/
-    render: function () {
+    render: function() {
         var rendered = true;
         if (this.displayMode == UI.DisplayMode.Image) {
             this._control._html = String.format(
                 '<div style="height:100%; width:100%"><img src="{0}" style="width:100%; height:100%;"/></div>',
                 this.displayImage);
             rendered = this._control._renderBase();
-        } else {
+        }
+        else {
             rendered = this._control.render();
         }
         if (rendered) {
-            $(this._control).addClass("ns-control");
+            this._control.$el.addClass("ns-control");
         }
         return rendered;
     },
 
-    remove: function () {
+    remove: function() {
         return this._control.remove();
     },
 
-    destroy: function () {
+    destroy: function() {
         this._control.destroy();
     },
 
-    getPropValue: function (propName) {
+    getPropValue: function(propName) {
         var propValue = null;
         var element = this._control._element;
         switch (propName) {
-            case "object-id":
+            case "id":
                 propValue = element.id;
-                break;
-            case "name":
-                propValue = element.name;
                 break;
             case "type":
                 propValue = this._control.type;
                 break;
-            case "x":
+            case "position":
+                propValue = $(element).css("position");
+                break;
+            case "left":
                 propValue = $(element).css("left");
                 break;
-            case "y":
+            case "top":
                 propValue = $(element).css("top");
                 break;
             case "align":
                 propValue = $(element).css("text-align");
                 break;
-            case "z-index":
             case "width":
+                return  element.style.width || $(element).css("width");
+                break;
             case "height":
+                return  element.style.height || $(element).css("height");
+                break;
+            case "zIndex":
             case "visibility":
                 propValue = $(element).css(propName);
                 break;
@@ -223,7 +321,8 @@ UI.Designer.prototype = {
                     && typeof this.meta.props[propName].formatter == "function") {
                     propValue = this.meta.props[propName].formatter
                         .call(this._control);
-                } else
+                }
+                else
                     propValue = this._control[propName];
                 break;
         }
@@ -231,32 +330,22 @@ UI.Designer.prototype = {
     },
 
 
-    setPropValue: function (propName, propValue) {
-        var propInfo = this.meta.props[propName];
-        if (propInfo && typeof propValue == "string") {
-            if (propInfo.datatype == "Boolean" || propInfo.datatype == "Bool") {
-                propValue = parseBoolean(propValue);
-            } else if (propInfo.datatype == "Int") {
-                propValue = parseInt(propValue);
-            } else if (propInfo.datatype == "Float") {
-                propValue = parseFloat(propValue);
-            }
-        }
+    setPropValue: function(propName, propValue) {
         var element = this._control._element;
         switch (propName) {
-            case "object-id":
+            case "id":
             case "type":
                 break;
-            case "name":
-                element.name = propValue;
+            case "position":
+                element.style.position = propValue;
                 break;
-            case "x":
+            case "left":
                 element.style.left = propValue;
                 break;
-            case "y":
+            case "top":
                 element.style.top = propValue;
                 break;
-            case "z-index":
+            case "zIndex":
                 element.style.zIndex = propValue;
                 break;
             case "width":
@@ -286,10 +375,13 @@ UI.Designer.prototype = {
      *
      * @param {String} event see {@link UI.DesignEventType}
      */
-    handleDesignEvent: function (event) {
+    handleDesignEvent: function(event) {
         // To be implemented by subclass
     }
 };
 
 UI.Designer.prototype.constructor = UI.Designer;
+
+//register
+UI.Control.prototype.designerType = "UI.Designer";
 MetaHub.register(UI.Designer.prototype.meta);

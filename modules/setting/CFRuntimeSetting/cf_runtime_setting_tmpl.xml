@@ -1,0 +1,45 @@
+<div id="cf-setting-panel" class="cf-setting-panel">
+	<div id="cf-setting-panel-head" class="cf-setting-panel-head">
+		CF setting
+	</div>
+
+	<div id="cf-setting-panel-content" class="cf-setting-panel-content">
+		<div>
+			<table class="cf-setting-table">
+				<tr>
+					<td class="cf-setting-table-key">username</td>
+					<td>
+						<input id="cf-username" type="text" placeholder="username"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="cf-setting-table-key">password</td>
+					<td>
+						<input id="cf-password" type="password" placeholder="password"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="cf-setting-table-key">url</td>
+					<td>
+						<input id="cf-url" type="text" placeholder="http://cf-url" class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="cf-setting-table-key">space</td>
+					<td>
+						<input id="cf-space" type="text" placeholder="space" class="input-text" />
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="cf-setting-panel-operation" class="cf-setting-panel-operation">
+			<input id="close-btn" type="button" value="Close" class="input-button" />
+			<input id="reset-btn" type="button" value="Reset" class="input-button" />
+			<input id="save-btn" type="button" value="Save" class="input-button" />
+		</div>
+	</div>
+
+</div>

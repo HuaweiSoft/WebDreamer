@@ -27,7 +27,7 @@ define([ "modules/menu/topmenu/topMenu", "modules/menu/leftmenu/leftMenu",
     };
 
     return {
-	init : init,
+	init : init
     };
 
 });

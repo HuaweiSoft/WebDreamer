@@ -1,0 +1,124 @@
+
+<div id="publish-cf-panel" class="publish-cf-panel">
+	<div id="publish-cf-panel-head" class="publish-cf-panel-head">
+		Publish to cloundFoundry
+		runtime
+	</div>
+
+	<div id="publish-cf-panel-content" class="publish-cf-panel-content">
+		<div>
+			<table class="publish-cf-table">
+				<tr>
+					<td class="publish-cf-table-key">proxy</td>
+					<td>
+
+						<input name="publish-cf-proxy-enable" checked type="radio"
+							value="disabled" />
+						Disabled
+						<input name="publish-cf-proxy-enable" type="radio" value="enabled" />
+						Enabled
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">proxy host</td>
+					<td>
+						<input id="publish-cf-proxy-host" type="text" placeholder="proxy host"
+							class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">proxy port</td>
+					<td>
+						<input id="publish-cf-proxy-port" type="text" placeholder="proxy port"
+							class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">proxy username</td>
+					<td>
+						<input id="publish-cf-proxy-username" type="text"
+							placeholder="proxy username" class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">proxy password</td>
+					<td>
+						<input id="publish-cf-proxy-password" type="password"
+							placeholder="proxy password" class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">non proxy host</td>
+					<td>
+						<input id="publish-cf-non-proxy-host" type="text"
+							placeholder="non proxy host" class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">Name</td>
+					<td>
+						<input id="publish-cf-name" type="text" placeholder="App Name"
+							class="publish-cf-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">URL</td>
+					<td>
+						<table style="width:100%">
+
+							<tr>
+								<td style="width:100px">
+									<input id="publish-cf-url" style="width:110px" type="text"
+										placeholder="App Name" class="publish-cf-input-text" />
+								</td>
+								<td align="left" id="subffix_url_publish_cf" style="color:#00f">ssssss
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">Memory</td>
+					<td>
+						<select id="publish-cf-memory-select" class="publish-cf-select">
+							<option value="128">128M</option>
+							<option value="256">256M</option>
+							<option value="512">512M</option>
+							<option value="1024">1024M</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="publish-cf-table-key">Disk</td>
+					<td>
+						<select id="publish-cf-disk-select" class="publish-cf-select">
+							<option value="1024">1G</option>
+							<option value="2048">2G</option>
+							<option value="4096">4G</option>
+							<option value="8192">8G</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="publish-cf-panel-operation" class="publish-cf-panel-operation">
+			<input id="publish-cf-close-btn" type="button" value="Close"
+				class="publish-cf-input-button" />
+			<input id="publish-cf-publish-btn" type="button" value="Publish"
+				class="publish-cf-input-button" />
+		</div>
+	</div>
+
+</div>
+<div id="publish-cf-status-panel" class="publish-cf-panel" style="z-index:15;display:none">
+
+	<div id="publish-cf-status-panel-head" class="publish-cf-panel-head">
+		Publish App Status
+	</div>
+	<div id="publish-app-stauts-panel-close" class="publish-app-stauts-panel-close"></div>
+
+	<div id="publish-cf-status-panel-content" style="width:580px;height:340px;">
+
+	</div>
+</div>

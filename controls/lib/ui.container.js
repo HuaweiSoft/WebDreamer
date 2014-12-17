@@ -12,7 +12,6 @@ UI.Container = function(container) {
 
 extend(UI.Container, UI.Control, {
     type: "UI.Container",
-    designerType: "UI.Container_Designer",
 
     _html: "<div/>",
 

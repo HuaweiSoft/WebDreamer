@@ -3,24 +3,21 @@
  * @dependency  ui.container.js
  */
 
-
 UI.Div = function(container) {
     arguments.callee.superClass.constructor.apply(this, arguments);
 };
 
 extend(UI.Div, UI.Container, {
     type: "UI.Div",
-    designerType: "UI.Div_Designer",
 
     _html: "<div/>",
 
     _getStyle: function(name) {
-        return this._element ? (this._element.style[name] || "") : "";
+        return this.$el.css(name);
     },
     
     _setStyle: function(name, value) {
-        if(this._element)
-            this._element.style[name] = value;
+        this.$el.css(name, value);
     }
 });
 
@@ -74,12 +71,14 @@ UI.Div.prototype.__defineSetter__('borderColor', function(value) {
     this._setStyle("borderColor", value);
 });
 
-UI.Div.prototype.__defineGetter__('onClick', function() {
-    return this._element?  this._element.onclick :null;
+UI.Div.prototype.__defineGetter__('color', function() {
+    return this._getStyle("color");
 });
 
-UI.Div.prototype.__defineSetter__('onClick', function(value) {
-   if(this._element){
-       this._element.onclick = value;
-   }
+UI.Div.prototype.__defineSetter__('color', function(value) {
+
+    if(!value)
+        value = this._getStyle("color");
+
+    this._setStyle("color", value);
 });

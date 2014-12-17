@@ -1,0 +1,10 @@
+<div class="project_list_item">
+	<div class="project_create_info">
+		Name:
+		<input id="new_project_name" placeholder="Enter new project name."
+			style="width:160px;height:30px;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;">
+			<span id="create_pro_error" style="color:#ff0000;font-size:14px;position:absolute"></span>
+	</div>
+	<div class="project_create_btn" id="project_create_btn">Create</div>
+</div>
+

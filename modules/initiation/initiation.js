@@ -19,38 +19,36 @@
  * When loading the index.html and other resources will show the loading panel
  * When all resources have been ready will close the loading panel
  ******************************************************************************/
-define([ "css!modules/initiation/initiation",
-	"text!modules/initiation/loading_panel_model.json",
-	"text!modules/initiation/loading_panel_tmpl.xml" ], function(css,
-	model, tmpl) {
+define([ "css!modules/initiation/initiation", "text!modules/initiation/loading_panel_model.json",
+        "text!modules/initiation/loading_panel_tmpl.xml" ], function(css, model, tmpl) {
 
     var process = function() {
 
-	var view = showLoading();
+        var view = showLoading();
 
-	Arbiter.publish(EVENT_INITIATION_PUBLISH_PAGE_LOADED, null, {
-	    persist : true,
-	    async : true
-	});
+        Arbiter.publish(EVENT_INITIATION_PUBLISH_PAGE_LOADED, null, {
+            persist: true,
+            async: true
+        });
 
     };
 
     var showLoading = function() {
 
-	var loadingView = new LoadingPanelView({
-	    el : "body"
-	});
-	loadingView.render(tmpl, model);
-	subLoadingPanelClose(loadingView);
-	return loadingView;
+        var loadingView = new LoadingPanelView({
+            el: "body"
+        });
+        loadingView.render(tmpl, model);
+        subLoadingPanelClose(loadingView);
+        return loadingView;
     };
 
     var subLoadingPanelClose = function(view) {
-	Arbiter.subscribe(EVENT_INITIATION_SUBSCRIPE_LOADINGVIEW_CLOSE, {
-	    async : true
-	}, function() {
-	    view.destroy();
-	})
+        Arbiter.subscribe(EVENT_INITIATION_SUBSCRIPE_LOADINGVIEW_CLOSE, {
+            async: true
+        }, function() {
+            view.destroy();
+        })
     };
 
     /**
@@ -58,56 +56,51 @@ define([ "css!modules/initiation/initiation",
      */
     var LoadingPanelView = Backbone.View.extend({
 
-	divid : "",
-	render : function(tmpl, model) {
-	    var josnModel = JSON.parse(model);
-	    jsonModel = this.__computeLoadingPanelXY(josnModel);
-	    var loadingPanel = _.template(tmpl, jsonModel);
-	    this.divid = jsonModel.loadingPanelId;
-	    $(this.el).html(loadingPanel);
-	    panelId = this.divid;
-	    setTimeout(function() {
-		Arbiter.publish(EVENT_INITIATION_SUBSCRIPE_LOADINGVIEW_CLOSE,
-			null, {
-			    async : true
-			});
-	    }, jsonModel.showMaskTime);
-	},
+        divid: "",
+        render: function(tmpl, model) {
+            var josnModel = JSON.parse(model);
+            jsonModel = this.__computeLoadingPanelXY(josnModel);
+            var loadingPanel = _.template(tmpl, jsonModel);
+            this.divid = jsonModel.loadingPanelId;
+            $(this.el).html(loadingPanel);
+            panelId = this.divid;
+            setTimeout(function() {
+                Arbiter.publish(EVENT_INITIATION_SUBSCRIPE_LOADINGVIEW_CLOSE, null, {
+                    async: true
+                });
+            }, jsonModel.showMaskTime);
+        },
 
-	/**
-	 * close the loading panel view
-	 */
-	destroy : function() {
-	    $("#" + this.divid).remove();
-	},
+        /**
+         * close the loading panel view
+         */
+        destroy: function() {
+            $("#" + this.divid).remove();
+        },
 
-	/**
-	 * Update the location of loading panel model to center of browser
-	 * 
-	 * @param {jsonObject} panelTemplateModel,detail see the loading_panel_model.json  
-	 * @return panelTemplateModel has been updated
-	 */
-	__computeLoadingPanelXY : function(panelTemplateModel) {
-	    var windowHeight = $(window).height();
-	    var windowWidth = $(window).width();
-	    var panelHeight = parseInt(panelTemplateModel.loadingPanelHeight
-		    .replace("px", ""), 10);
-	    var panelWidh = parseInt(panelTemplateModel.loadingPanelWidth
-		    .replace("px", ""), 10);
-	    panelTemplateModel.loadingPanelTop = (windowHeight - panelHeight)
-		    / 2 + "px";
-	    panelTemplateModel.loadingPanelLeft = (windowWidth - panelWidh) / 2
-		    + "px";
+        /**
+         * Update the location of loading panel model to center of browser
+         * 
+         * @param {jsonObject} panelTemplateModel,detail see the loading_panel_model.json  
+         * @return panelTemplateModel has been updated
+         */
+        __computeLoadingPanelXY: function(panelTemplateModel) {
+            var windowHeight = $(window).height();
+            var windowWidth = $(window).width();
+            var panelHeight = parseInt(panelTemplateModel.loadingPanelHeight.replace("px", ""), 10);
+            var panelWidh = parseInt(panelTemplateModel.loadingPanelWidth.replace("px", ""), 10);
+            panelTemplateModel.loadingPanelTop = (windowHeight - panelHeight) / 2 + "px";
+            panelTemplateModel.loadingPanelLeft = (windowWidth - panelWidh) / 2 + "px";
 
-	    panelTemplateModel.documentWidth = windowWidth + "px";
-	    panelTemplateModel.documentHeight = windowHeight + "px";
-	    return panelTemplateModel;
+            panelTemplateModel.documentWidth = windowWidth + "px";
+            panelTemplateModel.documentHeight = windowHeight + "px";
+            return panelTemplateModel;
 
-	}
+        }
     });
 
     return {
-	process : process,
+        process: process
     };
 
 });

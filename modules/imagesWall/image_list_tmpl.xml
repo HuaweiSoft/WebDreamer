@@ -1,0 +1,18 @@
+
+<% _.each(datas, function(item) { %>
+<div class="image_wall_unit_div" lang="<%= item.src%>">
+	<table style="width:110px;height:120px;table-layout:fixed;">
+		<tbody>
+			<tr style="height:120px">
+				<td lang="<%= item.src%>">
+					<img class="image_wall_item_image" lang="<%= item.src%>" src="<%= item.src%>" />
+				</td>
+			</tr>
+			<tr>
+				<td lang="<%= item.src%>"
+					style="text-align: center;color: #fff;font-size: 14px;overflow:hidden;text-overflow:ellipsis;word-break:keep-all;white-space:nowrap;"><%= item.name%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<% }); %>

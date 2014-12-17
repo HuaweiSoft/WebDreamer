@@ -1,0 +1,14 @@
+
+<% _.each(datas, function(item) { %>
+<div class="project_list_item" project="<%= item.name%>">
+	<div class="project_list_item_column name"><%= item.name%></div>
+	<div class="project_list_item_column time"><%= item.time%></div>
+	<div class="project_list_item_column action">
+		<div class="project_list_item_delete" project="<%= item.name%>"
+			title="delete the project"></div>
+		<div class="project_list_item_open" project="<%= item.name%>"
+	title="open the project "></div>
+	</div>
+</div>
+<hr class="project_list_split_line">
+	<% }); %>

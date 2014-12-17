@@ -44,3 +44,42 @@ body {
 	width: 100%;
 	height: 100%
 }
+
+body {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 2px #000000;
+	border-radius: 0px;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: inset 0 0 2px #474647
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(196, 196, 196, 0.4);
+}
+
+.mask {
+	cursor: pointer;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1680px;
+	height: 949px;
+	display: none;
+	opacity: 0.8;
+	z-index: 108;
+	background-color: rgb(71, 70, 71);
+}

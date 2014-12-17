@@ -1,55 +1,287 @@
 <div>
-    <div id="flow_designer_container">
-        <div id="flow_designer_legend">
-            <table class="ui-btn-corner-bottom ui-shadow" style="margin-top:5px;border:solid 0px #727379;width:241px;background:#ffffff;box-shadow:0px 1px 1px #000000">
-                <tr>
-                    <td colspan="4">
-                        <div id="legendtitle" style="position:absolute; padding-top:5px;top:-25px; z-index:2300; width:239px; height:22px; text-align:center;"
-                             class="ui-btn ui-btn-icon-none  ui-btn-corner-top ui-shadow ui-btn-up-a">Legend
-                            <img src="modules/flowDesigner/images/delete.png"  style="position: absolute;top:0px;left:210px;max-width:26px;cursor:pointer;"
-                                 onclick="$('#flow_designer_legend').hide();"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" style="padding-top:2px"><img src="modules/flowDesigner/images/event.png" style="max-height:30px"></td>
-                    <td align="center" style="padding-left:1px"><img src="modules/flowDesigner/images/funlegend.png" style="height:30px"></td>
-                    <td style="padding-left:5px" align="center"><img src="modules/flowDesigner/images/apibg.png" style="max-height:25px"></td>
-                    <td align="center"><img src="modules/flowDesigner/images/paraflag.png" style="height: 30px;margin-left:-5px;"></td>
-                </tr>
-                <tr>
-                    <td align="center">Event</td> <td align="center" style="padding-left:15px">Function</td>
-                    <td style="padding-left:5px" align="center">Service</td><td align="center">Parameter</td>
-                </tr>
+<div id="flow_designer_container" class="flow-designer" onselectstart="return false;">
+    <div id="flow_designer_legend">
+        <table class="ui-btn-corner-bottom ui-shadow"
+               style="margin-top:5px;border:solid 0px #727379;width:241px;background:#ffffff;box-shadow:0px 1px 1px #000000">
+            <tr>
+                <td colspan="4">
+                    <div id="legendtitle"
+                         style="position:absolute; padding-top:5px;top:-25px; z-index:2300; width:239px; height:22px; text-align:center;"
+                         class="ui-btn ui-btn-icon-none  ui-btn-corner-top ui-shadow ui-btn-up-a">Legend
+                        <img src="modules/flowDesigner/images/close_32.png"
+                             style="position: absolute;top:0px;left:210px;max-width:26px;cursor:pointer;"
+                             onclick="$('#flow_designer_legend').hide();"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="padding-top:2px"><img src="modules/flowDesigner/images/event.png"
+                                                                style="max-height:30px"></td>
+                <td align="center" style="padding-left:1px"><img src="modules/flowDesigner/images/funlegend.png"
+                                                                 style="height:30px"></td>
+                <td style="padding-left:5px" align="center"><img src="modules/flowDesigner/images/apibg.png"
+                                                                 style="max-height:25px"></td>
+                <td align="center"><img src="modules/flowDesigner/images/paraflag.png"
+                                        style="height: 30px;margin-left:-5px;"></td>
+            </tr>
+            <tr>
+                <td align="center">Event</td>
+                <td align="center" style="padding-left:15px">Function</td>
+                <td style="padding-left:5px" align="center">Service</td>
+                <td align="center">Parameter</td>
+            </tr>
 
-            </table>
-        </div>
-        <div id="flow_designer_title">Function Designer</div>
+        </table>
+    </div>
 
-        <div  id="flow_scroll_tabs">
-            <span class="left"><a href="javascript:void(0);" onclick="flowDesigner.tabManager.labelLeftMove()" ></a></span>
-            <div class="mid" id="labelMenuMid">
-                <ul>
+    <div id="flow_designer_title">Flow Designer</div>
+
+    <div id="flow_scroll_tabs">
+            <span class="left" title="Move to previous flow view" id="btnMoveLeftTab">
+            </span>
+            <span class="mid">
+                <ul class="tab-container">
                 </ul>
-            </div>
-            <div class="add">
-                <a href="javascript:void(0);" onclick="flowDesigner.tabManager.addLabel()"></a>
-            </div>
-            <span class="right"><a  href="javascript:void(0);"  onclick="flowDesigner.tabManager.labelRightMove()" class="to_s"></a></span>
+            </span>
+            <span class="add" title="Create a new flow view">
+                <a href="javascript:void(0);" id="btnCreateNewTab"></a>
+            </span>
+            <span class="right" title="Move to next flow view" id="btnMoveRightTab">
+            </span>
+    </div>
+
+    <div id="flow_view_container"></div>
+
+</div>
+
+<img id="flow_designer_open" title="Open Flow Designer" src="modules/flowDesigner/images/switch.png"/>
+
+<img id="flow_designer_close" title="Close Flow Designer" src="modules/flowDesigner/images/switch.png"/>
+
+<div id="flow_ui_moving"></div>
+<div id="flow_service_moving"></div>
+
+<div id="templates">
+<div id="unit_root_template">
+   <!-- <div class="unit unit-root " id="<%= id %>" style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+            <div class="icon-wrapper"><img src='modules/flowDesigner/images/logic_topic.png'
+                                           class="root-icon"></div>
+            <div class="text">FunctionDesigner</div>
         </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+    </div>-->
+</div>
 
-        <div id="flow_view_container"></div>
+<div id="unit_user_anchor_template">
+    <!--<div class="unit unit-user-anchor " id="<%= id %>" title="Drag and drop a ui control to here"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content ui-btn ui-btn-corner-all ui-shadow ui-btn-up-b">
+                        <div class="left-icon">
+                            <img src='modules/flowDesigner/images/user.png'>
+                        </div>
+                        <div class="left-text">
+                            <div class="text">Controls</div>
+                        </div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+    </div>-->
+</div>
 
-    </div>
-    <img id="flow_designer_open" title="Open Function Designer" src="modules/flowDesigner/images/switch.png"/>
+<div id="unit_app_anchor_template">
+    <!--<div class="unit unit-app-anchor " id="<%= id %>" title="Select an app global event to configure"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content ui-btn ui-btn-corner-all ui-shadow ui-btn-up-b">
+                        <div class="left-icon">
+                            <img src='modules/flowDesigner/images/system-run.png'>
+                        </div>
+                        <div class="left-text">
+                            <div class="text">SysEvents</div>
+                        </div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configure events"></span>
+        </div>
+    </div>-->
+</div>
 
-    <img id="flow_designer_close" title="Close Function Designer"  src="modules/flowDesigner/images/switch.png"/>
+<div id="unit_ui_template">
+    <!--<div class="unit unit-ui " id="<%= id %>" title="<%= controlId %>"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content" style="width: <%= width%>px; height: <%= height%>px;">
+            <div class="thumb-container"></div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+        <div class="action-toolbar">
+                        <span class="action action-config"
+                              title="<% if(depth==3){ %>Configure events <%} else{ %>Configure method<%} %>"></span>
+            <span class="action action-delete" title="Delete"></span>
+        </div>
+    </div>-->
+</div>
 
-    <div id="event_selector_container" style="display:none;">
-        <div id="event_selector"></div>
-        <img src="modules/flowDesigner/images/delete.png" style="width:26px;position:absolute;left:150px;top:2px"
-             onclick="flowDesigner.eventAndFunSelectCallback();">
-    </div>
+<div id="unit_event_template">
+    <!--
+    <div class="unit unit-event " id="<%= id %>" title="<%= alias || name %> event"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="event-icon">
+                <img src="<%= icon %>" align="center">
+            </div>
+            <div class="event-name"><%= alias || name %></div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-delete" title="Delete"></span>
+        </div>
+    </div>-->
+</div>
 
-    <div id="flow_ui_moving"></div>
+<div id="unit_method_template">
+    <!--<div class="unit unit-method " id="<%= id %>" title="<%= alias || name %> method"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="method-name"><%= alias || name %></div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-delete" title="Delete"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_api_template">
+    <!--<div class="unit unit-api " id="<%= id %>" title="<%= alias || name %>"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="api-icon">
+                <img src="<%= icon %>" align="center">
+            </div>
+            <div class="api-name"><%= alias || name %></div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-delete" title="Delete"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_input_template">
+    <!--<div class="unit unit-input " id="<%= id %>" style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="input-name">INPUT</div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_output_template">
+   <!-- <div class="unit unit-output " id="<%= id %>" style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="output-name">OUTPUT</div>
+        </div>
+        <div class="terminal-wrapper" style="height: <%= height%>px;">
+            <div class="designer-terminal designer-terminal-open"></div>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_result_ui_template">
+    <!--<div class="unit unit-result-ui" id="<%= id %>" title="<%= controlId %>"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content" style="width: <%= width%>px; height: <%= height%>px;">
+            <div class="thumb-container"></div>
+            <div class="below-text"><%= controlId %>.<%= propName %></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configurate"></span>
+            <span class="action action-delete" title="Delete"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_param_empty_template">
+   <!-- <div class="unit unit-param value-null" id="<%= id %>"
+         title="Drag a UI to me or double click to configure" style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="unset-value"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configure value"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_param_ui_template">
+  <!--  <div class="unit unit-param value-ui" id="<%= id %>" title="<%= controlId %>"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content" style="width: <%= width%>px; height: <%= height%>px;">
+            <div class="thumb-container"></div>
+            <div class="below-text"><%= controlId %>.<%= propName %></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configure ui property"></span>
+            <span class="action action-delete" title="Delete value"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_param_page_empty_template">
+   <!-- <div class="unit unit-param value-null" id="<%= id %>"
+         title="Click me to select a page" style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="unset-value"></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configure page"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_param_page_template">
+   <!-- <div class="unit unit-param value-page" id="<%= id %>" title="Page<%= value %>"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="page-thumb-container">
+                <div class="page-thumb-content"></div>
+                <div class="page-thumb-title">Page<%= value %></div>
+            </div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-delete" title="Remove page"></span>
+        </div>
+    </div>-->
+</div>
+
+<div id="unit_param_value_template">
+  <!--  <div class="unit unit-param value-value" id="<%= id %>" title="Constant value"
+         style="left: <%= left%>px; top: <%= top%>px;">
+        <div class="content">
+            <div class="param-value"><%= value %></div>
+        </div>
+        <div class="action-toolbar">
+            <span class="action action-config" title="Configure value"></span>
+            <span class="action action-delete" title="Remove value"></span>
+        </div>
+    </div>-->
+</div>
+
+</div>
 
 </div>

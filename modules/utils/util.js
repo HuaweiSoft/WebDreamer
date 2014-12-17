@@ -19,44 +19,89 @@
  */
 define([ "jquery" ], function($) {
 
-    var EMPTY_ELEMENTS ={HR: true, BR: true, IMG: true, INPUT: true};
-    var SPECIA_LELEMENTS = {TEXTAREA: true};
+    var EMPTY_ELEMENTS = {HR: true, BR: true, IMG: true, INPUT: true};
+    var SPECIAl_ELEMENTS = {TEXTAREA: true};
+    var CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
 
+    var util = {
 
-	function is(obj, type) {
-		var toString = Object.prototype.toString, undefined;
-		return (type === "Null" && obj === null)
-				|| (type === "Undefined" && obj === undefined)
-				|| toString.call(obj).slice(8, -1) === type;
-	}
+        trim: function(str) {
+            if (!str)
+                return "";
+            else if (str.trim)
+                return str.trim();
+            else
+                return  str.replace(/(^\s*)|(\s*$)/g, "");
+        },
 
-	function deepCopy(target, source) {
-		if (target == null)
-			target = {};
-		for ( var key in source) {
-			var copy = source[key];
-			if (target === copy)
-				continue; // to avoid endless loop, such as window.window === window
-			if (is(copy, "Object")) {
-				target[key] = arguments.callee(target[key] || {}, copy);
-			} else if (is(copy, "Array")) {
-				target[key] = arguments.callee(target[key] || [], copy);
-			} else {
-				target[key] = copy;
-			}
-		}
-		return target;
-	}
+        /**
+         * String format function like String.format() in C# language. Example: var
+         * msg= String.format("'{0}' is not a valid name.", name);
+         */
+        format: function(src) {
+            if (arguments.length == 0)
+                return null;
+            var args = Array.prototype.slice.call(arguments, 1);
+            return src.replace(/\{(\d+)\}/g, function(m, i) {
+                return args[i];
+            });
+        },
 
-	// export
-	return {
+        /**
+         * extend function
+         *
+         * @param {Function} SubClass  function name of subclass
+         * @param {Function} SuperClass function name of superclass
+         * @param {Object}  [overrides]
+         * @see YAHOO.extend() function in yahoo.js
+         */
+        extend: function(SubClass, SuperClass, overrides) {
+            if (!SubClass || !SuperClass) {
+                throw new Error(
+                    "extend failed, please check all dependencies are included.");
+            }
+            var F = function() {
+            };
+            F.prototype = SuperClass.prototype;
+            SubClass.prototype = new F();
+            SubClass.prototype.constructor = SubClass;
+            SubClass.superClass = SuperClass.prototype;
+            SubClass.baseConstructor = SuperClass;
+
+            if (overrides) {
+                for (var key in overrides) {
+                    if (overrides.hasOwnProperty(key))
+                        SubClass.prototype[key] = overrides[key];
+                }
+            }
+        },
+
+        /**
+         * copy data into the target obj
+         */
+        extendObj: function(target, obj1 /* , ... */) {
+            target = target || {};
+            for (var i = 1; i < arguments.length; i++) {
+                var obj = arguments[i];
+                for (var key in obj) {
+                    target[key] = obj[key];
+                }
+            }
+            return target;
+        },
+
         /**
          * check the object type
          * @param obj
          * @param type
          * @returns {boolean}
          */
-		is : is,
+        is: function(obj, type) {
+            var toString = Object.prototype.toString, undefined;
+            return (type === "Null" && obj === null)
+                || (type === "Undefined" && obj === undefined)
+                || toString.call(obj).slice(8, -1) === type;
+        },
 
         /**
          * deep copy the source data into the target object, like jQuery.extend function
@@ -64,92 +109,117 @@ define([ "jquery" ], function($) {
          * @param source
          * @returns {*}
          */
-		deepCopy : deepCopy,
-
-		/**
-		 *  merget the source object data into the target object
-		 * 
-		 * @param target
-		 * @param obj
-		 * @param isDeepCopy
-		 * @return {*}  return the merged object, which is the same object with target
-		 */
-		merge : function(target, obj, isDeepCopy) {
-			target = target || {};
-			isDeepCopy = isDeepCopy || false;
-			if (is(target, "Array") && is(obj, "Array")) {
-				for ( var i = 0; i < obj.length; i++) {
-					if (obj[i] !== undefined)
-						target.push(obj[i]);
-				}
-			} else {
-				return isDeepCopy ? deepCopy(target, obj) : extendObj(target,
-						obj);
-			}
-
-			return target;
-		},
-
-		array_indexof : function(arr, value) {
-			for ( var i = 0; i < arr.length; i++) {
-				if (arr[i] == value)
-					return i;
-			}
-			return -1;
-		},
-
-		array_contains : function(arr, value) {
-			return this.array_indexof(arr, value) >= 0;
-		},
-
-		inArray : function(arr, value) {
-			return this.array_indexof(arr, value) >= 0;
-		},
-
-		getOffset : function(event) {
-			var offset = {};
-			if (typeof event.offsetX === "undefined"
-					|| typeof event.offsetY === "undefined") {
-				var targetOffset = $(event.target).offset();
-				offset.offsetX = event.pageX - targetOffset.left;
-				offset.offsetY = event.pageY - targetOffset.top;
-			} else {
-				offset.offsetX = event.offsetX;
-				offset.offsetY = event.offsetY;
-			}
-			return offset;
-		},
-
-
-		hasAncestor : function(childElement, ancestorElement) {
-			var el = childElement;
-			while (el != document.documentElement) {
-				el = el.parentElement;
-				if (el == ancestorElement)
-					return true;
-			}
-			return false;
-		},
-
-        /**
-         *  get the formated type name, for example, UI.Textbox is typed 'Textbox' for short.
-         * @param {String} type
-         */
-        getFormatedType: function(type){
-            var matched = type.match(/^UI\.(\w+)$/);
-             if(matched){
-              return matched[1];
-             } else
-                return type;
+        deepCopy: function(target, source) {
+            if (target == null)
+                target = {};
+            for (var key in source) {
+                var copy = source[key];
+                if (target === copy)
+                    continue; // to avoid endless loop, such as window.window === window
+                if (util.is(copy, "Object")) {
+                    target[key] = arguments.callee(target[key] || {}, copy);
+                }
+                else if (util.is(copy, "Array")) {
+                    target[key] = arguments.callee(target[key] || [], copy);
+                }
+                else {
+                    target[key] = copy;
+                }
+            }
+            return target;
         },
 
-        getOuterHTML: function(node){
+        /**
+         *  merget the source object data into the target object
+         *
+         * @param target
+         * @param obj
+         * @param isDeepCopy
+         * @return {*}  return the merged object, which is the same object with target
+         */
+        merge: function(target, obj, isDeepCopy) {
+            target = target || {};
+            isDeepCopy = isDeepCopy || false;
+            if (util.is(target, "Array") && util.is(obj, "Array")) {
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i] !== undefined)
+                        target.push(obj[i]);
+                }
+            }
+            else {
+                return isDeepCopy ? util.deepCopy(target, obj) : util.extendObj(target,
+                    obj);
+            }
+            return target;
+        },
+
+        indexOfArray: function(arr, value) {
+            if (!arr || !arr.length)
+                return -1;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == value)
+                    return i;
+            }
+            return -1;
+        },
+
+        inArray: function(arr, value) {
+            return this.indexOfArray(arr, value) >= 0;
+        },
+
+        isArray: function(value) {
+            return value &&
+                typeof value === 'object' &&
+                typeof value.length === 'number' &&
+                typeof value.splice === 'function' && !(value.propertyIsEnumerable('length'));
+        },
+
+        getOffset: function(event) {
+            var offset = {};
+            if (typeof event.offsetX === "undefined"
+                || typeof event.offsetY === "undefined") {
+                var targetOffset = $(event.target).offset();
+                offset.offsetX = event.pageX - targetOffset.left;
+                offset.offsetY = event.pageY - targetOffset.top;
+            }
+            else {
+                offset.offsetX = event.offsetX;
+                offset.offsetY = event.offsetY;
+            }
+            return offset;
+        },
+
+        hasAncestor: function(childElement, ancestorElement) {
+            var el = childElement;
+            while (el != document.documentElement) {
+                el = el.parentElement;
+                if (el == ancestorElement)
+                    return true;
+            }
+            return false;
+        },
+
+        /**
+         *  get the formatted controlType name, for example, 'UI.Textbox 'is displayed as 'Textbox' for short.
+         * @param {String} controlType
+         */
+        getTypeName: function(controlType) {
+            if(!controlType)
+                return "";
+            var matched = controlType.match(/^UI\.(\w+)$/);
+            if (matched)
+                return matched[1];
+            else
+                return controlType;
+        },
+
+        getOuterHTML: function(node) {
             var html = '';
             switch (node.nodeType) {
                 case Node.ELEMENT_NODE:
                     html += '<';
                     html += node.nodeName;
-                    if (!SPECIA_LELEMENTS[node.nodeName]) {
+                    if (!SPECIAl_ELEMENTS[node.nodeName]) {
                         for (var a = 0; a < node.attributes.length; a++)
                             html += ' ' + node.attributes[a].nodeName.toUpperCase() +
                                 '="' + node.attributes[a].value + '"';
@@ -183,23 +253,23 @@ define([ "jquery" ], function($) {
             return html;
         },
 
-        parseIntPx: function(strPx){
+        parseIntPx: function(strPx) {
             return strPx ? (  typeof strPx == "string" ? parseInt(strPx.replace("px", ""), 10) : parseInt(strPx, 10)) : 0;
         },
 
-        parseFloatPx: function(strPx){
+        parseFloatPx: function(strPx) {
             return strPx ? (  typeof strPx == "string" ? parseFloat(strPx.replace("px", "")) : parseFloat(strPx)) : 0;
         },
 
-        uuid: function (len, radix) {
-            var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+        uuid: function(len, radix) {
             var chars = CHARS, uuid = [], i;
             radix = radix || chars.length;
 
             if (len) {
                 // Compact form
                 for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
-            } else {
+            }
+            else {
                 // rfc4122, version 4 form
                 var r;
 
@@ -217,11 +287,90 @@ define([ "jquery" ], function($) {
                 }
             }
             return uuid.join('');
+        },
+
+        buildThumbnailHtml: function(el) {
+            var $el = $(el).clone();
+
+            $el.removeAttr("id")
+                .attr("flow-id", el.id)
+                .removeAttr("onclick")
+                .removeAttr("ondblclick")
+                .removeAttr("onmouseup")
+                .removeAttr("onmouseover")
+                .removeAttr("onmouseout")
+                .removeAttr("onblur")
+                .removeAttr("href")
+                .css("position", "static")
+                .css("left", "0")
+                .css("top", "0");
+
+            if (el.nodeName == "INPUT") {
+                $el.attr("value", $el.val());
+            }
+            else if (el.nodeName == "TEXTAREA") {
+                $el.text($el.val());
+            }
+            $el.find("input").each(function(index, element) {
+                $(element).attr("value", $(element).val());
+            });
+            $el.find("textarea").each(function(index, element) {
+                $(element).text($(element).val());
+            });
+            var clonedEl = $el[0];
+            var html = clonedEl.outerHTML || this.getOuterHTML(clonedEl);
+            return html.replace(/ id="/g, " flow-id=\"");
+        },
+
+        htmlEncode2: function(str) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        },
+
+        htmlDecode: function(str) {
+            var div = document.createElement('div');
+            div.innerHTML = str;
+            return div.innerText || div.textContent;
+        },
+
+        htmlEncode: function(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        },
+
+        getObjValueByJPath: function(obj, jpath) {
+            if (!jpath)
+                return null;
+            var paths = jpath.split(".");
+            for (var i = 0; i < paths.length; i++) {
+                var propName = paths[i].trim();
+                /*if (propName.match(/^[\w\$]+$/)) {
+                 console.error("Error path: " + jpath);
+                 return null;
+                 }*/
+                paths[i] = propName;
+            }
+            var value = obj, index = 0;
+            while (index < paths.length) {
+                var propName = paths[index];
+                if (value == null)
+                    return null;
+                else if (propName in value) {
+                    value = value[propName];
+                    index++;
+                }
+                else
+                    return null;
+            }
+            return value;
         }
 
-	};
+    };
 
-
-
-
+    return util;
 });

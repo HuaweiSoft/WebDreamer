@@ -1,0 +1,41 @@
+.project_simulator_panel {
+	width: 380px;
+	height: 740px;
+	display: none;
+	position: absolute;
+	left: 600px;
+	top: 200px;
+	z-index: 10;
+	background: rgba(34, 30, 30, 0);
+	background-image: url(images/iphone.png);
+}
+
+.project_simulator_panel_close {
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	left: 306px;
+	top: 30px;
+	z-index: -1;
+	cursor: pointer;
+	background: url(images/close.png);
+}
+
+.project_simulator {
+	width: 341px;
+	height: 484px;
+	position: absolute;
+	left: 20px;
+	top: 130px;
+	z-index: 1001;
+	background: #ffffff;
+}
+
+.project_simulator_iframe {
+	width: 341px;
+	height: 500px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+}

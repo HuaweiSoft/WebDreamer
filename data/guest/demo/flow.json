@@ -1,0 +1,595 @@
+{
+	"pages": [
+		{
+			"id": "flowpage1",
+			"no": 1,
+			"name": "FlowView1"
+		},
+		{
+			"id": "flowpage2",
+			"no": 2,
+			"name": "FlowView2"
+		},
+		{
+			"id": "flowpage3",
+			"no": 3,
+			"name": "FlowView3"
+		}
+	],
+	"flows": [
+		{
+			"flowroot1": {
+				"parent": "",
+				"children": [
+					"useranchor1",
+					"appanchor1"
+				],
+				"obj": {
+					"id": "flowroot1",
+					"region": "",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 1,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"api_ylb1hs": {
+				"children": [
+					"input_3pnwdx"
+				],
+				"parent": "event_v4zp11",
+				"obj": {
+					"region": "USER",
+					"icon": "services/toPage/icon/toPage.png",
+					"alias": "toPage",
+					"width": 100,
+					"aid": "toPage1",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": true,
+					"id": "api_ylb1hs",
+					"parentId": "event_v4zp11",
+					"height": 56,
+					"pageNo": 1,
+					"name": "toPage",
+					"left": 1232,
+					"top": 4157
+				},
+				"depth": 5
+			},
+			"ui_xjacev": {
+				"parent": "useranchor1",
+				"children": [
+					"event_8b0nmg"
+				],
+				"obj": {
+					"id": "ui_xjacev",
+					"region": "USER",
+					"parentId": "useranchor1",
+					"height": 38,
+					"pageNo": 1,
+					"width": 334,
+					"left": 574,
+					"controlType": "UI.TextButton",
+					"type": "UI",
+					"controlId": "textButton2",
+					"depth": 3,
+					"top": 4438
+				},
+				"depth": 3
+			},
+			"param_yva3bt": {
+				"children": [],
+				"parent": "input_b04t4p",
+				"obj": {
+					"region": "USER",
+					"alias": "pageNo",
+					"isRelatedUi": true,
+					"width": 112,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 7,
+					"id": "param_yva3bt",
+					"parentId": "input_b04t4p",
+					"height": 148,
+					"pageNo": 1,
+					"name": "pageNo",
+					"value": 3,
+					"left": 1584,
+					"valueType": "PAGE",
+					"top": 4495
+				},
+				"depth": 7
+			},
+			"useranchor1": {
+				"parent": "flowroot1",
+				"children": [
+					"ui_5fym4z",
+					"ui_xjacev"
+				],
+				"obj": {
+					"id": "useranchor1",
+					"region": "USER",
+					"parentId": "flowroot1",
+					"height": 40,
+					"pageNo": 1,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"event_8b0nmg": {
+				"parent": "ui_xjacev",
+				"children": [
+					"api_7qgpqq"
+				],
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "onClick",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_8b0nmg",
+					"parentId": "ui_xjacev",
+					"height": 105,
+					"pageNo": 1,
+					"name": "onClick",
+					"left": 984,
+					"top": 4469
+				},
+				"depth": 4
+			},
+			"input_3pnwdx": {
+				"children": [
+					"param_p0ky3n"
+				],
+				"parent": "api_ylb1hs",
+				"obj": {
+					"region": "USER",
+					"id": "input_3pnwdx",
+					"parentId": "api_ylb1hs",
+					"height": 32,
+					"pageNo": 1,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1408,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 4169
+				},
+				"depth": 6
+			},
+			"param_p0ky3n": {
+				"children": [],
+				"parent": "input_3pnwdx",
+				"obj": {
+					"region": "USER",
+					"alias": "pageNo",
+					"isRelatedUi": true,
+					"width": 112,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 7,
+					"id": "param_p0ky3n",
+					"parentId": "input_3pnwdx",
+					"height": 148,
+					"pageNo": 1,
+					"name": "pageNo",
+					"value": 2,
+					"left": 1584,
+					"valueType": "PAGE",
+					"top": 4111
+				},
+				"depth": 7
+			},
+			"event_v4zp11": {
+				"children": [
+					"api_ylb1hs"
+				],
+				"parent": "ui_5fym4z",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "onClick",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_v4zp11",
+					"parentId": "ui_5fym4z",
+					"height": 105,
+					"pageNo": 1,
+					"name": "onClick",
+					"left": 984,
+					"top": 4133
+				},
+				"depth": 4
+			},
+			"input_b04t4p": {
+				"children": [
+					"param_yva3bt"
+				],
+				"parent": "api_7qgpqq",
+				"obj": {
+					"region": "USER",
+					"id": "input_b04t4p",
+					"parentId": "api_7qgpqq",
+					"height": 32,
+					"pageNo": 1,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1408,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 4553
+				},
+				"depth": 6
+			},
+			"appanchor1": {
+				"parent": "flowroot1",
+				"children": [],
+				"obj": {
+					"id": "appanchor1",
+					"region": "APP",
+					"parentId": "flowroot1",
+					"height": 40,
+					"pageNo": 1,
+					"width": 100,
+					"left": 386,
+					"controlType": "APP",
+					"type": "APP_ANCHOR",
+					"controlId": "APP",
+					"depth": 2,
+					"top": 4537
+				},
+				"depth": 2
+			},
+			"api_7qgpqq": {
+				"children": [
+					"input_b04t4p"
+				],
+				"parent": "event_8b0nmg",
+				"obj": {
+					"region": "USER",
+					"icon": "services/toPage/icon/toPage.png",
+					"alias": "toPage",
+					"width": 100,
+					"aid": "toPage2",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": true,
+					"id": "api_7qgpqq",
+					"parentId": "event_8b0nmg",
+					"height": 56,
+					"pageNo": 1,
+					"name": "toPage",
+					"left": 1232,
+					"top": 4466
+				},
+				"depth": 5
+			},
+			"ui_5fym4z": {
+				"children": [
+					"event_v4zp11"
+				],
+				"parent": "useranchor1",
+				"obj": {
+					"region": "USER",
+					"id": "ui_5fym4z",
+					"parentId": "useranchor1",
+					"height": 38,
+					"pageNo": 1,
+					"width": 334,
+					"controlType": "UI.TextButton",
+					"left": 574,
+					"controlId": "textButton1",
+					"type": "UI",
+					"depth": 3,
+					"top": 4167
+				},
+				"depth": 3
+			}
+		},
+		{
+			"event_6ggtp7": {
+				"parent": "ui_6ulr5j",
+				"children": [
+					"api_2tldb8"
+				],
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "onClick",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_6ggtp7",
+					"parentId": "ui_6ulr5j",
+					"height": 105,
+					"pageNo": 2,
+					"name": "onClick",
+					"left": 984,
+					"top": 4201
+				},
+				"depth": 4
+			},
+			"ui_6ulr5j": {
+				"parent": "useranchor2",
+				"children": [
+					"event_6ggtp7"
+				],
+				"obj": {
+					"id": "ui_6ulr5j",
+					"region": "USER",
+					"parentId": "useranchor2",
+					"height": 38,
+					"pageNo": 2,
+					"width": 334,
+					"left": 574,
+					"controlType": "UI.TextButton",
+					"type": "UI",
+					"controlId": "textButton3",
+					"depth": 3,
+					"top": 4235
+				},
+				"depth": 3
+			},
+			"api_2tldb8": {
+				"children": [],
+				"parent": "event_6ggtp7",
+				"obj": {
+					"region": "USER",
+					"icon": "services/goBack/icon/goBack.png",
+					"alias": "goBack",
+					"width": 100,
+					"aid": "goBack1",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": false,
+					"id": "api_2tldb8",
+					"parentId": "event_6ggtp7",
+					"height": 56,
+					"pageNo": 2,
+					"name": "goBack",
+					"left": 1232,
+					"top": 4166
+				},
+				"depth": 5
+			},
+			"flowroot2": {
+				"parent": "",
+				"children": [
+					"useranchor2",
+					"appanchor2"
+				],
+				"obj": {
+					"id": "flowroot2",
+					"region": "",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 2,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"useranchor2": {
+				"parent": "flowroot2",
+				"children": [
+					"ui_6ulr5j"
+				],
+				"obj": {
+					"id": "useranchor2",
+					"region": "USER",
+					"parentId": "flowroot2",
+					"height": 40,
+					"pageNo": 2,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4233
+				},
+				"depth": 2
+			},
+			"appanchor2": {
+				"parent": "flowroot2",
+				"children": [],
+				"obj": {
+					"id": "appanchor2",
+					"region": "APP",
+					"parentId": "flowroot2",
+					"height": 40,
+					"pageNo": 2,
+					"width": 100,
+					"left": 386,
+					"controlType": "APP",
+					"type": "APP_ANCHOR",
+					"controlId": "APP",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			}
+		},
+		{
+			"ui_prlrnv": {
+				"parent": "useranchor3",
+				"children": [
+					"event_ephf3s"
+				],
+				"obj": {
+					"id": "ui_prlrnv",
+					"region": "USER",
+					"parentId": "useranchor3",
+					"height": 38,
+					"pageNo": 3,
+					"width": 334,
+					"left": 574,
+					"controlType": "UI.Label",
+					"type": "UI",
+					"controlId": "textButton4",
+					"depth": 3,
+					"top": 4272
+				},
+				"depth": 3
+			},
+			"flowroot3": {
+				"parent": "",
+				"children": [
+					"useranchor3",
+					"appanchor3"
+				],
+				"obj": {
+					"id": "flowroot3",
+					"region": "",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 3,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"api_t2s15g": {
+				"parent": "event_ephf3s",
+				"children": [],
+				"obj": {
+					"region": "USER",
+					"icon": "services/goBack/icon/goBack.png",
+					"alias": "goBack",
+					"width": 100,
+					"aid": "goBack2",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": false,
+					"id": "api_t2s15g",
+					"parentId": "event_ephf3s",
+					"height": 56,
+					"pageNo": 3,
+					"name": "goBack",
+					"left": 1232,
+					"top": 4262
+				},
+				"depth": 5
+			},
+			"useranchor3": {
+				"parent": "flowroot3",
+				"children": [
+					"ui_prlrnv"
+				],
+				"obj": {
+					"id": "useranchor3",
+					"region": "USER",
+					"parentId": "flowroot3",
+					"height": 40,
+					"pageNo": 3,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"appanchor3": {
+				"parent": "flowroot3",
+				"children": [],
+				"obj": {
+					"id": "appanchor3",
+					"region": "APP",
+					"parentId": "flowroot3",
+					"height": 40,
+					"pageNo": 3,
+					"width": 100,
+					"left": 386,
+					"controlType": "APP",
+					"type": "APP_ANCHOR",
+					"controlId": "APP",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			},
+			"event_ephf3s": {
+				"parent": "ui_prlrnv",
+				"children": [
+					"api_t2s15g"
+				],
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_ephf3s",
+					"parentId": "ui_prlrnv",
+					"height": 105,
+					"pageNo": 3,
+					"name": "onClick",
+					"left": 984,
+					"top": 4238
+				},
+				"depth": 4
+			}
+		}
+	],
+	"apiMetas": {
+		"goBack": {
+			"icon": "services/goBack/icon/goBack.png",
+			"result": {
+				"return": false
+			},
+			"hasCallback": false,
+			"jsFileName": "goBack.js",
+			"name": "goBack",
+			"provider": "SYSTEM",
+			"className": "",
+			"params": [],
+			"displayName": "goBack",
+			"type": "System",
+			"functionName": "goBack"
+		},
+		"toPage": {
+			"result": {
+				"return": false
+			},
+			"icon": "services/toPage/icon/toPage.png",
+			"hasCallback": false,
+			"jsFileName": "toPage.js",
+			"name": "toPage",
+			"className": "",
+			"provider": "SYSTEM",
+			"params": [
+				"pageNo"
+			],
+			"functionName": "toPage",
+			"type": "System",
+			"displayName": "toPage"
+		}
+	},
+	"assets": {
+		"uiDataMetas": {}
+	}
+}

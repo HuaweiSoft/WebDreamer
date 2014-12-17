@@ -1,0 +1,61 @@
+<div id="proxy-setting-panel" class="proxy-setting-panel">
+	<div id="proxy-setting-panel-head" class="proxy-setting-panel-head">
+		proxy setting
+	</div>
+
+	<div id="proxy-setting-panel-content" class="proxy-setting-panel-content">
+		<div>
+			<table class="proxy-setting-table">
+				<tr>
+					<td class="proxy-setting-table-key">proxy enable</td>
+					<td>
+						<input name="proxy-enable" type="radio" value="0" />enabled
+						<input name="proxy-enable" type="radio" value="1" />disabled
+					</td>
+				</tr>
+				<tr>
+					<td class="proxy-setting-table-key">proxy host</td>
+					<td>
+						<input id="proxy-host" type="text" placeholder="proxy host"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="proxy-setting-table-key">proxy port</td>
+					<td>
+						<input id="proxy-port" type="text" placeholder="proxy port"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="proxy-setting-table-key">proxy username</td>
+					<td>
+						<input id="proxy-username" type="text" placeholder="proxy username"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="proxy-setting-table-key">proxy password</td>
+					<td>
+						<input id="proxy-password" type="password" placeholder="proxy password"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="proxy-setting-table-key">non proxy host</td>
+					<td>
+						<input id="non-proxy-host" type="text" placeholder="non proxy host"
+							class="input-text" />
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="proxy-setting-panel-operation" class="proxy-setting-panel-operation">
+			<input id="close-btn" type="button" value="Close" class="input-button" />
+			<input id="reset-btn" type="button" value="Reset" class="input-button" />
+			<input id="save-btn" type="button" value="Save" class="input-button" />
+		</div>
+	</div>
+
+</div>

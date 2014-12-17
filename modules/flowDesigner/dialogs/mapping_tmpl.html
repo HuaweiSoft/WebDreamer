@@ -1,0 +1,58 @@
+<div class="modal" style="display: block;">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog mapping-editor">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Data Mapping</span>
+                <div class="action-container">
+                    <span class="action-cancel" id="cancel_mapping">Cancel</span>
+                    <span class="action-confirm" id="save_mapping">Save and return</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="tree-block" id="result_tree_block">
+                    <div class="block-title"><span>Service result - </span><span id="mapping_api_name">Service1</span>
+                    </div>
+                    <div class="tree-container" id="result_tree">
+                    </div>
+                </div>
+                <div class="tree-block" id="ui_tree_block">
+                    <div class="block-title">
+                        <span>UI - </span>
+                        <span id="mapping_control_id">control1</span>
+                       <span>
+                           <select id="mapping_type_select">
+                               <option value="DATA">bind data</option>
+                               <option value="PROPERTY">bind property</option>
+                           </select>
+                       </span>
+                    </div>
+                    <div class="tree-container" id="ui_tree">
+                    </div>
+                </div>
+                <div class="action-block">
+                    <div id="action_container">
+                        <button id="add_mapping" class="mapping-button" tilte="Add">=&gt;</button>
+                        <button id="remove_mapping" class="mapping-button" tilte="Remove">&lt;=</button>
+                    </div>
+                </div>
+                <div class="mapping-block">
+                    <div class="block-title">Mappings</div>
+                    <ul class="mapping-list" id="data_mapping_list">
+                        <li class="mapping-item" data-index="0">
+                            <span class="item-text">result.item.display.title => {prop}.name</span>
+
+                            <div class="item-delete"></div>
+                        </li>
+                        <li class="mapping-item selected"  data-index="1">
+                            <span class="item-text">result.image => {data}.img</span>
+
+                            <div class="item-delete"></div>
+                        </li>
+                    </ul>
+                    <div class="no-mapping-tip" id="data_empty_tips">No mapping items.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

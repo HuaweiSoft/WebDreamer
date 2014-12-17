@@ -1,1 +1,15 @@
-<!-- to do -->
+<div id="control_show_all_panel" class="control_show_all_panel">
+	<table id="control_show_all_panel_head" class="control_show_all_panel_head">
+		<tr>
+			<td align="left" class="">
+				<span>All Controls</span>
+			</td>
+			<td align="right" id="control_show_all_panel_close_btn" class="control_show_all_panel_close_btn"></td>
+		</tr>
+	</table>
+	<div id="control_group_tab_container" class="control_group_tab_container">
+
+	</div>
+	<div id="control_list_container" class="control_list_container">
+	</div>
+</div>

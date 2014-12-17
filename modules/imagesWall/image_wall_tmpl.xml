@@ -1,0 +1,16 @@
+<div class="wall_view_panel" id="images_wall_view_panel">
+	<span class="image_wall_head_txt">Please select an image</span>
+	<span class="image_url_label">URL:</span>
+	<input placeholder="Enter image url(http://xxx/xxx.png)" id="image_url_input"
+		class="image_url_input" />
+	<img src="" class="image_wall_preview_img" id="image_wall_preview_img" />
+	<div class="image_wall_preview" id="image_wall_preview" title="Preview the image."></div>
+	<span class="image_url_confirm_btn" id="image_url_confirm_btn"
+		title="Select the specified image.">OK</span>
+	<div id="image_wall_view_panel_close" class="image_wall_view_panel_close"></div>
+	<hr class="image_wall_head_hr" />
+	<hr class="image_wall_input_hr" />
+	<hr class="image_wall_buttom_hr" />
+	<div class="image_wall_List" id="image_wall_List"></div>
+	<div class="image_wall_page_bar" id="image_wall_page_bar"></div>
+</div>

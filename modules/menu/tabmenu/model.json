@@ -12,5 +12,19 @@
     "title": "",
     "triggerMsg": "menu/tab/service",
     "text":"Services"
+  },
+   {
+    "selected":false,
+    "id": "menu_tab_menu_deploy",
+    "title": "",
+    "triggerMsg": "menu/tab/deploy",
+    "text":"Deploy"
+  },
+  {
+    "selected":false,
+    "id": "menu_tab_menu_setting",
+    "title": "",
+    "triggerMsg": "menu/tab/setting",
+    "text":"Setting"
   }
 ]

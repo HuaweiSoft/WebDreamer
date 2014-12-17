@@ -138,7 +138,7 @@ define(function () {
 
         /**
          * forEach executes the provided callback once for each mapping present in the HashMap.
-         * @param {function} callback function(key, value)  Function to execute for each element.
+         * @param {Function} callback function(key, value)  Function to execute for each element.
          * @param {object} thisObj  Value to use as this when executing callback.
          */
         each: function (callback, thisObj) {
@@ -166,13 +166,41 @@ define(function () {
                     count++;
             }
             return count;
+        },
+
+        _dump: function(){
+            console.debug("map data: %o", this._map);
+        },
+
+        toData: function(){
+            var data={};
+            for (var key in this._map) {
+                if(this._map.hasOwnProperty(key))
+                  data[key] = this._map[key];
+            }
+            return data;
+        },
+
+        load: function(data) {
+            if (data == null || typeof  data != "object")
+                return false;
+            this._map = {};
+            for (var key in data) {
+                if (!data.hasOwnProperty(key))
+                    continue;
+                var value = data[key];
+                if (typeof value != "function")
+                    this._map[key] = value;
+            }
+            return true;
         }
+
     };
 
     //function alias
     HashMap.prototype.push = HashMap.prototype.add = HashMap.prototype.put;
-    HashMap.prototype.delete = HashMap.prototype.remove;
     HashMap.prototype.forEach = HashMap.prototype.each;
+    HashMap.prototype.contains = HashMap.prototype.containsKey;
 
     //export
     return HashMap;

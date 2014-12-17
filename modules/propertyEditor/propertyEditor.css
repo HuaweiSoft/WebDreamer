@@ -39,3 +39,7 @@
 	width: 80%;
 	font-size: 15px;
 }
+
+.property_editor_body > table{
+    width: 100%;
+}

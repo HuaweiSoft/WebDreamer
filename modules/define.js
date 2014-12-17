@@ -116,6 +116,34 @@ EVENT_MODEL_OPEN = "model/open";
 
 /**
  * 
+ *Event parameter{name:name} 
+ */
+EVENT_MODEL_SET_PROJECT_NAME = "model/setProjectName";
+
+/**
+ * 
+ */
+EVENT_MODEL_RUN = "model/run";
+
+/**
+ * Other modules publish this event to request model module to back-end save project model
+ * event parameter {triggerId:""}
+ */
+EVENT_MODEL_TO_BACK_SAVED = "model/toBackSave";
+
+/**
+ *When project has been saved successfully will publish the event
+ *event parameter{"user":"guest","project":"test",triggerId:""} 
+ */
+EVENT_MODEL_BACK_SAVED = "model/backSaved";
+
+/**
+ * When model module save project fail will publish the event
+ */
+EVENT_MODEL_BACK_SAVED_ERROR = "model/backSaveError";
+
+/**
+ * 
  */
 EVENT_MODEL_NEW = "model/new";
 
@@ -141,7 +169,7 @@ EVENT_INITIATION_SUBSCRIPE_LOADINGVIEW_CLOSE = "page/loadingpanel/close";
  * Receive opening mask notify from other modules to open mask base parameters
  * Event parameters:{"showText":true,"showGif":true,"opacity":".5","text":"text","zindex":"100"}
  */
-EVENT_MASK_SUBSCRIPE_OPNE = "mask/open";
+EVENT_MASK_SUBSCRIPE_OPEN = "mask/open";
 
 /**
  * Receive close mask notify from other modules to close mask
@@ -220,6 +248,16 @@ EVENT_CONTROLS_LOAD_METADATA = "controls/metadata";
 EVENT_FORMDESIGNER_PAGEMANAGER_SWITCH_PAGE = "pagbar/toPage";
 
 /**
+ * Event parameters {triggerId:"UUID"}
+ */
+EVENT_FORMDESIGNER_SUB_VIEW_ALL_PAGE = "pagbar/viewAllPages";
+
+/**
+ * Event parameters {triggerId:"UUID",pageNo:1}
+ */
+EVENT_FORMDESIGNER_PUB_VIEW_ALL_PAGE_SELECTED = "pagbar/viewAllPages/selected";
+
+/**
  * Event parameters {id: control id}
  */
 EVENT_FORMDEISGNER_CONTROL_CLICK = "formdesigner/click/control";
@@ -237,6 +275,13 @@ EVENT_FORMDESIGNER_CONTROL_DRAG_BEGIN = "formdesigner/control_drag_begin";
  * @params: {cid, time}
  */
 EVENT_FORMDESIGNER_CONTROL_DRAG_END = "formdesigner/control_drag_end";
+
+/**
+ * call form designer to set current control
+ *
+ * @params: {cid}
+ */
+EVENT_FORMDESIGNER_CALL_SET_CURRENT_CONTROL = "formdesigner.setCurrentControl";
 
 /** ********************************************************************* */
 /* toolbar module events */
@@ -288,6 +333,13 @@ EVENT_FLOW_OPEN = "flow/open";
  */
 EVENT_FLOW_CLOSE = "flow/close";
 
+/**
+ * flow designer initialized event
+ *
+ * @params {}
+ */
+EVENT_FLOW_INITIALIZED = "flow/initialized";
+
 /** ********************************************************************* */
 /* Events inbound from propertyEditor module */
 /** ********************************************************************* */
@@ -304,3 +356,70 @@ EVENT_PROPERTTY_EDITOR_CLOSE = "propertyEditor/close";
  * @params {id: control id, propName: property name, value: value}
  */
 EVENT_PROPERTTY_EDITOR_UPDATE_PROPERTY = "propertyEditor/update/property";
+
+/** ********************************************************************* */
+/* user manager module events name */
+/** ********************************************************************* */
+EVENT_USERM_MANAGER_SUBSCRIBE_LOGOFF = "usermanager/tologoff";
+
+/**
+ * user login event
+ * @parameters: {user:userid} 
+ */
+EVENT_USERM_MANAGER_PUBLISH_USER_LOGIN = "usermanager/login";
+
+EVENT_USERM_MANAGER_PUBLISH_USER_LOGOFF = "usermanager/logoff";
+
+/**
+ * @parameters: {triggerId:"","userInfo":{}} 
+ */
+EVENT_USERM_MANAGER_SUBSCRIBE_UPADTE_LOGINED_USER_INFO = "usermanager/toUpdateUserInfo";
+/**
+ * @parameters: {triggerId:"","result":true/false} 
+ */
+EVENT_USERM_MANAGER_PUBLISH_UPADTE_LOGINED_USER_INFO = "usermanager/notifyUpdatedInfo";
+
+/** ********************************************************************* */
+/* upload module events name */
+/** ********************************************************************* */
+
+/**
+ *@suffix specified the resources can be upload,such as image can set as  [".gif",".png"] 
+ *@savePath specified the path relative the root path [/{webdreamer}/] to save uploaded resources
+ *@maxSize  the max size can be upload and unit is kb
+ *@triggerId Uploading module notify the uploaded result through EVENT_UPLOAD_PUBLISH_UPLOADED and triggerId
+ *parameter{"suffix":[],"savePath":"","maxSize":"","triggerId":"UUID"} 
+ */
+EVENT_UPLOAD_SUBSCRIBE_OPEN = "upload/open";
+
+/**
+ * @name the resource's name has been uploaded such as "text.png"
+ * @path the resource's full path has been uploaded such as "c:\text.png"
+ * @triggerId Every module call to open the upload view should set the event id as triggerId and ensure global unique.
+ * parameter{"name","","path":"","type":"","size":"","triggerId":""}
+ */
+EVENT_UPLOAD_PUBLISH_UPLOADED = "upload/uploaded";
+
+/** ********************************************************************* */
+/* image wall module events name */
+/** ********************************************************************* */
+
+/**
+ *@images {array[string]} the URL list of images URL such as http://xxx/xx.png or relative webdreamer root /webdreamer/data/test.png 
+ *@triggerId {String} event id
+ * parameter{"images":[],"triggerId":"UUID"}
+ */
+EVENT_IMAGES_WALL_SUBSCRIBE_OPEN = "imagesWall/open";
+
+/**
+ * @image {String} the  relative URL such as /webdreamer/data/test.png or start with HTTP full path 
+ * @triggerId {triggerId} it's value equal the value by set when notify open image wall 
+ * parameter{"image":"","triggerId":"UUID"}
+ */
+EVENT_IMAGES_WALL_PUBLISH_SELECTED_IMAGE = "imagesWall/selectedImage";
+
+RUNTIME_IS_DESIGN = true;
+
+PROJECT_PATH = "";
+
+INGORE_PROXY_SETTING =  true;

@@ -23,10 +23,10 @@ define([ "text!modules/config/config_model.json" ], function(model) {
 
     return {
 
-	init : function() {
-	    /**Declare configuration as global variable*/
-	    window.WDConfiguration = JSON.parse(model);
-	}
+        init: function() {
+            /**Declare configuration as global variable*/
+            window.WDConfiguration = JSON.parse(model);
+        }
 
     };
 

@@ -16,185 +16,338 @@
  *******************************************************************************/
 /**
  *  mange the tab labels on the bottom of flow designer
- * @moduel tabManager
+ * @module tabManager
  */
-define(['jquery'], function ($) {
+define([ 'util', "jqueryCommon", "backbone"], function (util, $, Backbone) {
 
-    var midWidth = 480;
-    var liWidth = 120;
-    var ulWidth = 0;
-    var liSize = 0;
-    var displayNum = 0;
-    var viwer = null;
-    var LABEL_ID_PREFIX= 'tabLabel';
+    var FLOW_TAB_BAR_ID = "flow_scroll_tabs";
+    var TAB_CONTAINER_WIDTH = 480;
+    var TAB_ITEM_WIDTH = 120;
+    var TAB_ID_PREFIX = "tabLabel";
 
-    return {
-        ID_PREFIX: LABEL_ID_PREFIX,
-        MENU_MID_ID: 'labelMenuMid',
-        currentLabelId: 'tabLabel1',
-        tabs: [
-            {
-                id: 'tabLabel1',
-                name: 'FunctionView1',
-                isNew: true
-            }
-        ],
+    var _leftHidedNum = 0;
+    var _currentTabId = "";
 
+    var tabManager = {};
+    _.extend(tabManager, Backbone.Events, {
+        //events triggered by user
+        EVENT_CREATE: "create",         //params: {}
+        EVENT_DELETE: "delete",         //params: {pageNo}
+        EVENT_SWITCH: "switch",        //params: {pageNo}
+        EVENT_RENAME: "rename",   //params: {pageNo, name}
+
+        $el: null,
         $container: null,
+        $btnMoveLeftTab: null,
+        $btnCreateNewTab: null,
+        $btnMoveRightTab: null,
 
+        init: function (pages) {
+            this.$el = $("#" + FLOW_TAB_BAR_ID);
+            this.$container = this.$el.find('.tab-container');
+            this.$btnCreateNewTab = this.$el.find("#btnCreateNewTab");
+            this.$btnMoveLeftTab = this.$el.find("#btnMoveLeftTab");
+            this.$btnMoveRightTab = this.$el.find("#btnMoveRightTab");
 
-        init: function (_viwer) {
-            viwer = _viwer;
-            this.$container = $("#" + this.MENU_MID_ID).find("ul").eq(0);
+            var _this = this;
+            this.$btnCreateNewTab.unbind("click").xbind("click", function () {
+                _this.trigger(_this.EVENT_CREATE, {});
+            }, this);
+            this.$btnMoveLeftTab.unbind("click").xbind("click", this.moveToLeftTab, this);
+            this.$btnMoveRightTab.unbind("click").xbind("click", this.moveToRightTab, this);
+            this.reset(pages);
         },
 
-        resetContainer: function () {
-            this.$container = $("#" + this.MENU_MID_ID).find("ul").eq(0);
-        },
-
-        cleanAll: function () {
-            displayNum = 0;
+        clear: function () {
             this.$container.empty();
-            this.tabs = [];
+            this.$container.width(TAB_CONTAINER_WIDTH);
+            this.$container.css("left", "0px");
+            _leftHidedNum = 0;
+            _currentTabId = "";
+            this.updateButtonStatus();
         },
 
-        /*move the tab lables to left*/
-        labelLeftMove: function () {
-            if (ulWidth == 0) {
-                this.resetLabelLi();
+        reset: function (pages) {
+            pages = pages || [];
+            this.clear();
+
+            for (var i = 0; i < pages.length; i++) {
+                var page = pages[i];
+                this._addNewTab(page.no, page.name);
             }
-            if (ulWidth <= midWidth) {
-                return;
-            }
-            else if (displayNum < 1) {
-                return;
-            }
-            else if (displayNum > 0) {
-                displayNum = displayNum - 1;
-            }
-            this.moveLabelBox();
+            this.resetWidth();
+            if (pages.length > 0)
+                this.setCurrentTab(this.$container.children().first().attr("id"));
         },
 
-        /*move the tab lables to right*/
-        labelRightMove: function () {
-            if (ulWidth == 0) {
-                this.resetLabelLi();
-            }
-            if (ulWidth <= midWidth) {
-                return;
-            }
-            else if (displayNum >= (liSize - 4)) {
-                return;
-            }
-            displayNum = displayNum + 1;
-            this.moveLabelBox();
+        getTabSize: function () {
+            return this.$container[0].children.length;
         },
 
-        moveLabelBox: function () {
-            $('#' + this.MENU_MID_ID + ' ul').animate({
-                left: '-' + (displayNum * liWidth) + 'px'
-            }, 100);
+        _addNewTab: function (pageNo, pageName) {
+            var id = TAB_ID_PREFIX + pageNo;
+            var html = '<li id="{0}" class="tab-item" data-page="{1}">' +
+                '<span class="tab-name">{2}</span><input type="text" class="tab-input"/> ' +
+                '<a href="javascript:void(0)" title="delete" class="tab-delete"></a></li>';
+            html = util.format(html, id, pageNo, pageName);
+            this.$container.append(html);
+            var $tab = this.$container.children().last();
+            var _this = this;
 
+            $tab.find(".tab-name").click(function () {
+                _this.setCurrentTab($(this).parent().attr("id"));
+            });
+            $tab.find(".tab-name").dblclick(function () {
+                var $el = $(this);
+                var $input = $el.parent().find(".tab-input");
+                $input.val($el.text());
+                $el.hide();
+                $el.parent().find(".tab-delete").hide();
+                $input.show().focus();
+            });
+            $tab.find(".tab-delete").click(function () {
+                var pageNo = $(this).parent().attr("data-page");
+                _this.deleteTab(pageNo);
+            });
+            var handleInput = function () {
+                var pageNo = $(this).parent().attr("data-page");
+
+                var $p = $(this).parent();
+                var value = $.trim(this.value);
+                var pageName, changed;
+                if (!value) {
+                    pageName = $p.find(".tab-name").text();
+                    changed = false;
+                } else {
+                    var valid = true;
+                    var brothers = $p.parent().children();
+                    for (var i = 0; i < brothers.length; i++) {
+                        var obj = brothers[i];
+                        if (obj == $p[0] || obj.id == $p.attr("id"))
+                            continue;
+                        if ($(obj).find(".tab-name").text() == value) {
+                            valid = false;
+                            break;
+                        }
+                    }
+                    if (!valid) {
+                        alert("Page name '" + value + "' has been used!");
+                        this.focus();
+                        return;
+                    }
+                    pageName = value;
+                    changed = true;
+                }
+                $(this).hide();
+                $p.find(".tab-name").text(pageName).show();
+                $p.find(".tab-delete").show();
+                if (changed) {
+                    _this.trigger(_this.EVENT_RENAME, {pageNo: pageNo, name: pageName})
+                }
+            };
+
+            $tab.find(".tab-input").enter(handleInput);
+            $tab.find(".tab-input").blur(handleInput);
+            return id;
         },
 
         /**
          * add a new tab label
          */
-        addLabel: function () {
-            var $tabs = this.$container.find('li');
-            var size = $tabs.length;
-            var maxNum = 0;
-            for (var n = 0; n < size; n++) {
-                var id = $tabs[n].id;
-                var num = parseInt(id.substring(LABEL_ID_PREFIX.length, id.length));
-                if (maxNum < num) {
-                    maxNum = num;
-                }
-            }
-
-            var no = maxNum + 1;
-
-            var newlabel =
-            {
-                id: LABEL_ID_PREFIX + no + '',
-                name: "FunctionView" + no + ''
-            };
-
-            this.labelHtml(newlabel);
-            this.selectLabel(newlabel.id);
-            size = this.$container.find('li').length;
-            this.resetLabelLi();
-            if (size > 4) {
-                displayNum = size - 4;
-                this.moveLabelBox();
-            }
-            viwer.newPage(no + "");
+        addTab: function (pageNo, pageName) {
+            var id = this._addNewTab(pageNo, pageName);
+            this.resetWidth();
+            this.setCurrentTab(id);
         },
 
+        _getIndex: function (tabId) {
+            var children = this.$container.children();
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].id == tabId)
+                    return i;
+            }
+            return -1;
+        },
 
-        deleteLabel: function (deleteLabelId) {
-            var size = this.$container.find('li').length;
+        _getIndexByPageNo: function (pageNo) {
+            var children = this.$container.children();
+            for (var i = 0; i < children.length; i++) {
+                if ($(children[i]).attr("data-page") == pageNo)
+                    return i;
+            }
+            return -1;
+        },
 
-            if (size <= 1) {
-                alert('This flow tab cann\'t be deleted!');
+        deleteTab: function (pageNo) {
+            var id = TAB_ID_PREFIX + pageNo;
+            var length = this.getTabSize();
+            var index = this._getIndex(id);
+            if (index < 0)
+                return false;
+            /*else if(length<1){
+                alert("This flow page can't be deleted!");
+                return false;
+            }*/
+            if( ! confirm("Confirm to delete this flow page?"))
+            return false;
+
+            var newCurrentTabId = _currentTabId;
+            if(length>1){
+            if (_currentTabId == id) {
+                if (index == 0)
+                    newCurrentTabId = this.$container.children().eq(index + 1).attr("id");
+                else
+                    newCurrentTabId = this.$container.children().eq(index - 1).attr("id");
+            }}
+
+            this.$container.children().eq(index).remove();
+            this.resetWidth();
+            this.trigger(this.EVENT_DELETE, {pageNo: pageNo});
+            if(length>1)
+                this.setCurrentTab(newCurrentTabId);
+            else
+                this.trigger(this.EVENT_CREATE, {}); //create a new empty flow page
+
+            return true;
+        },
+
+        resetWidth: function () {
+            this.$container.css('width', TAB_ITEM_WIDTH * this.getTabSize() + 'px');
+        },
+
+        movePosition: function () {
+            this.$container.animate({
+                left: '-' + (_leftHidedNum * TAB_ITEM_WIDTH) + 'px'
+            }, 100);
+        },
+
+        setCurrentTab: function (tabId) {
+            if (typeof  tabId == "number")
+                tabId = TAB_ID_PREFIX + tabId;
+            var index = this._getIndex(tabId);
+            if (index < 0)
+                return false;
+            var $tab = this.$container.find('#' + tabId);
+            var pageNo = parseInt($tab.attr("data-page"));
+            this.$container.children().removeClass('selected');
+            $tab.addClass('selected');
+
+            var changed = _currentTabId != tabId;
+            _currentTabId = tabId;
+
+            var size = this.getTabSize();
+            var toMove = false;
+            if (size <= 4) {
+                if (_leftHidedNum != 0) {
+                    _leftHidedNum = 0;
+                    toMove = true;
+                }
+            } else if (_leftHidedNum >= size) {
+                if (index + 4 <= size)
+                    _leftHidedNum = index;
+                else
+                    _leftHidedNum = size - 4;
+                toMove = true;
+            } else {//size>4 &&  _leftHidedNum < size
+                //is current visible or not
+                var beginIndex = _leftHidedNum;
+                var endIndex = beginIndex + 4 < size ? beginIndex + 4 : size - 1;
+                if (index >= beginIndex && index <= endIndex) {
+                    //visible
+                    if (_leftHidedNum + 4 < size) { //right margin is empty
+                        _leftHidedNum = size - 4;
+                        toMove = true;
+                    }
+                } else if (index < beginIndex) {
+                    //in the left
+                    if (index + 4 <= size)
+                        _leftHidedNum = index;
+                    else
+                        _leftHidedNum = size - 4;
+                    toMove = true;
+                } else if (index > endIndex) {
+                    //in the right
+                    if (index - 3 >= 0)
+                        _leftHidedNum = index - 3;
+                    else // index <3
+                        _leftHidedNum = 0;
+                    toMove = true;
+                }
+            }
+            if (_leftHidedNum < 0) {
+                _leftHidedNum = 0;
+                toMove = true;
+            }
+
+            if (toMove)
+                this.movePosition();
+            this.updateButtonStatus();
+
+            if (changed) {
+                this.trigger(this.EVENT_SWITCH, {
+                    pageNo: pageNo
+                })
+            }
+            return true;
+        },
+
+        getCurrentTabId: function () {
+            return _currentTabId;
+        },
+
+        getCurrentTabPageNo: function () {
+            if (!_currentTabId)
+                return 0;
+            var pageNo = parseInt(this.$container.find("#" + _currentTabId).attr("data-page"));
+            return isNaN(pageNo) ? 0 : pageNo;
+        },
+
+        /**
+         * move to the previous flow view of current flow view
+         * @returns {boolean}
+         */
+        moveToLeftTab: function () {
+            var currentIndex = this._getIndex(_currentTabId);
+            if (currentIndex <= 0)
+                return false;
+            var newCurrentTab = this.$container.children().eq(currentIndex - 1).attr("id");
+            this.setCurrentTab(newCurrentTab);
+            return true;
+        },
+
+        moveToRightTab: function () {
+            var size = this.getTabSize();
+            var currentIndex = this._getIndex(_currentTabId);
+            if (size == 0 || currentIndex < 0 || currentIndex >= size - 1)
+                return false;
+            var newCurrentTab = this.$container.children().eq(currentIndex + 1).attr("id");
+            this.setCurrentTab(newCurrentTab);
+            return true;
+        },
+
+        updateButtonStatus: function () {
+            var $left = this.$el.find("#btnMoveLeftTab");
+            var $right = this.$el.find("#btnMoveRightTab");
+            var size = this.getTabSize();
+            var currentIndex = this._getIndex(_currentTabId);
+            if (size == 0 || currentIndex<0) {
+                $left.removeClass("enable");
+                $right.removeClass("enable");
                 return;
             }
-
-            this.$container.find('li[id="' + deleteLabelId + '"]').remove();
-            if (deleteLabelId == this.currentLabelId) {
-                this.selectLabel(this.$container.find('li')[0].id);
-            }
-            size = this.$container.find('li').length;
-            this.resetLabelLi();
-            if (displayNum > (size - 4)) {
-                displayNum = size - 4;
-                if (displayNum < 0) {
-                    displayNum = 0;
-                }
-                this.moveLabelBox();
-            }
-            viwer.deletePage(deleteLabelId.replace(LABEL_ID_PREFIX, ''));
-        },
-
-        labelHtml: function (label) {
-            var html = '<li id="' + label.id + '">';
-            html += '<span ondblclick="flowDesigner.tabManager.modifyLabelName(\'' + label.id + '\');"  onclick="flowDesigner.tabManager.selectLabel(\'' + label.id + '\');" >';
-            html += label.name;
-            html += '</span><a href="javascript:void(0)" onclick="flowDesigner.tabManager.deleteLabel(\'' + label.id + '\');"></a></li>';
-            this.$container.append(html);
-        },
-
-        modifyLabelName: function (labelsId) {
-            var dom = $('#' + labelsId)
-            var span = $(dom.find('span')[0]);
-            var text = span.text();
-            dom.prepend('<input value="' + text + '" onBlur="flowDesigner.tabManager.modifyLabelNameSub(\'' + labelsId + '\')"/>');
-            span.css('display', 'none');
-        },
-
-        modifyLabelNameSub: function (labelsId) {
-            var dom = $('#' + labelsId)
-            var span = $(dom.find('span')[0]);
-            var input = $(dom.find('input')[0]);
-            var text = input.val();
-            span.text(text);
-            span.css('display', 'block');
-            input.remove();
-        },
-
-        resetLabelLi: function () {
-            liSize = this.$container.find('li').length;
-            ulWidth = liWidth * liSize;
-            this.$container.css('width', ulWidth + 'px');
-        },
-
-        selectLabel: function (labelId) {
-            this.$container.find('li').removeClass('selected');
-            this.$container.find('#' + labelId).addClass('selected');
-            viwer.switchPage(labelId.replace(LABEL_ID_PREFIX, ''));
-            this.currentLabelId = labelId;
+            if(currentIndex>0)
+                $left.addClass("enable");
+            else
+                $left.removeClass("enable");
+            if(currentIndex<size-1)
+                $right.addClass("enable");
+            else
+                $right.removeClass("enable");
         }
 
-    };
+
+    });
+
+    return tabManager;
 
 });

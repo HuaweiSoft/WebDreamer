@@ -1,0 +1,8 @@
+
+<% _.each(controls, function(control) { %>
+<div class="control_item_all" effecticon="<%= control.effectIcon%>"
+	title="<%= control.description%>" name="<%= control.name%>">
+	<img src="<%= control.toolbarIcon%>" class="control_item_img">
+</div>
+<% }); %>
+

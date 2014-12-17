@@ -1,0 +1,27 @@
+{
+    "outputParameterType" : "none",
+    "icon" : "goBack.png",
+    "methodType" : "GET",
+    "type" : "System",
+    "url" : "",
+    "serviceName" : "goBack",
+    "createdBy" : "SYSTEM",
+    "isPrivate" : false,
+    "createdAt" : "2014-11-17 15:43:03",
+    "description" : "",
+    "parameterList" : [],
+    "outputParameterFormat" : "",
+    "parameterFormatType" : "",
+    
+    "isJsApi": true,
+    "jsApiInfo":{
+		"jsFileName": "goBack.js",
+		"className": "",
+		"functionName": "goBack",
+		"params": [],
+		"hasCallback": false,
+        "result": {
+            "return": false
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+	"js": [
+		"jslibs/jquery/jquery-1.6.1.min.js",
+		"jslibs/restServiceInvoke.js",
+		"jslibs/jquerymobile/1.0rc03/jquery.mobile.js",
+        "jslibs/xml2json/jquery.xml2json.js"
+	],
+	
+	"css":[
+		"jslibs/jquerymobile/1.0rc03/jquery.mobile.css"
+	],
+	
+	"libs":{
+		"jquery": "jslibs/jquery/jquery-1.6.1.min.js",
+		"jquerymobile": "jslibs/jquerymobile/1.0rc03/jquery.mobile.js"			
+	}
+}

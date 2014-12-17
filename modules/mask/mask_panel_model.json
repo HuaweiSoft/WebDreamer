@@ -1,7 +1,7 @@
 {
   "maskPanelContainerId":"mask_maskpanel_container",
   "maskPanelContainerBgColor":"#474647",
-  "maskPanelContainerOpacity":".6",
+  "maskPanelContainerOpacity":"0.6",
   "maskPanelContainerZindex":"100",
   "maskPanelContainerWidth":"auto",
   "maskPanelContainerHeight":"auto",
@@ -10,8 +10,7 @@
   "maskPanelTop": "0px",
   "maskPanelWidth": "340px",
   "maskPanelHeight": "140px",
-  "maskPanelOpacity": "0.5",
-  "maskPanelGifId":"mask.maskpanel.gif",
+  "maskPanelGifId":"mask_maskpanel_gif",
   "maskPanelGifPath":"modules/mask/processing.gif",
   "maskPanelGifWidth":"80px",
   "maskPanelGifHeight":"80px",

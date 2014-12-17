@@ -19,7 +19,7 @@
  *  @module metaHub  manager the metadatas of all kinds of control and service.
  *  @example
  *  <pre>
- *        var meta = MetaHub.get("INPUTBOX");
+ *        var meta = metaHub.get("INPUTBOX");
  *           for(var attr in meta.props){
  *               if(meta.props.hasOwnProperty(attr)){
  *                   var prop = meta.props[attr];
@@ -30,17 +30,18 @@
  *            }
  *   </pre>
  */
-define(["util"], function (util) {
+define([ "util", "HashMap" ], function(util, HashMap) {
 
     /** default properties for ui control */
     var defaultPropFeature = {
         datatype: "String",
+        displayName: "",
+        browsable: true, // showable in property editor
+        designable: true, // showable in designer
         defaultValue: null,
         readOnly: false,
-        browseable: true, //showable in property editor
-        designable: true, //showable in designer
         description: "",
-        displayName: "",
+
 
         /**
          * Property category:Common, Custom, CSS.
@@ -63,122 +64,29 @@ define(["util"], function (util) {
          */
         formatter: null,
 
-        serializable: true  //Whether to save to serialization data such as json.
+        /**
+         * Whether to save into serialization data such as json.
+         */
+        serializable: true,
+
+        /**
+         * If the property is a css property, the control doesn't really to implement the property declaration,
+         * just make the property name is valid in properties of element.style object, and the property value is string type.
+         */
+        isCssProperty: false,
+
+        /**
+         * Whether to get/set the property value by invoking getter/setter function, instead of accessing property.
+         */
+        useGetterSetter: false
     };
 
-    //define some common metadata
-    var commonMeta = {
-        props: {
-            "object-id": {
-                datatype: "String",
-                readOnly: true,
-                designable: false,
-                category: "Common",
-                description: "the id of UI component, which is equal as DOM object id",
-                serializable: false
-            },
-            "name": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "the custom name of UI component",
-                serializable: false
-            },
-            "type": {
-                datatype: "String",
-                readOnly: true,
-                designable: false,
-                category: "Common",
-                description: "the type of UI component",
-                serializable: false
-            },
-            "x": {
-                datatype: "String",
-                readOnly: true,
-                designable: false,
-                category: "Common",
-                description: "the left position of UI component",
-                serializable: false
-            },
-            "y": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "the top position of UI component",
-                serializable: false
-            },
-            "z-index": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "the stack order of UI component",
-                serializable: false
-            },
-            "width": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "the width of UI component",
-                serializable: false
-            },
-            "height": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "the height of UI component",
-                serializable: false
-            },
-            "align": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "",
-                valueRange: ["left", "center", "right"],
-                defaultValue: "left",
-                serializable: false
-            },
-            "visibility": {
-                datatype: "String",
-                readOnly: false,
-                designable: false,
-                category: "Common",
-                description: "",
-                valueRange: ["visible", "hidden"],
-                serializable: false
-            }
-        },
-
-        events: {
-        },
-
-        methods: {
-            show: {alias: "show", params: []},
-            hide: {alias: "hide", params: []},
-            changeDisplay: {alias: "changeDisplay", params: []}
-            //getValue: {alias:"Value",params: [],getValue:true}
-        },
-
-        defaultProperty: "value",
-        defaultEvent: "",
-        defaultMethod: ""
-    };
-
-    var commonProps = commonMeta.props;
-    for (var key in commonProps)
-        if (commonProps.hasOwnProperty(key))
-            commonProps[key] = _merge(commonProps[key], defaultPropFeature);
-
-    var metaArray = [];
+     var _uiMetas = new HashMap();
+    var _apiMetas = new HashMap();
 
     function _merge(target, obj) {
         target = target || {};
-        for (var key in obj) {
+        for ( var key in obj) {
             if (target[key] === undefined)
                 target[key] = obj[key];
         }
@@ -188,7 +96,7 @@ define(["util"], function (util) {
     function _copyProperties(target, source, onlyOwnProperty, deepCopy) {
         onlyOwnProperty = onlyOwnProperty || true;
         deepCopy = deepCopy || true;
-        for (var key in source) {
+        for ( var key in source) {
             if ((onlyOwnProperty && source.hasOwnProperty(key)) || !onlyOwnProperty) {
                 target[key] = deepCopy ? util.deepCopy(target[key], source[key]) : source[key];
             }
@@ -209,60 +117,41 @@ define(["util"], function (util) {
             meta.defaultEvent = "";
         if (!("defaultMethod" in meta))
             meta.defaultMethod = "";
+        if(typeof  meta.props != "object")
+            meta.props =  {};
         var myProps = meta.props;
-        meta.props = _copyProperties({}, commonMeta.props);
-        for (var key in myProps) {
+        for ( var key in myProps) {
             if (myProps.hasOwnProperty(key)) {
                 meta.props[key] = _merge(myProps[key], defaultPropFeature);
-            }
-        }
-        var cmEvents = commonMeta.events;
-        for (var key in cmEvents) {
-            if (cmEvents.hasOwnProperty(key) && meta.events[key] == null) {
-                meta.events[key] = util.deepCopy(meta.events[key], cmEvents[key]);
-            }
-        }
-        var cmMethods = commonMeta.methods;
-        for (var key in cmMethods) {
-            if (cmMethods.hasOwnProperty(key) && meta.methods[key] == null) {
-                meta.methods[key] = util.deepCopy(meta.methods[key], cmMethods[key]);
             }
         }
         return meta;
     }
 
     function register(meta) {
-        if (!meta || !meta.type)
+        if (!meta || !meta.type || typeof meta.type != "string")
             return null;
-        var mt = metaArray;
-        for (var index = 0; index < mt.length; index++) {
-            if (mt[index].type == meta.type) {
-                console.warn("Replace the older meta, type = " + meta.type); //测试复制meta后是否有改变type
-                _addCommonMeta(meta);
-                mt[index] = meta;
-                return meta;
-            }
+        var type = util.trim(meta.type);
+        if (_uiMetas.containsKey(type)) {
+            console.debug("The '%s' ui meta will be replaced.", type);
         }
         _addCommonMeta(meta);
-        mt.push(meta);
+        _uiMetas.put(type, meta);
         return meta;
     }
 
+    /**
+     * get ui control metadata of specified type
+     * @param type {String}  ui control type
+     * @returns {Object}
+     */
     function getMetadata(type) {
-        var mt = metaArray;
-        var typeinfo = typeof type;
-        if (typeinfo == "string") {
-            for (var index = 0; index < mt.length; index++) {
-                if (mt[index].type == type || mt[index].type.toLowerCase() == type.toLowerCase())
-                    return  mt[index];
-            }
-        } else if (typeinfo == "object" && type.designer != null) {
-            return type.designer.meta;
-        }
-        return null;
+        if (!type || typeof type != "string")
+            return null;
+        type = util.trim(type);
+        return _uiMetas.get(type);
     }
 
-    var apiMetaArray = [];
     var commonApiMeta = {
         name: "",
         displayName: "",
@@ -282,11 +171,7 @@ define(["util"], function (util) {
         if (name.indexOf("(") > 0) {
             name = name.substr(0, name.indexOf("("));
         }
-        for (var index = 0; index < apiMetaArray.length; index++) {
-            if (apiMetaArray[index].name == name)
-                return  apiMetaArray[index];
-        }
-        return null;
+        return _apiMetas.get(name);
     }
 
     function parseDatasourceURL(datasourceURL) {
@@ -312,11 +197,11 @@ define(["util"], function (util) {
     }
 
     function registerApiMeta(apiMeta) {
-        if (!apiMeta || !apiMeta.name)
+        if (!apiMeta || !apiMeta.name || typeof apiMeta.name != "string")
             return null;
         var meta = apiMeta;
-        //var meta = util.deepCopy({}, apiMeta);
-        //meta = _merge(meta, commonApiMeta);
+        // var meta = util.deepCopy({}, apiMeta);
+        // meta = _merge(meta, commonApiMeta);
         if (!apiMeta.params)
             meta.params = [];
         if (apiMeta.datasourceURL) {
@@ -326,28 +211,26 @@ define(["util"], function (util) {
             meta.functionName = apiMeta.functionName || ds.functionName;
             if (meta.params.length == 0 && ds.params.length > 0) {
                 var pm = ds.params.split(",");
-                pm.forEach(function (paramName) {
+                pm.forEach(function(paramName) {
                     meta.params.push(paramName.trim());
                 });
             }
         }
-        var mt = apiMetaArray;
-        for (var index = 0; index < mt.length; index++) {
-            if (mt[index].name == meta.name) {
-                mt[index] = meta;
-                return meta;
-            }
-        }
-        mt.push(meta);
+        _apiMetas.put(meta.name, meta);
         return meta;
     }
+    function clearServiceMetas() {
 
-    /*  register the global inbuilt metadata */
+        _apiMetas.clear();
+
+    }
+
+    /* register the global inbuilt metadata */
     register({
         type: "APP",
-        props: { },
+        props: {},
         events: {
-            "initialFunction": {
+            "onload": {
                 params: [],
                 icon: "controls/eventicon/init.png",
                 type: "common",
@@ -360,11 +243,10 @@ define(["util"], function (util) {
                 alias: "Rotation"
             }
         },
-        methods: {   }
+        methods: {}
     });
 
-
-    //export
+    // export
     return {
         /**
          *  Return the metadata of the specified ui control
@@ -373,11 +255,15 @@ define(["util"], function (util) {
          */
         get: getMetadata,
 
+        getUiMetadata: getMetadata,
+
         /**
          * Register metadata of ui control
          * @param  meta
          */
         register: register,
+
+        registerUiMetadata: register,
 
         /**
          * Return the metadata of the specified service api
@@ -392,18 +278,24 @@ define(["util"], function (util) {
          */
         registerApiMeta: registerApiMeta,
 
+        clearServiceMetas: clearServiceMetas,
+
         /**
          * @param {Function} callback params: (meta)
          */
-        forEachMeta: function (callback) {
-            metaArray.forEach(callback);
+        forEachMeta: function(callback) {
+            _uiMetas.forEach(function(type, meta) {
+                callback(meta);
+            });
         },
 
         /**
          * @param {Function} callback params: (meta)
          */
-        forEachApiMeta: function (callback) {
-            apiMetaArray.forEach(callback);
+        forEachApiMeta: function(callback) {
+            _apiMetas.forEach(function(name, meta) {
+                callback(meta);
+            });
         }
     }
 });

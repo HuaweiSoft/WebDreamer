@@ -17,49 +17,47 @@
 /**
  * Define the top shortcut menu bar on the left and top corner function in this
  */
-define([ "css!modules/menu/topmenu/topMenu",
-		"text!modules/menu/topmenu/model.json",
-		"text!modules/menu/topmenu/top_menu_tmpl.xml" ], function(css, model,
-		tmpl) {
+define([ "css!modules/menu/topmenu/topMenu", "text!modules/menu/topmenu/model.json",
+        "text!modules/menu/topmenu/top_menu_tmpl.xml" ], function(css, model, tmpl) {
 
-	var init = function() {
+    var init = function() {
 
-		Arbiter.subscribe("layout/top/rendered", {
-			async : true
-		}, function(data) {
-			var view = new TopMenuView({
-				el : $("#" + data.body)
-			});
-			// view.$con
-			view.render();
-		});
+        Arbiter.subscribe("layout/top/rendered", {
+            async: true
+        }, function(data) {
+            var view = new TopMenuView({
+                el: $("#" + data.body)
+            });
+            // view.$con
+            view.render();
+        });
 
-	};
-	var TopMenuView = Backbone.View.extend({
+    };
+    var TopMenuView = Backbone.View.extend({
 
-		render : function() {
+        render: function() {
 
-			var data = JSON.parse(model);
-			var itemHTML = _.template(tmpl, data);
-			this.$el.append(itemHTML);
-		},
-		events : {
-			"click div[class='item_container']" : "clickItem",
-			"click div[class='top_menu_toolbar_start']" : "clickStart"
-		},
-		clickItem : function(event) {
-			var msg = $(event.target).attr("msg");
-			Arbiter.publish(msg);
-		},
-		clickStart : function(event) {
-			var msg = $(event.target).attr("msg");
-			Arbiter.publish(msg, null, {
-				async : true
-			});
-		}
-	});
-	return {
-		init : init,
-	};
+            var data = JSON.parse(model);
+            var itemHTML = _.template(tmpl, data);
+            this.$el.append(itemHTML);
+        },
+        events: {
+            "click div[class='item_container']": "clickItem",
+            "click div[class='top_menu_toolbar_start']": "clickStart"
+        },
+        clickItem: function(event) {
+            var msg = $(event.target).attr("msg");
+            Arbiter.publish(msg);
+        },
+        clickStart: function(event) {
+            var msg = $(event.target).attr("msg");
+            Arbiter.publish(msg, null, {
+                async: true
+            });
+        }
+    });
+    return {
+        init: init
+    };
 
 });

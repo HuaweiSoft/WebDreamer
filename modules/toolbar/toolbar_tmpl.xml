@@ -67,5 +67,47 @@
 			</div>
 		</div>
 		<% }); %>
-
 	</div>
+	<div subMsg="<%= deploy.subMsg%>" class="toolbar_tab" style="display:none">
+
+		<% _.each(deploy.items, function(item) { %>
+
+		<div class="toolbar_event" msg="<%= item.triggerMsg%>"
+			style="position:absolute;left:<%= item.left%>;width:80px;display:<%= item.display%>">
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:10px"
+				class="toolbar_item_left">
+			</div>
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:15px"
+				class="toolbar_item_midle">
+				<div msg="<%= item.triggerMsg%>" class="toolbar_item_image_container">
+					<img msg="<%= item.triggerMsg%>" src="<%= item.icon%>" class="toolbar_item_image">
+				</div>
+				<div class="toolbar_item_textbar"><%= item.text%></div>
+			</div>
+			<div style="position:absolute;left:80px" class="toolbar_item_right">
+			</div>
+		</div>
+		<% }); %>
+	</div>
+	<div subMsg="<%= setting.subMsg%>"  class="toolbar_tab" style="display:none">
+
+		<% _.each(setting.items, function(item) { %>
+
+		<div class="toolbar_event"  id="<%=item.id%>" msg="<%= item.triggerMsg%>"
+			style="position:absolute;left:<%= item.left%>;width:80px;display:<%= item.display%>">
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:10px"
+				class="toolbar_item_left">
+			</div>
+			<div msg="<%= item.triggerMsg%>" style="position:absolute;left:15px"
+				class="toolbar_item_midle">
+				<div msg="<%= item.triggerMsg%>" class="toolbar_item_image_container">
+					<img msg="<%= item.triggerMsg%>" src="<%= item.icon%>" class="toolbar_item_image">
+				</div>
+				<div class="toolbar_item_textbar"><%= item.text%></div>
+			</div>
+			<div style="position:absolute;left:80px" class="toolbar_item_right">
+			</div>
+		</div>
+		<% }); %>
+	</div>
+</div>

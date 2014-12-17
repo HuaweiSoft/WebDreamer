@@ -20,62 +20,63 @@
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	cursor: pointer;
-	width: 320px;
+	width: 340px;
 	height: 35px;
 	top: 102px;
-	left: 35px;
+	left: 24px;
 }
 
 .page_manage_item {
-	width: 30px;
-	height: 30px;
+	width: 23px;
+	height: 23px;
 	float: left;
+	margin-left: 2px;
 }
 
 .page_manage_item_img {
-	width: 25px;
-	height: 25px;
+	width: 23px;
+	height: 23px;
 	vertical-align: middle;
-	top: 6px;
+	top: 8px;
 	left: 4px;
 	position: relative;
 }
 
 .page_manage_add {
 	background: url(images/newpage.png);
-	background-size: 25px 25px;
+	background-size: 23px 23px;
 }
 
 .page_manage_delete {
 	background: url(images/delpage.png);
-	background-size: 25px 25px;
+	background-size: 23px 23px;
 }
 
 .page_manage_next {
 	background: url(images/next.png);
-	background-size: 25px 25px;
+	background-size: 23px 23px;
 }
 
 .page_manage_up {
 	background: url(images/previouspage.png);
-	background-size: 25px 25px;
+	background-size: 23px 23px;
 }
 
 .page_manage_view_all {
 	background: url(images/viewallpages.png);
-	background-size: 25px 25px;
-	display: none;
+	background-size: 23px 23px;
+	display: block;
 }
 
 .page_manage_run {
 	background: url(images/run.png);
-	background-size: 25px 25px;
-	display: none;
+	background-size: 23px 23px;
+	display: block;
 }
 
 .page_nav_container {
 	float: left;
-	width: 198px;
+	width: 184px;
 	overflow: hidden;
 	margin-top: 14px;
 }
@@ -107,4 +108,41 @@
 	height: 10px;
 	background: url(images/selecteditem.png);
 	width: 10px;
+}
+
+.page_mgr_view_all_panel {
+	position: absolute;
+	z-index: 10;
+	background-color: #ffffff;
+	padding: 10px;
+	width: 673px;
+	height: 710px;
+	border: 3px solid #6B6868;
+	left: 400px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	top: 160px;
+	display: none;
+}
+
+.thumbpagediv {
+	margin: 4px;
+	height: 228px;
+	width: 158px;
+	float: left;
+	border: 1px dotted black;
+	cursor: pointer;
+	background-color: #FFFFFF;
+	overflow: hidden;
+}
+
+.thumbpagedivinline {
+	-webkit-transform: scale(0.46);
+	-moz-transform: scale(0.46);
+	width: 326px;
+	height: 420px;
+	margin-left: -84px;
+	margin-top: -112px;
+}
 }

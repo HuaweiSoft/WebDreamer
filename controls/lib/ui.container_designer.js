@@ -10,14 +10,9 @@ extend(UI.Container_Designer, UI.Designer);
 UI.Container_Designer.prototype.meta = UI.extendMeta(UI.Container_Designer.prototype.meta, {
     type:"UI.Container",
     props:{
-        value:{
-            datatype:"String",
-            readOnly:false,
-            designable:true
-        }
     }
 });
-MetaHub.register(UI.Container_Designer.prototype.meta);
+
 
 UI.Container_Designer.prototype.render = function(){
     var rendered = UI.Container_Designer.superClass.render.apply(this, arguments);
@@ -26,3 +21,7 @@ UI.Container_Designer.prototype.render = function(){
     }
     return rendered;
 };
+
+//register
+UI.Container.prototype.designerType="UI.Container_Designer";
+MetaHub.register(UI.Container_Designer.prototype.meta);

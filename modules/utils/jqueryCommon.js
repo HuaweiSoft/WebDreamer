@@ -161,7 +161,7 @@ define(["jquery"], function ($) {
          *  Yet another bind function which supports changes this object by the context parameter
          * @param {String} eventType
          * @param {Function} handler  handler(eventData)   call back function
-         * @param {Object} context  Value to use as this when executing callback.
+         * @param {Object} [context]  Value to use as this when executing callback.
          * @returns {jQuery}
          */
         xbind: function (eventType, handler, context) {

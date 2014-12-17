@@ -10,7 +10,7 @@
   {
     "id": "menu_top_menu_open",
     "title": "Open Project",
-    "triggerMsg": "control/open",
+    "triggerMsg": "model/open",
     "icon": "modules/menu/topmenu/images/open.png"
   },
   {

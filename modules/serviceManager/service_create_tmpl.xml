@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div id="service-create-panel" class="service-create-panel">
+	<div id="service-create-panel-head" class="service-create-panel-head">
+		<%= title%>
+	</div>
+
+	<div>
+		<p id="service-create-result" class="service-create-result"></p>
+	</div>
+
+	<div id="service-create-panel-form" class="service-create-panel-form">
+		<table style="width: 100%">
+			<tr>
+				<td class="service-param">user</td>
+				<td>
+					<div>
+						<input id="user" type="text" class="input-text" value="guest"
+							disabled />
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">service name</td>
+				<td>
+					<div>
+						<input id="serviceName" type="text" class="input-text"
+							placeholder="service name" />
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">service type</td>
+				<td>
+					<select id="serviceType" class="input-select">
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">url</td>
+				<td>
+					<div>
+						<input id="serviceUrl" type="text" class="input-text"
+							placeholder="service url" />
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">method</td>
+				<td>
+					<select id="method" class="input-select">
+						<option value="GET">GET</option>
+						<option value="POST">POST</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">private</td>
+				<td>
+					<form id="private">
+						<input type="radio" name="isPrivate" value="private"
+							style="display: inline-block" />
+						Private
+						<input type="radio" name="isPrivate" value="public"
+							style="display: inline-block" />
+						Public
+					</form>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">parameter format</td>
+				<td>
+					<select id="parameterFormat" class="input-select">
+						<option value="normal">p1=v1&p2=v2</option>
+						<option value="SlashWithPV">p1/v1/p2/v2</option>
+						<option value="SLashWithP">v1/v2</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">parameters</td>
+				<td>
+					<div id="parameters">
+						<div class="parameter-input odd">
+							<input type="text" class="input-text-parameter-key" />
+							<input type="text" class="input-text-parameter-value" />
+							<select class="input-select">
+								<option value="string">String</option>
+								<option value="int">Int</option>
+								<option value="json">Json</option>
+								<option value="xml">XML</option>
+							</select>
+							<input type="checkbox" id="checked-box-param-0" value="1" />
+							fixed value
+						</div>
+						<div class="parameter-input">
+							<input type="text" class="input-text-parameter-key" />
+							<input type="text" class="input-text-parameter-value" />
+							<select class="input-select">
+								<option value="string">String</option>
+								<option value="int">Int</option>
+								<option value="json">Json</option>
+								<option value="xml">XML</option>
+							</select>
+							<input type="checkbox" id="checked-box-param-0" value="1" />
+							fixed value
+						</div>
+						<div class="parameter-input odd">
+
+							<input type="text" class="input-text-parameter-key" />
+							<input type="text" class="input-text-parameter-value" />
+							<select class="input-select">
+								<option value="string">String</option>
+								<option value="int">Int</option>
+								<option value="json">Json</option>
+								<option value="xml">XML</option>
+							</select>
+							<input type="checkbox" id="checked-box-param-0" value="1" />
+							fixed value
+						</div>
+					</div>
+					<input id="parameter-add-btn" type="button" class="input-button"
+						value="Add Parameter" />
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">output parameter type</td>
+				<td>
+					<select id="outputParameterType" class="input-select">
+						<option value="none">None</option>
+						<option value="string">String</option>
+						<option value="json">JSON</option>
+						<option value="xml">XML</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">output parameter format</td>
+				<td>
+					<textarea id="outputParameterFormat" class="input-textarea"
+						rows="3"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">description</td>
+				<td>
+					<textarea id="description" class="input-textarea" rows="3"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="service-param">icon</td>
+				<td>
+					<div>
+						<div id="icon-display" class="icon-display"></div>
+						<div id="icon-name" class="icon-name"></div>
+						<input id="icon-select-btn" type="button" class="input-button"
+							value="Select Icon" />
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="service-create-operation" class="service-create-operation">
+		<input type="button" id="service-back-btn" class="service-operation-btn"
+			value="Close" style="background: red" />
+		<% if(mode == "create") { %>
+		<input type="button" id="service-reset-btn" class="service-operation-btn"
+			value="Reset" />
+		<input type="button" id="service-create-btn" class="service-operation-btn"
+			value="Create" />
+		<%} else { %>
+		<input type="button" id="service-update-btn" class="service-operation-btn"
+			value="Update" />
+		<% }%>
+	</div>
+</div>

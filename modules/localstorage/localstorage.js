@@ -21,40 +21,40 @@
 var LocalStorage = (function() {
 
     return {
-	/**
-	 * Get the value by key
-	 * @param key 
-	 * @return value
-	 */
-	getData : function(key) {
-	    return window.localStorage.getItem(key);
-	},
+        /**
+         * Get the value by key
+         * @param key 
+         * @return value
+         */
+        getData: function(key) {
+            return window.localStorage.getItem(key);
+        },
 
-	/**
-	 * Store the key and value to LocalStorage 
-	 * @param key 
-	 * @param value
-	 */
-	addData : function(key, data) {
-	    window.localStorage.setItem(key, data);
-	},
+        /**
+         * Store the key and value to LocalStorage 
+         * @param key 
+         * @param value
+         */
+        addData: function(key, data) {
+            window.localStorage.setItem(key, data);
+        },
 
-	/**
-	 *Set the value of key to the data
-	 *@param key
-	 *@param data new value
-	 */
-	updateData : function(key, data) {
-	    this.addData(key, data);
-	},
+        /**
+         *Set the value of key to the data
+         *@param key
+         *@param data new value
+         */
+        updateData: function(key, data) {
+            this.addData(key, data);
+        },
 
-	/**
-	 * Remove the key and referenced value from LocalStorage
-	 * @param key
-	 */
-	deleteData : function(key) {
-	    window.localStorage.removeItem(key);
+        /**
+         * Remove the key and referenced value from LocalStorage
+         * @param key
+         */
+        deleteData: function(key) {
+            window.localStorage.removeItem(key);
 
-	}
+        }
     };
 })();

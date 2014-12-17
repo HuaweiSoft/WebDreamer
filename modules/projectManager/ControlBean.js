@@ -17,51 +17,46 @@
 /**
  * @module Bean  define the structure of  data model for a ui control
  */
-define(function(){
+define(function() {
     /**
      * control data model
      * @constructor
      */
     function Bean() {
-    }
 
-    Bean.prototype = {
-        id: "control1",
-        type: "",
+       this.id = "";
+       this.type = "";
 
         /**
          * page number sequence
          */
-        pageNo: 1,
+       this.pageNo = 1;
 
         /**
          * index in current page or parent container
          */
-        pIndex: -1,
+       this.pIndex = -1;
 
         /**
          * parent control id
          */
-        parentId: "",
+        this.parentId = "";
 
         /**
          *  control props, include base and custom property
          */
-        props: {
-            width: "0px",
-            height: "0px",
-            visibility: "visible",
-            /*BEGIN: to be deprecated*/
-            x: "auto",
-            y: "auto",
-            zIndex: 0,
+        this.props = {
+            width: "",
+            height: "",
             align: "left",
-            /*END: to be deprecated*/
-        },
+            visibility: "visible"
+            //more properties defined in ui metadata
+        };
 
-        code: "",
-        html: ""
-    };
+        this.code = "";
+        this.html = "";
+    }
+
 
     return Bean;
 });

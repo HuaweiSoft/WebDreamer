@@ -2,9 +2,19 @@
 	width: 100px;
 	float: left;
 	height: 56px;
-	margin: 0px 5px 0px 4px;
+	margin: 0px 3px 0px 4px;
 	position: relative;
 	top: 4px;
+	cursor: pointer;
+}
+
+.api_item_drag {
+	width: 100px;
+	float: left;
+	height: 56px;
+	margin: 0px 3px 0px 4px;
+	position: relative;
+	top: 0px;
 	cursor: pointer;
 }
 

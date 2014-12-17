@@ -1,93 +1,116 @@
 [
-  {
-    "category": "SYSTEM",
-    "categoryDisplayName": "System API",
-    "services": [
-      {
-        "name": "makeCall",
-        "displayName": "Call",
-        "provider":"System",
-        "private":false,
-        "dir": "communication",
-        "icon": "services/communication/icon/call.png",
-        "jsFileName": "",
-        "dependJS":[],
-        "type": "SERVICE",
-        "className": "",
-        "functionName": "makeCall",
-        "params": [
-          "telNumber"
-        ],
-        "description": ""
-      },
-       {
-        "name": "sendMsg",
-        "displayName": "sendMsg",
-        "provider":"System",
-        "private":false,
-        "dir": "communication",
-        "icon": "services/communication/icon/msg.png",
-        "jsFileName": "",
-        "dependJS":[],
-        "type": "SERVICE",
-        "className": "",
-        "functionName": "sendMsg",
-        "params": [
-          "telNumber","msg"
-        ],
-        "description": ""
-      },
-       {
-        "name": "postFBMsg",
-        "displayName": "postMsg",
-        "provider":"System",
-        "private":false,
-        "dir": "social",
-        "icon": "services/social/icon/facebook.png",
-        "jsFileName": "",
-        "dependJS":[],
-        "type": "SERVICE",
-        "className": "",
-        "functionName": "postMsg",
-        "params": [
-          "id","msg"
-        ],
-        "description": ""
-      },
-      {
-        "name": "postTwMsg",
-        "displayName": "postMsg",
-        "provider":"System",
-        "private":false,
-        "dir": "social",
-        "icon": "services/social/icon/twitter.png",
-        "jsFileName": "",
-        "dependJS":[],
-        "type": "SERVICE",
-        "className": "",
-        "functionName": "postMsg",
-        "params": [
-          "id","msg"
-        ],
-        "description": ""
-      },
-      {
-        "name": "sendMail",
-        "displayName": "sendMail",
-        "provider":"System",
-        "private":false,
-        "dir": "social",
-        "icon": "services/social/icon/mail.png",
-        "jsFileName": "",
-        "dependJS":[],
-        "type": "SERVICE",
-        "className": "",
-        "functionName": "sendMail",
-        "params": [
-          "id","to","content"
-        ],
-        "description": ""
-      }
-    ]
-  }
+    {
+        "category": "SYSTEM",
+        "categoryDisplayName": "System API",
+        "services": [
+            {
+                "name": "changePage",
+                "displayName": "changePage",
+                "provider": "System",
+                "private": false,
+                "dir": "toPage",
+                "icon": "services/toPage/icon/toPage.png",
+                "jsFileName": "toPage.js",
+                "dependJS": ["jquerymobile"],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "toPage",
+                "params": [
+                    "pageNo"
+                ],
+                "async": true,
+                "description": ""
+            },
+            {
+                "name": "makeCall",
+                "displayName": "Call",
+                "provider": "System",
+                "private": false,
+                "dir": "communication",
+                "icon": "services/communication/icon/call.png",
+                "jsFileName": "",
+                "dependJS": [],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "makeCall",
+                "params": [
+                    "telNumber"
+                ],
+                "async": true,
+                "description": ""
+            },
+            {
+                "name": "sendMsg",
+                "displayName": "sendMsg",
+                "provider": "System",
+                "private": false,
+                "dir": "communication",
+                "icon": "services/communication/icon/msg.png",
+                "jsFileName": "",
+                "dependJS": [],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "sendMsg",
+                "params": [
+                    "telNumber", "msg"
+                ],
+                "async": true,
+                "description": ""
+            },
+            {
+                "name": "postFBMsg",
+                "displayName": "postMsg",
+                "provider": "System",
+                "private": false,
+                "dir": "social",
+                "icon": "services/social/icon/facebook.png",
+                "jsFileName": "",
+                "dependJS": [],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "postMsg",
+                "params": [
+                    "id", "msg"
+                ],
+                "async": true,
+                "description": ""
+            },
+            {
+                "name": "postTwMsg",
+                "displayName": "postMsg",
+                "provider": "System",
+                "private": false,
+                "dir": "social",
+                "icon": "services/social/icon/twitter.png",
+                "jsFileName": "",
+                "dependJS": [],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "postMsg",
+                "params": [
+                    "id", "msg"
+                ],
+                "async": true,
+                "description": ""
+            },
+            {
+                "name": "sendMail",
+                "displayName": "sendMail",
+                "provider": "System",
+                "private": false,
+                "dir": "social",
+                "icon": "services/social/icon/mail.png",
+                "jsFileName": "",
+                "dependJS": [],
+                "type": "SERVICE",
+                "className": "",
+                "functionName": "sendMail",
+                "params": [
+                    "id", "to", "content"
+                ],
+                "async": true,
+                "description": ""
+            }
+        ]
+    }
 ]

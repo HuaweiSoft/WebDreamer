@@ -1,7 +1,7 @@
 <!-- the backbone template of the mask view and the model defined in the 
 	mask_panel_model.json -->
 <div id='<%= maskPanelContainerId%>'
-	style="cursor:wait;display:none;position:absolute;left:0px;top:0px;opacity:<%= maskPanelContainerOpacity%>;background-color:<%= maskPanelContainerBgColor%>; width:<%= maskPanelContainerWidth%>;height:<%= maskPanelContainerHeight%>;z-index:<%= maskPanelContainerZindex%>">
+	style="cursor:pointer;display:none;position:absolute;left:0px;top:0px;opacity:<%= maskPanelContainerOpacity%>;background-color:<%= maskPanelContainerBgColor%>; width:<%= maskPanelContainerWidth%>;height:<%= maskPanelContainerHeight%>;z-index:<%= maskPanelContainerZindex%>">
 	<div id='<%= maskPanelId%>'
 		style='position:absolute;left:<%= maskPanelLeft%>;top:<%= maskPanelTop%>;width:<%= maskPanelWidth%>;height:<%= maskPanelHeight%>'>
 		<img id='<%= maskPanelGifId%>'

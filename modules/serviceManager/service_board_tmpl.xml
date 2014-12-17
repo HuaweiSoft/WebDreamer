@@ -1,9 +1,10 @@
-<!--Template of service board model defined in serices/metadata.json-->
+<!--Template of service board model defined in serices/metadata.json -->
 <% _.each(services, function(service) { %>
-<div class="api_item" id="service_board_<%= service.name%>" title="<%= service.description%>"
-	type="<%= service.name%>">
-	<img src="<%= service.icon%>" type="<%= service.name%>" class="
+<div class="api_item" id="service_board_<%= service.serviceName%>"
+	title="<%= service.description%>" type="<%= service.serviceName%>">
+	<img src="<%= service.icon%>" type="<%= service.serviceName%>"
+		class="
 		api_item_img " />
-	<span class="api_item_text" type="<%= service.name%>"><%= service.displayName%></span>
+	<span class="api_item_text" type="<%= service.serviceName%>"><%= service.serviceName%></span>
 </div>
 <% }); %>

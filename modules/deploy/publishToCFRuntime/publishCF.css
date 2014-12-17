@@ -1,0 +1,91 @@
+.publish-cf-panel {
+	position: absolute;
+	z-index: 10;
+	width: 600px;
+	height: 400px;
+	background-color: #ffffff;
+	padding: 10px;
+	border: 3px solid #6B6868;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	display: none;
+}
+
+.publish-cf-panel .publish-cf-panel-head {
+	font-size: 20px;
+	border-bottom: 2px dotted #000;
+	padding: 10px 0px;
+}
+
+.publish-cf-panel .publish-cf-panel-content {
+	
+}
+
+.publish-cf-panel-content .publish-cf-table {
+	width: 100%;
+}
+
+.publish-cf-table .publish-cf-table-key {
+	width: 40%;
+	padding-right: 15px;
+	text-align: right;
+	font-size: 16px;
+	color: #4D4D4D;
+}
+
+.publish-cf-panel-content .publish-cf-input-text {
+	display: block;
+	width: 90%;
+	height: 20px;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.publish-cf-panel-operation {
+	border-top: 2px dotted #000;
+	margin-top: 5px;
+	padding: 5px 10px;
+	text-align: right;
+}
+
+.publish-cf-panel-operation .publish-cf-input-button {
+	display: inline;
+	height: auto;
+	font-size: 14px;
+	padding: 4px 5px;
+	border: 0px;
+	border-radius: 4px;
+	background-color: #5bc0de;
+	color: #fff;
+	cursor: pointer;
+}
+
+.publish-cf-panel-operation .publish-cf-input-button:hover {
+	background-color: #0080ff;
+}
+
+.publish-cf-select {
+	display: inline;
+	width: 40%;
+	height: auto;
+	padding: 6px 12px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.publish-app-stauts-panel-close {
+	width: 44px;
+	height: 44px;
+	background: url(images/close.png) no-repeat;
+	background-size: 45px 45px;
+	position: absolute;
+	top: 4px;
+	lett: 200px;
+	left: 570px;
+	cursor: pointer;
+}

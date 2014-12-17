@@ -1,0 +1,220 @@
+/*******************************************************************************
+ * Web Dreamer Copyright (c) Huawei Technologies Co., Ltd. 1998-2014. All Rights
+ * Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
+.upload_view_panel {
+	position: absolute;
+	z-index: 10;
+	width: 500px;
+	height: 300px;
+	background-color: #ffffff;
+	padding: 10px;
+	border: 3px solid #6B6868;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #ffffff;
+	display: none;
+	z-index: 1000;
+}
+
+.upload_head_hr {
+	position: absolute;
+	top: 45px;
+	width: 99%;
+	left: 2px;
+	color: #807F70;
+	border: 1px dashed #807F70;
+	height: 0px
+}
+
+.upload_head_txt {
+	position: absolute;
+	top: 18px;
+	width: 260px;
+	left: 12px;
+	color: #5E5E5E;
+	font-size: 18px;
+}
+
+.uplad_btn_ok {
+	width: 260px;
+	height: 40px;
+	position: absolute;
+	background: #4B89AE;
+	top: 240px;
+	left: 140px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 40px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.uplad_btn_ok:hover {
+	background: #42709D;
+}
+
+.uplad_btn_cancel {
+	width: 160px;
+	height: 40px;
+	position: absolute;
+	background: #BB9E60;
+	top: 240px;
+	left: 280px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 40px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.uplad_btn_cancel:hover {
+	background: #B5B6B8;
+}
+
+.upload_view_panel_close {
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	left: 470px;
+	top: 2px;
+	z-index: -1;
+	cursor: pointer;
+	background: url(images/close.png);
+}
+
+.uploader_drop_box {
+	width: 400px;
+	height: 160px;
+	background: rgba(119, 120, 123, 1);
+	position: absolute;
+	top: 70px;
+	left: 60px;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.uploader_drop_box:hover {
+	/**background: rgba(125, 217, 234, 1);*/
+}
+
+.uploader_drop_box_text {
+	line-height: 140px;
+	color: #ffffff;
+}
+
+.uplad_proccess_tip {
+	position: absolute;
+	left: 160px;
+	top: 90px;
+	width: 200px;
+	height: 100px;
+	display: none;
+}
+
+.upload_proccess_tip_text {
+	text-align: center;
+	color: #ffffff;
+	width: 200px;
+	position: absolute;
+	top: 80px;
+	font-size: 18px;
+}
+
+.uplad_proccess_tip_gif {
+	idth: 80px;
+	height: 80px;
+	position: absolute;
+	left: 50px;
+	top: -5px;
+}
+
+.preview_panel {
+	position: absolute;
+	left: 100px;
+	width: 200px;
+	height: 120px;
+}
+
+.preview_img {
+	max-width: 75px;
+	position: absolute;
+	max-height: 160px;
+	min-width: 75px;
+	min-height: 86px;
+	top: 4px;
+	left: 70px;
+	border-radius: 5px;
+	border: 2px solid #FAE5E5;
+}
+
+.upload_detail {
+	position: absolute;
+	left: 80px;
+	top: 200px;
+	width: 360px;
+	height: 20px;
+}
+
+.upload_detail_name {
+	text-align: center;
+	color: #ffffff;
+	width: 200px;
+	position: absolute;
+	top: 0px;
+	font-size: 18px;
+	left: -20px;
+}
+
+.upload_detail_size {
+	text-align: center;
+	color: #ffffff;
+	width: 200px;
+	position: absolute;
+	top: 0px;
+	font-size: 18px;
+	left: 180px;
+}
+
+.upload_success_tip {
+	background: url(images/ok.png) no-repeat;
+	position: absolute;
+	top: 100px;
+	left: 245px;
+	width: 50px;
+	height: 50px;
+	background-size: 40px 40px;
+	background-color: rgba(31, 30, 27, 0.72);
+	border-radius: 30px;
+	background-position: 0px 8px;
+	display: none;
+}
+
+.uplad_detail_delete {
+	background: url(images/close.png);
+	position: absolute;
+	top: 0px;
+	left: 355px;
+	width: 20px;
+	height: 20px;
+	background-size: 20px 20px;
+	display: none;
+}

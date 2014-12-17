@@ -1,0 +1,6 @@
+
+<% _.each(datas, function(item) { %>
+<div class="thumbpagediv" triggerId="<%= item.triggerId%>" name="<%= item.name%>">
+	<div class="thumbpagedivinline"><%= item.html%></div>
+</div>
+<% }); %>

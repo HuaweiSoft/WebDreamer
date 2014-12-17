@@ -6,19 +6,21 @@
 	top: 10px;
 	left: 2px;
 	z-index: 4;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-
 .designer_workshop {
-	width: 321px;
+	width: 341px;
 	height: 484px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background: #FDFAFA;;
+	background: #FDFAFA;
 	position: absolute;
 	top: 130px;
-	left: 32px;
+	left: 22px;
 }
-
 .control_selected {
 	display: none;
 	position: absolute;
@@ -34,4 +36,23 @@
 	border-bottom-right-radius: 5px;
 	opacity: 1;
 	background-color: rgb(1, 223, 215);
+}
+
+.control_highlight {
+    display: none;
+    position: absolute;
+    z-index: 0;
+    border: 1px dashed red;
+    border-radius: 5px;
+}
+
+
+.page_view{
+
+}
+
+.page_view input,
+.page_view textarea
+{
+    cursor: pointer;
 }

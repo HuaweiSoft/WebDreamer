@@ -17,79 +17,78 @@
 /**
  * Define the outline container show the controls project used on the left in this
  */
-define([ "css!modules/outline/outline",
-	"text!modules/outline/outline_tmpl.xml", "modules/outline/treeview" ],
-	function(css, tmpl, treeview) {
-	    var init = function() {
+define([ "css!modules/outline/outline", "text!modules/outline/outline_tmpl.xml", "modules/outline/treeview" ],
+        function(css, tmpl, treeview) {
+            var init = function() {
 
-		Arbiter.subscribe("layout/left/rendered", {
-		    async : true
-		}, function(data) {
-		    var id = data.body;
+                Arbiter.subscribe("layout/left/rendered", {
+                    async: true
+                }, function(data) {
+                    var id = data.body;
 
-		    /**
-		     * Instance one outline view and render it
-		     */
-		    var containerView = new OutlineContainerView({
-			el : $("#" + id)
-		    });
-		    containerView.render();
-		    treeview.init();
-		});
-	    };
+                    /**
+                     * Instance one outline view and render it
+                     */
+                    var containerView = new OutlineContainerView({
+                        el: $("#" + id)
+                    });
+                    containerView.render();
+                    treeview.init();
+                });
+            };
 
-	    /**
-	     * Define the backbone view class of outline container
-	     */
-	    var OutlineContainerView = Backbone.View.extend({
-		render : function() {
-		    this.$el.append(tmpl);
-		    this.subsribeMsg();
-		    this.publishMsg();
-		},
-		open : function() {
-		    Arbiter.publish("layout/left/open", null, {
-			async : true
-		    });
+            /**
+             * Define the backbone view class of outline container
+             */
+            var OutlineContainerView = Backbone.View.extend({
+                render: function() {
+                    this.$el.append(tmpl);
+                    this.subscribeMsg();
+                    this.publishMsg();
+                },
+                open: function() {
+                    Arbiter.publish("layout/left/open", null, {
+                        async: true
+                    });
 
-		},
-		close : function() {
-		    Arbiter.publish("layout/left/close", null, {
-			async : true
-		    });
-		},
+                },
+                close: function() {
+                    Arbiter.publish("layout/left/close", null, {
+                        async: true
+                    });
+                },
 
-		/**
-		 * Subscribe message from other modules to operate outline container
-		 */
-		subsribeMsg : function() {
-		    var _this = this;
-		    Arbiter.subscribe(EVENT_OUTLINE_SUBSCRIBE_CLOSE, {
-			async : true
-		    }, function() {
+                /**
+                 * Subscribe message from other modules to operate outline container
+                 */
+                subscribeMsg: function() {
+                    var _this = this;
+                    Arbiter.subscribe(EVENT_OUTLINE_SUBSCRIBE_CLOSE, {
+                        async: true
+                    }, function() {
 
-			_this.close();
-		    });
-		    Arbiter.subscribe(EVENT_OUTLINE_SUBSCRIBE_OPEN, {
-			async : true
-		    }, function() {
+                        _this.close();
+                    });
+                    Arbiter.subscribe(EVENT_OUTLINE_SUBSCRIBE_OPEN, {
+                        async: true
+                    }, function() {
 
-			_this.open();
-		    });
-		},
-		publishMsg : function() {
-		    Arbiter.publish(EVENT_OUTLINE_PUBLISH_RENDERED, {
-			id : "outline_body"
-		    }, {
-			async : true,
-			persist : true
-		    });
-		},
-		events : {}
-	    });
+                        _this.open();
+                    });
+                },
+                publishMsg: function() {
+                    Arbiter.publish(EVENT_OUTLINE_PUBLISH_RENDERED, {
+                        id: "outline_body"
+                    }, {
+                        async: true,
+                        persist: true
+                    });
+                },
+                events: {}
+            });
 
-	    return {
-		init : init,
-	    };
+            return {
+                init: init
+            };
 
-	});
+        });

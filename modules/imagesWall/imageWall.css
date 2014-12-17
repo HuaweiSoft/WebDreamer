@@ -1,0 +1,216 @@
+/*******************************************************************************
+ * Web Dreamer Copyright (c) Huawei Technologies Co., Ltd. 1998-2014. All Rights
+ * Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
+.wall_view_panel {
+	position: absolute;
+	width: 700px;
+	height: 300px;
+	background-color: #ffffff;
+	padding: 10px;
+	border: 3px solid #6B6868;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #ffffff;
+	display: none;
+	z-index: 800;
+}
+
+.image_wall_head_hr {
+	position: absolute;
+	top: 45px;
+	width: 99%;
+	left: 2px;
+	color: #807F70;
+	border: 1px dashed #807F70;
+	height: 0px
+}
+
+.image_wall_input_hr {
+	position: absolute;
+	top: 105px;
+	width: 99%;
+	left: 2px;
+	color: #807F70;
+	border: 1px dashed #807F70;
+	height: 0px
+}
+
+.image_wall_buttom_hr {
+	position: absolute;
+	top: 255px;
+	width: 99%;
+	left: 2px;
+	color: #807F70;
+	border: 1px dashed #807F70;
+	height: 0px
+}
+
+.image_wall_head_txt {
+	position: absolute;
+	top: 18px;
+	width: 260px;
+	left: 12px;
+	color: #5E5E5E;
+	font-size: 18px;
+}
+
+.image_wall_view_panel_close {
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	left: 670px;
+	top: 2px;
+	z-index: -1;
+	cursor: pointer;
+	background: url(images/close.png);
+}
+
+.image_url_label {
+	position: absolute;
+	top: 75px;
+	left: 30px;
+}
+
+.image_url_input {
+	position: absolute;
+	top: 65px;
+	left: 80px;
+	width: 300px;
+	height: 30px;
+	border-radius: 5px
+}
+
+.image_wall_preview_img {
+	position: absolute;
+	top: 53px;
+	left: 400px;
+	width: 60px;
+	height: 60px;
+}
+
+.image_wall_preview {
+	position: absolute;
+	top: 50px;
+	left: 480px;
+	width: 60px;
+	height: 60px;
+	background: url(images/view.png);
+	background-size: 65px 70px;
+	cursor: pointer;
+}
+
+.image_url_confirm_btn {
+	position: absolute;
+	top: 70px;
+	left: 580px;
+	width: 80px;
+	height: 30px;
+	background: #746F72;
+	cursor: pointer;
+	border-radius: 5px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 32px;
+}
+
+.image_url_confirm_btn:hover {
+	background: #63A971;
+}
+
+.image_wall_List {
+	position: absolute;
+	top: 115px;
+	left: 20px;
+	height: 147px;
+	width: 720px;
+}
+
+.image_wall_page_bar {
+	position: absolute;
+	top: 280px;
+	left: 0px;
+	height: 30px;
+	margin: 0 auto;
+}
+
+.image_wall_page_item_unselected {
+	float: left;
+	width: 20px;
+	text-align: center;
+	font-size: 10px;
+	height: 20px;
+	border-radius: 25px;
+	background: rgba(48, 45, 45, 1);
+	color: #fff;
+	border: rgba(75, 77, 77, 0.79) 1px solid;
+	-webkit-box-shadow: 2px 2px 10px #807878;
+	margin-right: 10px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.image_wall_page_item_unselected:hover {
+	background: rgba(48, 45, 45, .5);
+}
+
+.image_wall_page_item_selected {
+	float: left;
+	width: 20px;
+	text-align: center;
+	font-size: 10px;
+	height: 20px;
+	border-radius: 25px;
+	background: rgba(34, 148, 40, 1);
+	color: #fff;
+	border: rgba(75, 77, 77, 0.79) 1px solid;
+	-webkit-box-shadow: 2px 2px 10px #807878;
+	margin-right: 10px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.image_wall_page_item_selected:hover {
+	background: rgba(34, 148, 40, .6);
+}
+
+.image_wall_page_num_two_bit {
+	position: absolute;
+	left: 3px;
+	top: 14px;
+	font-size: 10px;
+}
+
+.image_wall_item_image {
+	width: 100px;
+	max-height: 120px;
+	vertical-align: middle;
+	margin-left: 2px;
+}
+
+.image_wall_unit_div {
+	float: left;
+	margin: 1px;
+	cursor: pointer;
+	background: #4C4C4B;
+	border: 1px solid #DFDDDD;
+	border-radius: 10px;
+	width: 110px
+}
+
+.image_wall_unit_div:hover {
+	background: rgba(121, 121, 116, 0.7);
+}

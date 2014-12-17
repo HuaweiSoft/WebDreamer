@@ -1,0 +1,72 @@
+
+<div id="export-war-proxy-setting-panel" class="export-war-proxy-setting-panel">
+	<div id="export-war-proxy-setting-panel-head" class="export-war-proxy-setting-panel-head">
+		Export War
+	</div>
+
+	<div id="export-war-proxy-setting-panel-content" class="export-war-proxy-setting-panel-content">
+		<div>
+			<table class="export-war-proxy-setting-table">
+				<tr id="export_war_proxy_setting">
+					<td class="export-war-proxy-setting-table-key">proxy enable</td>
+					<td>
+						<input name="export-war-proxy-enable" checked="checked" type="radio"
+							value="disabled" />
+						Disabled
+						<input name="export-war-proxy-enable" type="radio" value="enabled" />
+						Enabled
+
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">proxy host</td>
+					<td>
+						<input id="export-war-proxy-host" type="text" placeholder="proxy host"
+							class="export-war-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">proxy port</td>
+					<td>
+						<input id="export-war-proxy-port" type="text" placeholder="proxy port"
+							class="export-war-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">proxy username</td>
+					<td>
+						<input id="export-war-proxy-username" type="text"
+							placeholder="proxy username" class="export-war-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">proxy password</td>
+					<td>
+						<input id="export-war-proxy-password" type="password"
+							placeholder="proxy password" class="export-war-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">non proxy host</td>
+					<td>
+						<input id="export-war-non-proxy-host" type="text"
+							placeholder="non proxy host" class="export-war-input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="export-war-proxy-setting-table-key">DownLoad</td>
+					<td id="download-url">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="export-war-proxy-setting-panel-operation" class="export-war-proxy-setting-panel-operation">
+			<input id="export-war-close-btn" type="button" value="Close"
+				class="export-war-input-button" />
+			<input id="export-war-export-btn" type="button" value="Export"
+				class="export-war-input-button" />
+		</div>
+	</div>
+
+</div>

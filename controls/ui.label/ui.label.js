@@ -15,25 +15,30 @@ UI.Label = function(container) {
 
 extend(UI.Label,UI.Div, {
     type: "UI.Label",
-    designerType: "UI.Label_Designer",
+    _html: "<div style='font-size: 14px;'>Label text</div>",
 
-    _html: "<div style='font-size: 14px;'>Label text</div>"
+    getText: function(){
+        return   $.trim($(this._element).html());;
+    },
 
+    setText: function(text){
+        text = text || "";
+        $(this._element).html(text);
+    }
 });
 
-UI.Div.prototype.__defineGetter__('text', function() {
-	  return $.trim($(this._element).html());
+UI.Label.prototype.__defineGetter__('text', function() {
+	  return this.getText();
 });
 
-UI.Div.prototype.__defineSetter__('text', function(text) {
-	text = text || "";
-	$(this._element).html(text);
+UI.Label.prototype.__defineSetter__('text', function(text) {
+    this.setText(text );
 });
 
-UI.Div.prototype.__defineGetter__('textValue', function() {
-    return this.text;
+UI.Label.prototype.__defineGetter__('textValue', function() {
+    return this.getText();
 });
 
-UI.Div.prototype.__defineSetter__('textValue', function(value) {
-    this.text = value;
+UI.Label.prototype.__defineSetter__('textValue', function(value) {
+    this.setText(value);
 });
