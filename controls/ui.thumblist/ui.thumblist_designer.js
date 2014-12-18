@@ -33,7 +33,6 @@ UI.ThumbList_Designer.prototype.meta = UI.extendMeta(UI.ThumbList_Designer.proto
             designable: true,
             defaultValue: false
         },
-
         pageSize: {
             datatype: "Int",
             readOnly: false,

@@ -40,7 +40,7 @@ define(
         var TYPE_PAGE = "PAGE";
 
         var PAGE_SELECTOR_TRIGGER_ID = "__flow_designer";
-        var CHANG_PAGE_API_NAME = "toPage";
+        var CHANG_PAGE_API_NAME = "changePage";
         var PAGE_THUMB_ID_PREFIX = "__PAGE__";
 
         var _initNumber = 0;
@@ -712,8 +712,10 @@ define(
                         _this.expandOrCollapse(this, unitId);
                 });
                 $unit.find(".action.action-delete").unbind("click").bind("click", function() {
-                    if (_this.isUnitVisible(unitId))
+                    if (_this.isUnitVisible(unitId)){
+                        clearUiControlHighlight();
                         _this.deleteUnit(unitId);
+                    }
                 });
                 $unit.find(".action.action-config").unbind("click").bind("click", function() {
                     _this.onConfigClick(unitId);

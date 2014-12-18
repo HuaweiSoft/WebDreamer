@@ -15,6 +15,7 @@ UI.Text = function(container) {
 
 extend(UI.Text, UI.Control, {
     type: "UI.Text",
+
     _html: '<div> <input type="text" placeholder="input" style="width:100%;height:100%;padding:0em;" ' +
         'class="ui-input-text ui-body-null ui-corner-all ui-shadow-inset ui-body-d"></div>',
     _Text: null,
@@ -40,7 +41,7 @@ extend(UI.Text, UI.Control, {
     },
 
     _getInputType: function() {
-        return this._Text != null ? this._type : "";
+        return this._Text != null ? this._type : "text";
     },
 
     _setInputType: function(value) {

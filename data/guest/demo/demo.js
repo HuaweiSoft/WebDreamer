@@ -253,12 +253,12 @@ function getControl(id) {
 function bindEventHandlers(){
 	var textButton1 = getControl("textButton1");
 	textButton1.onClick = function(){
-		toPage(2);
+		changePage(2);
 	}
 		
 	var textButton2 = getControl("textButton2");
 	textButton2.onClick = function(){
-		toPage(3);
+		changePage(3);
 	}
 		
 	var textButton3 = getControl("textButton3");

@@ -6,6 +6,11 @@
 		type="<%= service.serviceName%>" class="
 		api_item_img ">
 		<span class="api_item_text" type="<%= service.serviceName%>"><%= service.serviceName%></span>
+
+		<%if(service.createdBy!="SYSTEM"){%>
+		<div class='api_item_remove_from_myservices' title='Remove this service from My Service'></div>
+		<%}%>
+
 </div>
 <% }); %>
 			

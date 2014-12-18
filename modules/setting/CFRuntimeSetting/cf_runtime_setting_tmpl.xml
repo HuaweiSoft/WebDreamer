@@ -1,37 +1,39 @@
 <div id="cf-setting-panel" class="cf-setting-panel">
 	<div id="cf-setting-panel-head" class="cf-setting-panel-head">
-		CF setting
+		CF Runtime setting
 	</div>
 
 	<div id="cf-setting-panel-content" class="cf-setting-panel-content">
 		<div>
 			<table class="cf-setting-table">
 				<tr>
-					<td class="cf-setting-table-key">username</td>
+					<td class="cf-setting-table-key">CF API URL</td>
+					<td>
+						<input id="cf-url" type="text" placeholder="http://cf-url"
+							class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="cf-setting-table-key">Login CF Space</td>
+					<td>
+						<input id="cf-space" type="text" placeholder="space" class="input-text" />
+					</td>
+				</tr>
+				<tr>
+					<td class="cf-setting-table-key">Login CF User</td>
 					<td>
 						<input id="cf-username" type="text" placeholder="username"
 							class="input-text" />
 					</td>
 				</tr>
 				<tr>
-					<td class="cf-setting-table-key">password</td>
+					<td class="cf-setting-table-key">Password</td>
 					<td>
 						<input id="cf-password" type="password" placeholder="password"
 							class="input-text" />
 					</td>
 				</tr>
-				<tr>
-					<td class="cf-setting-table-key">url</td>
-					<td>
-						<input id="cf-url" type="text" placeholder="http://cf-url" class="input-text" />
-					</td>
-				</tr>
-				<tr>
-					<td class="cf-setting-table-key">space</td>
-					<td>
-						<input id="cf-space" type="text" placeholder="space" class="input-text" />
-					</td>
-				</tr>
+
 			</table>
 		</div>
 

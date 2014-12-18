@@ -16,10 +16,10 @@
  *******************************************************************************/
 /**
  *  changePage API
- * @dependency  jquery.js
+ * @dependency  jquery mobile
  */
 
-var toPage = (function() {
+var changePage = (function() {
     var currentPageNo = 1;
 
     /**

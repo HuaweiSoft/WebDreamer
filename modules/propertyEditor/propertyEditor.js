@@ -269,7 +269,7 @@ define([ "css!modules/propertyEditor/propertyEditor", "css!jslibs/yui/2.8.1/data
             var newData = args.newData;
             var oldData = args.oldData;
             if (newData == oldData) {
-                return false;
+                return true;
             }
             var record = args.editor.getRecord();
             var propName = record.getData().id;
@@ -281,7 +281,10 @@ define([ "css!modules/propertyEditor/propertyEditor", "css!jslibs/yui/2.8.1/data
             if (controlMeta && propName in controlMeta.props) {
                 var propInfo = controlMeta.props[propName];
                 if (typeof newData == "string") {
-                    if (propInfo.datatype == DataType.Boolean  || propInfo.datatype == "Bool") {
+                    if (propInfo.datatype == DataType.String  || propInfo.datatype == DataType.MString) {
+                        propValue =newData;
+                    }
+                   else if (propInfo.datatype == DataType.Boolean  || propInfo.datatype == "Bool") {
                         propValue = parseBoolean(newData);
                     }
                     else if (propInfo.datatype == DataType.Int) {
@@ -289,7 +292,8 @@ define([ "css!modules/propertyEditor/propertyEditor", "css!jslibs/yui/2.8.1/data
                     }
                     else if (propInfo.datatype == DataType.Float) {
                         propValue = parseFloat(newData);
-                    }else if(propInfo.datatype == DataType.Object){
+                    }else if(propInfo.datatype == DataType.Object)
+                    {
                         var obj = null;
                         try{
                             var obj = JSON.parse(newData);

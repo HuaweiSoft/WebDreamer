@@ -1,12 +1,12 @@
 package com.webdreamer.builder;
 
+import com.webdreamer.Constant;
 import com.webdreamer.Utils;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,6 @@ public class FlowCodeGenerator extends FlowHelper {
     private static final String APP_ANCHOR_CONTROL_ID = "APP";
     private static final String APP_ANCHOR_CONTROL_TYPE = "APP";
     private static final String GET_CONTROL_FUNCTION_NAME = "getControl";
-    private static final String CHANGE_PAGE_API_NAME = "toPage";
     private static final String EVENT_BINDER_FUNCTION_NAME = "bindEventHandlers";
     private static final String DATA_MAPPING_FUNCTION_NAME = "setData";
 
@@ -278,7 +277,7 @@ public class FlowCodeGenerator extends FlowHelper {
         String apiName = apiUnit.optString("name");
         if (apiName == null)
             return "";
-        else if (apiName.equals(CHANGE_PAGE_API_NAME))
+        else if (apiName.equals(Constant.CHANGE_PAGE_API_NAME))
             return buildChangePageApiCode(tree, apiUnit, scope, intent);
         JSONObject apiMeta = this.apiMetas.optJSONObject(apiName);
         if (apiMeta == null)
@@ -288,7 +287,7 @@ public class FlowCodeGenerator extends FlowHelper {
         String functionName = apiMeta.getString("functionName");
         JSONArray params = apiMeta.getJSONArray("params");
         boolean hasCallback = apiMeta.optBoolean("hasCallback", true);
-        if (apiName.equals(CHANGE_PAGE_API_NAME))
+        if (apiName.equals(Constant.CHANGE_PAGE_API_NAME))
             hasCallback = false;
         if (Utils.isNullOrTrimEmpty(functionName))
             functionName = apiName;
@@ -389,7 +388,7 @@ public class FlowCodeGenerator extends FlowHelper {
             return "";
         if (!value.matches("^\\d+$"))
             value = "\"" + value + "\"";
-        return intent + String.format("%s(%s);\n", CHANGE_PAGE_API_NAME, value);
+        return intent + String.format("%s(%s);\n", Constant.CHANGE_PAGE_API_NAME, value);
     }
 
     private JSONObject[] sortParamUnits(JSONObject[] paramUnits, JSONArray paramNames) throws JSONException {

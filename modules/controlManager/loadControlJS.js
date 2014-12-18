@@ -36,12 +36,12 @@ define([ "jquery", "util", "HashMap" ],
                 var controlJSArray = this.getAllControlJS(controlData);
                 this.loadAllJsByDom(controlJSArray);
                 var cssArray = [];
-                if( controlData.controlBase.runtime.css){
+                if (controlData.controlBase.runtime.css) {
                     for (var i = 0; i < controlData.controlBase.runtime.css.length; i++) {
-                        cssArray.push(controlData.controlBase.runtime.css[i] );
+                        cssArray.push(controlData.controlBase.runtime.css[i]);
                     }
                 }
-                if(controlData.controlBase.designer.css){
+                if (controlData.controlBase.designer.css) {
                     for (var i = 0; i < controlData.controlBase.designer.css.length; i++) {
                         cssArray.push(controlData.controlBase.designer.css[i]);
                     }
@@ -57,7 +57,7 @@ define([ "jquery", "util", "HashMap" ],
 
                 var controlJSArray = [];
                 for (var i = 0; i < controlData.controlBase.runtime.js.length; i++) {
-                    controlJSArray.push(controlData.controlBase.runtime.js[i] );
+                    controlJSArray.push(controlData.controlBase.runtime.js[i]);
                 }
                 for (var i = 0; i < controlData.controlBase.designer.js.length; i++) {
                     controlJSArray.push(controlData.controlBase.designer.js[i]);
@@ -81,8 +81,7 @@ define([ "jquery", "util", "HashMap" ],
                     var dependJSArray = [];
                     this.collectControlJS(control, dependJSArray, indexMap, containedMap);
                     for (var p = dependJSArray.length - 1; p >= 0; p--) {
-                        //if (!util.inArray(controlJSArray, dependJSArray[p]))
-                        {
+                        if (!util.inArray(controlJSArray, dependJSArray[p])) {
                             controlJSArray.push(dependJSArray[p]);
                         }
                     }
@@ -95,14 +94,15 @@ define([ "jquery", "util", "HashMap" ],
                     return;
 
                 for (var i = control.designer.js.length - 1; i >= 0; i--) {
-                    var designerJS = "controls/" + control.dir
-                        + "/" + control.designer.js[i];
-                    jsArray.push(designerJS);
+                    jsArray.push("controls/" + control.dir + "/" + control.designer.js[i]);
                 }
 
                 for (var i = control.runtime.js.length - 1; i >= 0; i--) {
-                    var runtimeJS = "controls/" + control.dir + "/" + control.runtime.js[i];
-                    jsArray.push(runtimeJS);
+                    var jsPath = control.runtime.js[i];
+                    if (jsPath.indexOf("http://") == 0 || jsPath.indexOf("https://") == 0)
+                        jsArray.push(jsPath);
+                    else
+                        jsArray.push("controls/" + control.dir + "/" + control.runtime.js[i]);
                 }
 
                 if (control.hasOwnProperty("dependControl") && control.dependControl.length > 0) {
@@ -127,38 +127,41 @@ define([ "jquery", "util", "HashMap" ],
              */
             loadAllJsByDom: function(controlJSArray) {
                 var index = -1;
-                function loadNext(){
-                    index ++ ;
-                    if(index>=controlJSArray.length)
+
+                function loadNext() {
+                    index++;
+                    if (index >= controlJSArray.length)
                         return;
                     var scriptElm = document.createElement('script');
                     scriptElm.type = 'text/javascript';
                     scriptElm.async = 'async';
-                    scriptElm.src =  controlJSArray[index];
-                    scriptElm.onload = scriptElm.onreadystatechange = function(){
-                         if ((!this.readyState) || this.readyState == "complete" || this.readyState == "loaded" ){
+                    scriptElm.src = controlJSArray[index];
+                    scriptElm.onload = scriptElm.onreadystatechange = function() {
+                        if ((!this.readyState) || this.readyState == "complete" || this.readyState == "loaded") {
                             //script loaded
-                         }
-                        else{
-                             console.warn("Control js may load failed: " + controlJSArray[index]);
-                         }
+                        }
+                        else {
+                            console.warn("Control js may load failed: " + controlJSArray[index]);
+                        }
                         loadNext();
                     };
-                    scriptElm.onerror = function(){
+                    scriptElm.onerror = function() {
                         //console.error( "Control js loaded error: " + controlJSArray[index] );
                         loadNext();
                     };
                     var headElm = document.head || document.getElementsByTagName('head')[0];
                     headElm.appendChild(scriptElm);
                 }
+
                 loadNext();
             },
 
             loadAllJsXHR: function(controlJSArray) {
                 var index = -1;
-                function loadNext(){
-                    index ++ ;
-                    if(index>=controlJSArray.length)
+
+                function loadNext() {
+                    index++;
+                    if (index >= controlJSArray.length)
                         return;
                     $.ajax({
                         url: controlJSArray[index],
@@ -172,16 +175,17 @@ define([ "jquery", "util", "HashMap" ],
                         }
                     });
                 }
+
                 loadNext();
             },
 
-            loadAllControlCss: function(cssArray){
+            loadAllControlCss: function(cssArray) {
                 var paths = [];
                 for (var i = 0; i < cssArray.length; i++) {
-                    paths.push("css!" + cssArray[i]) ;
+                    paths.push("css!" + cssArray[i]);
                 }
-                require(paths, function(){
-                   console.debug("All css of ui controls have been loaded!");
+                require(paths, function() {
+                    console.debug("All css of ui controls have been loaded!");
                 });
             }
         };

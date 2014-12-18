@@ -21,7 +21,7 @@ UI.IconList_Designer.prototype.meta = UI.extendMeta(UI.IconList_Designer.prototy
             {name: "detail", alias: "text"}
         ]},
         _updateDetail: {alias: "updateDetail", params: [
-            {name: "myindex", alias: "系列号(index)"},
+            {name: "myindex", alias: "序列号(index)"},
             {name: "mytext", alias: "detail"}
         ]},
         _getSubText: {alias: "getSubTitle", showable: false, params: [], output: true},
@@ -29,7 +29,7 @@ UI.IconList_Designer.prototype.meta = UI.extendMeta(UI.IconList_Designer.prototy
             {name: "subText", alias: "text"}
         ]},
         _updateSubText: {alias: "updateSubTitle", showable: false, params: [
-            {name: "myindex", alias: "系列号(index)"},
+            {name: "myindex", alias: "序列号(index)"},
             {name: "mytext", alias: "subText"}
         ]}
     },

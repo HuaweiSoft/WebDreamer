@@ -149,7 +149,11 @@ public class HtmlGenerator {
         String ret = "";
 
         for (int i = 0; i < jsList.size(); i++) {
-            ret += "<script type=\"text/javascript\" src=\"" + baseUrl + jsList.get(i) + "\"></script>\n";
+            String jsPath = jsList.get(i);
+            if (jsPath.indexOf("http://") == 0 || jsPath.indexOf("https://") == 0)
+            ret += "<script type=\"text/javascript\" src=\"" +  jsPath + "\"></script>\n";
+            else
+            ret += "<script type=\"text/javascript\" src=\"" + baseUrl + jsPath + "\"></script>\n";
         }
         HashMap<String, Boolean> contained = new HashMap<String, Boolean>();
         if (flowCodeGenerator != null && flowCodeGenerator.getApiMetas() != null) {

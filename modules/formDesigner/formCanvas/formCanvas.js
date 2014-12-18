@@ -19,7 +19,8 @@
  * canvas for design and display UI of apps
  */
 define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDesigner/formCanvas/model.json",
-    "text!modules/formDesigner/formCanvas/formCanvas_tmpl.xml", "controlBean", "util" , "metaHub"], function(css, model, tmpl, Bean, util, metaHub) {
+    "text!modules/formDesigner/formCanvas/formCanvas_tmpl.xml", "controlBean", "util" , "metaHub" , "modelManager"],
+    function(css, model, tmpl, Bean, util, metaHub, modelManager) {
 
     var STYLE_PROPERTIES = [ 'position', 'width', 'height', 'margin', 'left', 'top', 'zIndex', 'visibility' ];
 
@@ -180,7 +181,6 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                     designer.setPropValue("height", designer.defaultHeight + "px");
             }
 
-
             // add control to array
             this.controls.push(control);
 
@@ -237,6 +237,10 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                 for (var propName in bean.props) {
                     if (!bean.props.hasOwnProperty(propName) || !(propName in propMetas))
                         continue;
+                    var defaultValue = propMetas[propName].defaultValue;
+                    if(defaultValue  ||  defaultValue == false ){
+                         designer.setPropValue(propName, defaultValue);
+                    }
                     bean.props[propName] = designer.getPropValue(propName);
                 }
             }
@@ -244,7 +248,6 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                 for (var propName in bean.props) {
                     if (!bean.props.hasOwnProperty(propName))
                         continue;
-
                     var propValue = bean.props[propName];
                     if (util.inArray(STYLE_PROPERTIES, propName)) {
                         //styles
@@ -261,7 +264,7 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
             for (var propName in propMetas) {
                 if (propName == "id" || propName == "type" || propName in bean.props)
                     continue;
-                bean.props[propName] = designer.getPropValue(propName) || propMetas[propName].defaultValue || "";
+                bean.props[propName] = designer.getPropValue(propName); // || propMetas[propName].defaultValue || "";
             }
             //remove the deprecated properties undeclared in metadata
             var deleted = [];
@@ -484,6 +487,7 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
          * control clicked
          */
         controlClicked: function(controlId) {
+            $("#controlContainer").find("#controlHighlight").hide();
             this.highlightSelectedControl(controlId);
             Arbiter.publish(EVENT_FORMDEISGNER_CONTROL_CLICK, {
                 id: controlId
@@ -738,7 +742,7 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                     if (propName == "id" || propName == "type")
                         continue;
                     var propMeta = meta.props[propName];
-                    newBean.props[propName] = propMeta.defaultValue || "";
+                    newBean.props[propName] =  propMeta.defaultValue ;
                 }
             }
 
@@ -817,8 +821,8 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
             if ($control == null) {
                 return;
             }
-
-            $control.css(propName, propValue);
+            if(propName in STYLE_PROPERTIES)
+                $control.css(propName, propValue);
         },
 
         /*
@@ -889,6 +893,14 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
             designer.setPropValue(propName, value);
             var newValue = designer.getPropValue(propName);
             if (oldValue != newValue) {
+                //we use a hack way to async property value between control and model
+                var bean = modelManager.get(controlId);
+                if(bean && bean.props){
+                    for (var key in bean.props) {
+                        bean.props[key] = designer.getPropValue(key);
+                    }
+                }
+
                 Arbiter.publish(EVENT_MODEL_UPDATE, {
                     id: controlId,
                     propName: propName,

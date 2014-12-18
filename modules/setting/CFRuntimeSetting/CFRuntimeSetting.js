@@ -172,6 +172,7 @@ define([ "text!modules/setting/CFRuntimeSetting/cf_runtime_setting_tmpl.xml",
                 success: function(config) {
                     _this.config = config;
                     alert("save cf setting success!");
+                    _this.close();
                 },
                 error: function(msg) {
                     console.error("save cf setting error: [" + msg + "]");

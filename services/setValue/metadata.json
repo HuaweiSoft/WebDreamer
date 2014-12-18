@@ -1,32 +1,33 @@
 {
     "outputParameterType" : "none",
-    "icon" : "toPage.png",
+    "icon" : "setValue.png",
     "methodType" : "GET",
     "type" : "System",
     "url" : "",
-    "serviceName" : "toPage",
+    "serviceName" : "setValue",
     "createdBy" : "SYSTEM",
     "isPrivate" : false,
     "createdAt" : "2014-11-17 15:43:03",
     "description" : "",
     "parameterList" : [{
-        "alias" : "pageNo",
-        "name" : "pageNo",
-        "type" : "string"
-    }
-    ],
+        "alias" : "value",
+        "name" : "value",
+        "type" : "object"
+    }],
     "outputParameterFormat" : "",
     "parameterFormatType" : "",
     
     "isJsApi": true,
     "jsApiInfo":{
-		"jsFileName": "toPage.js",
+		"jsFileName": "setValue.js",
 		"className": "",
-		"functionName": "toPage",
-		"params": ["pageNo"],
+		"functionName": "setValue",
+		"params": ["value"],
 		"hasCallback": false,
         "result": {
-            "return": false
+            "return": true,
+            "type": "json",
+            "format": "{}"
         }
     }
 }

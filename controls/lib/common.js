@@ -27,6 +27,10 @@ DataType = {
     SelectBoxValue: "SelectBoxValue"
 };
 
+EditType={
+
+};
+
 var RUNTIME_DESIGN = "design";
 var RUNTIME_PREVIEW = "preview";
 var RUNTIME_APP = "app";
@@ -467,6 +471,20 @@ function merge(target, obj, isDeepCopy) {
     }
 
     return target;
+}
+
+function indexOfArray(arr, value) {
+    if (!arr || !arr.length)
+        return -1;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == value)
+            return i;
+    }
+    return -1;
+}
+
+function inArray(arr, value) {
+    return indexOfArray(arr, value) >= 0;
 }
 
 function getValueByJPath(obj, jpath) {

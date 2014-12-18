@@ -123,8 +123,7 @@ UI.Designer.prototype = {
                 designable: false,
                 category: "Common",
                 description: "the height of UI component",
-                serializable: true,
-                defaultValue: "20px"
+                serializable: true
             },
 
             "position": {

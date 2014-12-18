@@ -16,6 +16,12 @@ extend(UI.Image_Designer, UI.Designer,{
 UI.Image_Designer.prototype.meta = UI.extendMeta(UI.Image_Designer.prototype.meta, {
     type: "UI.Image",
     props: {
+        width:{
+          defaultValue: "60px"
+        },
+        height:{
+            defaultValue: "60px"
+        },
         src: {
             datatype: "ImageUrl",
             designable: true

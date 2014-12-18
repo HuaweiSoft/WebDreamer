@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.webdreamer.Constant;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -138,6 +139,8 @@ public class RestServiceManager {
                 JSONObject serviceDirJson = serviceDirList.getJSONObject(i);
                 String name = serviceDirJson.getString("name");
                 String serviceMetadataFilePath = servicePath + File.separator + name + File.separator + "metadata.json";
+                if(!FileUtil.exists(serviceMetadataFilePath))
+                    continue;
                 String serviceMetadataStr = FileUtil.readFile(serviceMetadataFilePath);
                 if (serviceMetadataStr != "") {
                     JSONObject serviceJson = new JSONObject(serviceMetadataStr);
@@ -148,9 +151,18 @@ public class RestServiceManager {
                         servicesByType = new ArrayList<RestServiceBean>();
                         services.put(service.type, servicesByType);
                     }
-                    servicesByType.add(service);
+                    //make the inbuilt api at the header
+                    if(Constant.CHANGE_PAGE_API_NAME.equals (service.serviceName)){
+                        servicesByType.add(0, service);
+                    }else if(Constant.NAVIGATE_BACK_API_NAME.equals(service.serviceName)){
+                        if( servicesByType.size()> 0 && Constant.CHANGE_PAGE_API_NAME.equals(servicesByType.get(0).serviceName) )
+                            servicesByType.add(1, service);
+                        else
+                            servicesByType.add(0, service);
+                    }
+                    else
+                        servicesByType.add(service);
                 }
-
             } catch (JSONException e) {
                 logger.error("parse json error: " + e.toString());
                 return false;

@@ -52,8 +52,9 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
 
         id: "",
         controlBase: {},
-        controls: [],               //controls those can be displayed in designer
-        allControls: [],           //controls included those not displayed, such as some base controls  just providing common features for subclass controls
+        controls: [], // controls those can be displayed in designer
+        allControls: [], // controls included those not displayed, such as some base controls
+        // just providing common features for subclass controls
         currentPageNO: 1,
         numsPerPage: 10,
         controlsCategories: null,
@@ -89,6 +90,7 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
             this.bindEventHandler("control_item");
             this.notifyLoadControlsJS();
             this.notifyControlMetaData();
+            this.subscribeMsg();
         },
 
         /**
@@ -102,9 +104,10 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
             if (!pageNo) {
                 pageNo = 1;
             }
-            var startIndex = (pageNo - this.currentPageNO) * this.numsPerPage;
-            if (startIndex > 0) {
-                startIndex = startIndex - 1;
+           
+            var startIndex = (pageNo - 1) * this.numsPerPage;
+            if (startIndex < 0 ) {
+                return;
             }
             var endIndex = startIndex + this.numsPerPage;
             for ( var i = startIndex; i < endIndex; i++) {
@@ -121,10 +124,16 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
                 var itemHTML = _.template(boradTmpl, controls);
                 this.$el.html("");
                 this.$el.append(itemHTML);
+                this.currentPageNO = pageNo;
             }
 
         },
-
+        nextPage: function() {
+            this.showPage(this.currentPageNO + 1);
+        },
+        upPage: function() {
+            this.showPage(this.currentPageNO - 1);
+        },
         /**
          * Notify LoadControlJS module to load javascript files 
          */
@@ -151,8 +160,21 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
 
         },
         subscribeMsg: function() {
+            var _this = this;
+            Arbiter.subscribe("toolbar/designer/container/up", {
+                async: true
+            }, function() {
+                _this.upPage();
+            });
+            var _this = this;
+            Arbiter.subscribe("toolbar/designer/container/down", {
+                async: true
+            }, function() {
+                _this.nextPage();
+            });
         },
         clickMenuItem: function(event) {
+
         },
 
         bindEventHandler: function(className) {
@@ -308,7 +330,7 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
             $("#control_group_tab_container").html(tabsHTML);
             this.switchGroupTab(jsonGroup[0].category);
             var _this = this;
-            $("#control_group_tab_container").find(".control_group_tab").bind("click", function(){
+            $("#control_group_tab_container").find(".control_group_tab").bind("click", function() {
                 _this.switchGroupTab($(this).attr("group"));
             })
         },
@@ -332,8 +354,8 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
                 var groupName = this.jsonGroup[i].category;
                 if (groupName == this.selectedGroup) {
                     var controls = this.jsonGroup[i].controls;
-                    for (var j = 0; j < controls.length; j++) {
-                        if( controls[j].displayed != false) {
+                    for ( var j = 0; j < controls.length; j++) {
+                        if (controls[j].displayed != false) {
                             controlsOfGroup.push(controls[j]);
                         }
                     }

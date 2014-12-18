@@ -103,10 +103,10 @@ public class RestServiceBean {
                 ServiceParameter sp = parameterList.get(i);
                 parameterStr += "\'" + sp.name + "=\' + ";
                 if (sp.fixedValue == null || sp.fixedValue.length() == 0) {
-                    parameterStr += sp.name;
+                    parameterStr += "encodeURIComponent("+ sp.name + " || '')";
                     functionParameterList += sp.name + ",";
                 } else {
-                    parameterStr += "\'" + sp.fixedValue + "\'";
+                    parameterStr += "encodeURIComponent(\'" + sp.fixedValue + "\')";
                 }
                 parameterStr += "+ \'&\' +";
             }

@@ -43,3 +43,7 @@
 .property_editor_body > table{
     width: 100%;
 }
+
+#property_editor_body.yui-skin-sam .yui-dt-liner {
+    width: 92%;
+}

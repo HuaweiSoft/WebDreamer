@@ -23,7 +23,8 @@ UI.TextList_Designer.prototype.meta = UI.extendMeta(UI.TextList_Designer.prototy
             serializable: false
         },
         lstText: {//列表数据
-            datatype: "TextList",
+            datatype: "Object",
+            editType: "TextList",
             readOnly: false,
             designable: true,
             serializable: true

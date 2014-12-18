@@ -1,0 +1,32 @@
+{
+    "outputParameterType" : "none",
+    "icon" : "changePage.png",
+    "methodType" : "GET",
+    "type" : "System",
+    "url" : "",
+    "serviceName" : "changePage",
+    "createdBy" : "SYSTEM",
+    "isPrivate" : false,
+    "createdAt" : "2014-11-17 15:43:03",
+    "description" : "",
+    "parameterList" : [{
+        "alias" : "pageNo",
+        "name" : "pageNo",
+        "type" : "string"
+    }
+    ],
+    "outputParameterFormat" : "",
+    "parameterFormatType" : "",
+    
+    "isJsApi": true,
+    "jsApiInfo":{
+		"jsFileName": "changePage.js",
+		"className": "",
+		"functionName": "changePage",
+		"params": ["pageNo"],
+		"hasCallback": false,
+        "result": {
+            "return": false
+        }
+    }
+}

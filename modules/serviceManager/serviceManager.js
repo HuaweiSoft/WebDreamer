@@ -81,7 +81,7 @@ define(
                     if (start < 0) {
                         return;
                     }
-                    this.currentPage = pageNo;
+                    
                     var pageHTML = "";
                     var pageServices = [];
                     for ( var i = 0; i < this.services.length; i++) {
@@ -90,8 +90,9 @@ define(
                         }
                     }
                     if (pageServices.length == 0) {
-                        this.$el.html("");
+                       // this.$el.html("");
                     } else {
+                        this.currentPage = pageNo;
                         pageHTML = _.template(boardTmpl, {
                             services: pageServices
                         });
@@ -101,11 +102,11 @@ define(
                 },
 
                 upPage: function() {
-                    this.toPage(this.currentPage--);
+                    this.toPage(this.currentPage-1);
                 },
 
                 nextpage: function() {
-                    this.toPage(this.currentPage++);
+                    this.toPage(this.currentPage+1);
                 },
 
                 registerServiceMetaData: function() {
@@ -170,9 +171,26 @@ define(
                 },
                 setServices: function(services) {
                     if (services) {
+                        //make sure the "system" group at the header
+                        var index = -1;
+                        for (var i = 0; i < services.length; i++) {
+                            if (services[i].group == "System") {
+                                index = i;
+                                break;
+                            }
+                        }
+                        if (index > 0) {
+                            var last = services[0];
+                            services[0] = services[index];
+                            for (var i = 1; i <= index; i++) {
+                                var swap = services[i];
+                                services[i] = last;
+                                last = swap;
+                            }
+                        }
                         this.servicesMeta = [];
                         util.deepCopy(this.servicesMeta, services);
-                    } 
+                    }
                     if (this.loginedUser != null) {
                         this.services = [];
                         for ( var i = 0; i < this.servicesMeta.length; i++) {
@@ -193,6 +211,7 @@ define(
                     }
                     this.registerFlowOpenEvent();
                 },
+
                 checkServiceDisplay: function(service) {
                     if (service.createdBy == "SYSTEM") {
                         return true;
@@ -220,6 +239,8 @@ define(
                     }
                 },
                 registerFlowOpenEvent: function() {
+                    if(this.flowEventRegistered)
+                        return;
                     var _this = this;
                     Arbiter.subscribe(EVENT_FLOW_OPEN, function(data) {
                         _this.isFlowDesignerOpened = true;
@@ -227,6 +248,7 @@ define(
                     Arbiter.subscribe(EVENT_FLOW_CLOSE, function(data) {
                         _this.isFlowDesignerOpened = false;
                     });
+                    this.flowEventRegistered = true;
                 },
 
                 enableDragable: function() {
@@ -241,6 +263,13 @@ define(
                         _this.loginedUser = data;
                         _this.setServices();
                     });
+                    Arbiter.subscribe("toolbar/service/container/down", function() {
+                        _this.nextpage();
+                    });
+                    Arbiter.subscribe("toolbar/service/container/up", function() {
+                        _this.upPage();
+                    });
+                   
                 },
                 bindDragEvent: function(itemEl) {
                     var $item = $(itemEl);
@@ -286,7 +315,7 @@ define(
                                 "logiconmouseup").replace("onmouseup", "logiconmouseup").replace("ondblclick",
                                 "logicondblclick").replace("onmouseover", "logiconmouseover").replace("onmouseout",
                                 "logiconmouseout").replace("title=", "logicunittitle=").replace("\"api_item\"",
-                                "\"api_item_drag\"");
+                                "\"api_item_drag\"").replace('<div class="api_item_remove_from_myservices" logicunittitle="Remove this service from My Service"></div>',"");
 
                         var $moving = $("#flow_service_moving");
                         $moving.html(html).css("left", itemEl.offsetLeft + 12 + "px").css("top",
@@ -321,7 +350,9 @@ define(
                         loginedUser: null,
                         serviceBoardView: null,
                         openType: "",
-                        USER_SERVICES_UPDATE_USERINFO_EVENT: 'SERVICE_MANAGER_ADD_SERVICE_TO_USER_SERVICES_UPDATE_USERINFO_EVENT',
+                        USER_SERVICES_UPDATE_USERINFO_EVENT_ADD: 'SERVICE_MANAGER_ADD_SERVICE_TO_USER_SERVICES_UPDATE_USERINFO_EVENT_ADD',
+                        USER_SERVICES_UPDATE_USERINFO_EVENT_REMOVE:'SERVICE_MANAGER_ADD_SERVICE_TO_USER_SERVICES_UPDATE_USERINFO_EVENT_REMOVE',
+                        
 
                         init: function() {
                             this.loadServices();
@@ -368,7 +399,7 @@ define(
                                 _this.loginedUser = data;
                             });
                             Arbiter.subscribe(EVENT_USERM_MANAGER_PUBLISH_UPADTE_LOGINED_USER_INFO, function(data) {
-                                if (data.triggerId == _this.USER_SERVICES_UPDATE_USERINFO_EVENT) {
+                                if (data.triggerId == _this.USER_SERVICES_UPDATE_USERINFO_EVENT_ADD) {
                                     $("#mask_maskpanel_container").css("z-index", 8);
                                     if (data.result) {
                                         alert('"' + _this.operateService + '" added successfully.');
@@ -377,7 +408,18 @@ define(
                                     } else {
                                         alert('"' + _this.operateService + '" added fail.');
                                     }
-                                }
+                                }else if(data.triggerId == _this.USER_SERVICES_UPDATE_USERINFO_EVENT_REMOVE)
+                                    {
+                                      $("#mask_maskpanel_container").css("z-index", 8);
+                                      if (data.result) {
+                                      alert('Removed successfully.');
+                                      _this.serviceBoardView.update(_this.loginedUser);
+                                      _this.renderServicesByGroup();
+                                      }else
+                                      {
+                                          alert('Removed fail.');
+                                      }
+                                    }
                             });
 
                             Arbiter.subscribe("service/create", function(data) {
@@ -394,7 +436,6 @@ define(
                                 _this.openType = "showAll";
                                 _this.open();
                             });
-
                         },
                         clickMenuItem: function(event) {
                             var $target = $(event.target);
@@ -440,7 +481,7 @@ define(
                                 }
                             }
                             if (servicesOfGroup.length == 0) {
-                                $("#service_list_container").html("");
+                                $("#service_list_container").html("<span style='color:red;position:absolute;top:100px;left:360px'>No Services.</span>");
                             } else {
                                 var html = "";
                                 var datas = {
@@ -456,14 +497,31 @@ define(
                                     $("#service_list_container").html(html);
                                 } else if (this.openType == "showAll") {
                                     $("#service_list_create").hide();
+                                    
+                                    var showUserSubServices=[];
+                                    for(var i=0;i<servicesOfGroup.length;i++)
+                                    {
+                                                                              
+                                       if(servicesOfGroup[i].createdBy=="SYSTEM"||util.inArray(this.loginedUser.subscribeServices,servicesOfGroup[i].serviceName))
+                                          {
+                                            showUserSubServices.push(servicesOfGroup[i]);
+                                          }
+                                    }
+                                    if(showUserSubServices.length>0)
+                                    {
                                     html = _.template(serviceDisplayTmpl, {
-                                        services: servicesOfGroup
+                                        services: showUserSubServices
                                     });
                                     $("#service_list_container").html(html);
                                     var $children = $("#service_list_container").children();
                                     for ( var i = 0; i < $children.length; i++) {
                                         this.serviceBoardView.bindDragEvent($children[i]);
                                     }
+                                    }else
+                                     {
+                                        $("#service_list_container").html("<span style='color:red;position:absolute;top:100px;left:360px'>No Services.</span>");
+                                     }
+                                    
 
                                 }
 
@@ -526,17 +584,17 @@ define(
 
                             var editedService = this.getServiceByName(this.operateService);
                             var result = this.checkServiceUsed(this.operateService);
-                            var canEdit = true;
+                            var lockService = false;
                             var title = "Edit Service";
                             if (result.isImported || result.isUsed) {
-                                canEdit = true;
+                                lockService = true;
                                 title = "Service has been used can't been edited."
                             }
 
                             Arbiter.publish("service/edit/update", {
                                 title: title,
                                 mode: "edit",
-                                lock: canEdit,
+                                lock: lockService,
                                 service: editedService
                             }, {
                                 asyn: true
@@ -567,7 +625,7 @@ define(
                                 this.loginedUser.subscribeServices.push(this.operateService);
                                 $("#mask_maskpanel_container").css("z-index", 11);
                                 Arbiter.publish(EVENT_USERM_MANAGER_SUBSCRIBE_UPADTE_LOGINED_USER_INFO, {
-                                    triggerId: this.USER_SERVICES_UPDATE_USERINFO_EVENT,
+                                    triggerId: this.USER_SERVICES_UPDATE_USERINFO_EVENT_ADD,
                                     user: this.loginedUser
                                 }, {
                                     asyn: true
@@ -610,6 +668,7 @@ define(
                                         if (textStatus == "success") {
                                             _this.loadServices();
                                             alert("\"" + _this.operateService + "\" has been deleted.");
+                                            _this.closeServiceOptMenu();
                                         } else {
                                             alert("Error, please try again later.");
                                         }
@@ -671,13 +730,37 @@ define(
                                 async: true
                             });
                         },
+                        removeServiceFromMyServicesEvent:function(event)
+                        {
+                            var _this=this;
+                            var apiName=$($(event.target).parent()).attr("type");
+                            var userSubService=_this.loginedUser.subscribeServices;
+                            var newSubService=[];
+                            for(var i=0;i<userSubService.length;i++)
+                            {
+                                if(apiName!=""&&apiName!=userSubService[i])
+                                 {
+                                    newSubService.push(userSubService[i]);
+                                 }
+                                
+                            }
+                            _this.loginedUser.subscribeServices=newSubService;
+                            $("#mask_maskpanel_container").css("z-index", 11);
+                            Arbiter.publish(EVENT_USERM_MANAGER_SUBSCRIBE_UPADTE_LOGINED_USER_INFO, {
+                                triggerId: _this.USER_SERVICES_UPDATE_USERINFO_EVENT_REMOVE,
+                                user: _this.loginedUser
+                            }, {
+                                asyn: true
+                            });
+                        },
                         events: {
                             "click #serivce-import-panel-close-btn": "close",
                             "click #service-import-panel div[class='service_group_tab']": "clickGroupTabEvent",
                             "click #service_list_container div[class='service_list_item_menu']": "clickServiceMenu",
                             "click #service_list_operate_menu_container_close": "closeServiceOptMenu",
                             "click #service_list_create": "notifyCreateNewService",
-                            "click #service_list_operate_menu_container div[class^='service_list_operate_menu_div']": "clickServiceOptMenuItem"
+                            "click #service_list_operate_menu_container div[class^='service_list_operate_menu_div']": "clickServiceOptMenuItem",
+                            "click #service_list_container div[class='api_item_remove_from_myservices']": "removeServiceFromMyServicesEvent"
                         }
                     });
 

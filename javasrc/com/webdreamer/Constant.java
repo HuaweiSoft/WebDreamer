@@ -33,4 +33,7 @@ public class Constant {
     public static final String FLOW_HTML_THUMB_FILE_NAME = "flow_ui_html.thumb";
 
     public static final String WEB_DREAMER_RESOURCES_PATH = "resources";
+
+    public static final String CHANGE_PAGE_API_NAME = "changePage";
+    public static final String NAVIGATE_BACK_API_NAME = "goBack";
 }

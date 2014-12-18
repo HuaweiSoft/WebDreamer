@@ -8,13 +8,13 @@
                 "displayName": "changePage",
                 "provider": "System",
                 "private": false,
-                "dir": "toPage",
-                "icon": "services/toPage/icon/toPage.png",
-                "jsFileName": "toPage.js",
+                "dir": "changePage",
+                "icon": "services/changePage/icon/changePage.png",
+                "jsFileName": "changePage.js",
                 "dependJS": ["jquerymobile"],
                 "type": "SERVICE",
                 "className": "",
-                "functionName": "toPage",
+                "functionName": "changePage",
                 "params": [
                     "pageNo"
                 ],

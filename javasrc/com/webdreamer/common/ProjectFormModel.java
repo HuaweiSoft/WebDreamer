@@ -309,7 +309,11 @@ public class ProjectFormModel {
             JSONObject runtime = control.getJSONObject("runtime");
             JSONArray runtimeJsArray = runtime.getJSONArray("js");
             for (int j = 0; j < runtimeJsArray.length(); j++) {
-                runtimeJs.add(dir + "/" + runtimeJsArray.getString(j));
+                String jsPath = runtimeJsArray.getString(j);
+                if (jsPath.indexOf("http://") == 0 || jsPath.indexOf("https://") == 0)
+                    runtimeJs.add(jsPath);
+                else
+                    runtimeJs.add(dir + "/" + jsPath);
             }
 
             if (runtime.has("css")) {

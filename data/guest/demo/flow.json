@@ -45,8 +45,8 @@
 				"parent": "event_v4zp11",
 				"obj": {
 					"region": "USER",
-					"icon": "services/toPage/icon/toPage.png",
-					"alias": "toPage",
+					"icon": "services/changePage/icon/changePage.png",
+					"alias": "changePage",
 					"width": 100,
 					"aid": "toPage1",
 					"type": "API",
@@ -56,7 +56,7 @@
 					"parentId": "event_v4zp11",
 					"height": 56,
 					"pageNo": 1,
-					"name": "toPage",
+					"name": "changePage",
 					"left": 1232,
 					"top": 4157
 				},
@@ -263,8 +263,8 @@
 				"parent": "event_8b0nmg",
 				"obj": {
 					"region": "USER",
-					"icon": "services/toPage/icon/toPage.png",
-					"alias": "toPage",
+					"icon": "services/changePage/icon/changePage.png",
+					"alias": "changePage",
 					"width": 100,
 					"aid": "toPage2",
 					"type": "API",
@@ -274,7 +274,7 @@
 					"parentId": "event_8b0nmg",
 					"height": 56,
 					"pageNo": 1,
-					"name": "toPage",
+					"name": "changePage",
 					"left": 1232,
 					"top": 4466
 				},
@@ -571,22 +571,22 @@
 			"type": "System",
 			"functionName": "goBack"
 		},
-		"toPage": {
+		"changePage": {
 			"result": {
 				"return": false
 			},
-			"icon": "services/toPage/icon/toPage.png",
+			"icon": "services/changePage/icon/changePage.png",
 			"hasCallback": false,
-			"jsFileName": "toPage.js",
-			"name": "toPage",
+			"jsFileName": "changePage.js",
+			"name": "changePage",
 			"className": "",
 			"provider": "SYSTEM",
 			"params": [
 				"pageNo"
 			],
-			"functionName": "toPage",
+			"functionName": "changePage",
 			"type": "System",
-			"displayName": "toPage"
+			"displayName": "changePage"
 		}
 	},
 	"assets": {

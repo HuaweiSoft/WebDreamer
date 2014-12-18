@@ -6,7 +6,7 @@
                 "controls/lib/ui.control.js",
                 "controls/lib/ui.container.js"
             ],
-            "css":["controls/css/control.css"]
+            "css": ["controls/css/control.css"]
         },
         "designer": {
             "js": [
@@ -79,18 +79,33 @@
                     "description": "Image Display Component"
                 },
                 {
-                    "name": "UI.Div",
-                    "dir": "ui.div",
-                    "outlineIcon": "ui.div.png",
-                    "toolbarIcon": "ui.div.png",
-                    "effectIcon": "ui.div.ef.png",
+                    "name": "UI.SelectBox",
+                    "dir": "ui.selectbox",
+                    "outlineIcon": "ui.selectbox.png",
+                    "toolbarIcon": "ui.selectbox.png",
+                    "effectIcon": "ui.selectbox.ef.png",
                     "runtime": {
-                        "js": ["ui.div.js" ]
+                        "js": ["ui.selectbox.js"]
                     },
                     "designer": {
-                        "js": ["ui.div_designer.js"]
+                        "js": ["ui.selectbox_designer.js"]
                     },
-                    "description": "Div control"
+                    "description": "Select Box"
+                },
+                {
+                    "name": "UI.TextArea",
+                    "dir": "ui.textarea",
+                    "outlineIcon": "ui.textarea.png",
+                    "toolbarIcon": "ui.textarea.png",
+                    "effectIcon": "ui.textarea.ef.png",
+                    "runtime": {
+                        "js": ["ui.textarea.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.textarea_designer.js"]
+                    },
+                    "dependControl": [ "UI.Text"],
+                    "description": "Text Area Component"
                 },
                 {
                     "name": "UI.Switch",
@@ -105,12 +120,128 @@
                         "js": ["ui.switch_designer.js"]
                     },
                     "description": "Switch Component"
+                } ,
+                {
+                    "name": "UI.RadioButtonH",
+                    "dir": "ui.radiobuttonh",
+                    "outlineIcon": "ui.radiobuttonh.png",
+                    "toolbarIcon": "ui.radiobuttonh.png",
+                    "effectIcon": "ui.radiobuttonh.ef.png",
+                    "runtime": {
+                        "js": ["ui.radiobuttonh.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.radiobuttonh_designer.js"]
+                    },
+                    "description": "Horizontal Radio Buttons"
+                },
+                {
+                    "name": "UI.RadioButtonV",
+                    "dir": "ui.radiobuttonv",
+                    "outlineIcon": "ui.radiobuttonv.png",
+                    "toolbarIcon": "ui.radiobuttonv.png",
+                    "effectIcon": "ui.radiobuttonv.ef.png",
+                    "runtime": {
+                        "js": ["ui.radiobuttonv.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.radiobuttonv_designer.js"]
+                    },
+                    "dependControl": ["UI.RadioButtonH"],
+                    "description": "Vertical Radio Buttons"
+                },
+                {
+                    "name": "UI.CheckBoxH",
+                    "dir": "ui.checkboxh",
+                    "outlineIcon": "ui.checkboxh.png",
+                    "toolbarIcon": "ui.checkboxh.png",
+                    "effectIcon": "ui.checkboxh.ef.png",
+                    "runtime": {
+                        "js": ["ui.checkboxh.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.checkboxh_designer.js"]
+                    },
+                    "dependControl": ["UI.RadioButtonH"],
+                    "description": "Horizontal Check Box"
+                },
+                {
+                    "name": "UI.CheckBoxV",
+                    "dir": "ui.checkboxv",
+                    "outlineIcon": "ui.checkboxv.png",
+                    "toolbarIcon": "ui.checkboxv.png",
+                    "effectIcon": "ui.checkboxv.ef.png",
+                    "runtime": {
+                        "js": ["ui.checkboxv.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.checkboxv_designer.js"]
+                    },
+                    "dependControl": ["UI.RadioButtonV"],
+                    "description": "Vertical Check Box"
+                },
+                {
+                    "name": "UI.Div",
+                    "dir": "ui.div",
+                    "outlineIcon": "ui.div.png",
+                    "toolbarIcon": "ui.div.png",
+                    "effectIcon": "ui.div.ef.png",
+                    "runtime": {
+                        "js": ["ui.div.js" ]
+                    },
+                    "designer": {
+                        "js": ["ui.div_designer.js"]
+                    },
+                    "description": "Div control"
+                },
+                {
+                    "name": "UI.Calendar_Date",
+                    "dir": "ui.date",
+                    "outlineIcon": "ui.date.png",
+                    "toolbarIcon": "ui.date.png",
+                    "effectIcon": "ui.date.ef.png",
+                    "runtime": {
+                        "js": ["ui.calendar_date.js","calendar2013.js" ]
+                    },
+                    "designer": {
+                        "js": ["ui.calendar_date_designer.js"]
+                    },
+                    "description": "Calendar Date Control"
+                },
+                {
+                    "name": "UI.Calendar_Time",
+                    "dir": "ui.time",
+                    "outlineIcon": "ui.time.png",
+                    "toolbarIcon": "ui.time.png",
+                    "effectIcon": "ui.time.ef.png",
+                    "runtime": {
+                        "js": ["ui.calendar_time.js" ]
+                    },
+                    "designer": {
+                        "js": ["ui.calendar_time_designer.js"]
+                    },
+                    "dependControl": ["UI.Calendar_Date"],
+                    "description": "Calendar Time Control"
+                },
+                {
+                    "name": "UI.Slider",
+                    "dir": "ui.slider",
+                    "outlineIcon": "ui.slider.png",
+                    "toolbarIcon": "ui.slider.png",
+                    "effectIcon": "ui.slider.ef.png",
+                    "runtime": {
+                        "js": ["ui.slider.js" ]
+                    },
+                    "designer": {
+                        "js": ["ui.slider_designer.js"]
+                    },
+                    "description": "Slider control"
                 }
             ]
         },
         {
             "category": "List",
-            "controls":[
+            "controls": [
                 {
                     "name": "UI.TextList",
                     "dir": "ui.textlist",
@@ -137,7 +268,7 @@
                     "designer": {
                         "js": ["ui.numberlist_designer.js"]
                     },
-                    "dependControl":[ "UI.TextList"],
+                    "dependControl": [ "UI.TextList"],
                     "description": "Number List"
                 },
                 {
@@ -167,9 +298,46 @@
                     "designer": {
                         "js": ["ui.iconlist_designer.js"]
                     },
-                    "dependControl":[ "UI.ThumbList"],
+                    "dependControl": [ "UI.ThumbList"],
                     "description": "Icon List"
                 }
+            ]
+        },
+        {
+            "category": "Layout",
+            "controls": [
+
+            ]
+        },
+        {
+            "category": "Map",
+            "controls": [
+                {
+                    "name": "UI.BaiduMap",
+                    "dir": "ui.baidumap",
+                    "outlineIcon": "ui.baidumap.png",
+                    "toolbarIcon": "ui.baidumap.png",
+                    "effectIcon": "ui.baidumap.ef.png",
+                    "runtime": {
+                        "js": ["ui.baidumap.js", "http://api.map.baidu.com/api?v=1.4&ak=3js3QszpNr63IeEUmR7K9068"]
+                    },
+                    "designer": {
+                        "js": ["ui.baidumap_designer.js"]
+                    },
+                    "dependControl": [],
+                    "description": "Baidu Map"
+                }
+            ]
+        },
+        {
+            "category": "Media",
+            "controls": [
+            ]
+        },
+        {
+            "category": "Widget",
+            "controls": [
+
             ]
         }
     ]

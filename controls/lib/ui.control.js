@@ -8,6 +8,7 @@ if (typeof UI === "undefined") {
         TYPE_HEADER: "UI.",
         count: 0,
         LOADING_ID: "loading9999x",
+        THEMES:  [ "A", "B", "C", "D", "E", "F", "G" ],
 
         setProps: function(control, jsonText) {
             var obj;
@@ -153,6 +154,10 @@ UI.Control.prototype = {
         if (!this.$el)
             return $(null);
         return this.$el.find(selector);
+    },
+
+    find: function(selector) {
+        return this.$(selector);
     },
 
     _renderBase: function() {

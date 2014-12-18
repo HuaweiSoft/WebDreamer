@@ -52,3 +52,13 @@
 	background: url(images/apibg.png) 0px -54px;
 	background-size: 100px 55px;
 }
+
+.api_item_remove_from_myservices {
+	position: absolute;
+	left: 40px;
+	top: 58px;
+	height: 20px;
+	width: 20px;
+	background: url(images/close.png);
+	background-size: 20px 20px;
+}
