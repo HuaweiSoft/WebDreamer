@@ -54,7 +54,6 @@ define([ "jquery", "util", "HashMap" ],
              * @param {ObjectArray} jsArray
              */
             getAllControlJS: function(controlData) {
-
                 var controlJSArray = [];
                 for (var i = 0; i < controlData.controlBase.runtime.js.length; i++) {
                     controlJSArray.push(controlData.controlBase.runtime.js[i]);
@@ -131,7 +130,10 @@ define([ "jquery", "util", "HashMap" ],
                 function loadNext() {
                     index++;
                     if (index >= controlJSArray.length)
-                        return;
+                   {
+                       console.debug("Control lib js all have been loaded!");
+                       return;
+                   }
                     var scriptElm = document.createElement('script');
                     scriptElm.type = 'text/javascript';
                     scriptElm.async = 'async';

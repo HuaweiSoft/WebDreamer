@@ -4,5 +4,5 @@
 "port": 3128,
 "username": "",
 "password": "",
-"nonProxyHost": "localhost,127.0.0.1,*.huwei.com,10.*"
+"nonProxyHost": "localhost,127.0.0.1,10.*"
 }
