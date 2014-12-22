@@ -1,0 +1,351 @@
+{
+	"pageNumber": 4,
+	"beans": [
+		{
+			"id": "textButton1",
+			"type": "UI.TextButton",
+			"pageNo": 1,
+			"pIndex": 0,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "G",
+				"textAlign": "center",
+				"value": "拉手团购"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "selectBox1",
+			"type": "UI.SelectBox",
+			"pageNo": 1,
+			"pIndex": 1,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "39px",
+				"align": "center",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"theme": "F",
+				"data": [
+					{
+						"name": "深圳",
+						"value": "value1"
+					},
+					{
+						"name": "北京",
+						"value": "value2"
+					},
+					{
+						"name": "DisplayName3",
+						"value": "value3"
+					}
+				],
+				"value": "value1",
+				"selectedIndex": 0,
+				"text": "深圳"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "thumbList1",
+			"type": "UI.ThumbList",
+			"pageNo": 1,
+			"pIndex": 2,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "auto",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "auto",
+				"search": false,
+				"pageSize": 5,
+				"dataspanel": [
+					{
+						"imgUrl": "controls/ui.thumblist/resources/album-bb.jpg",
+						"subtitle": "Broken Bells",
+						"title": "Broken Bells",
+						"url": "#"
+					},
+					{
+						"imgUrl": "controls/ui.thumblist/resources/album-af.jpg",
+						"subtitle": "Fore Lunzi",
+						"title": "Cars Benchi",
+						"url": "#"
+					},
+					{
+						"imgUrl": "controls/ui.thumblist/resources/album-bk.jpg",
+						"subtitle": "Line Pit",
+						"title": "Lines",
+						"url": "#"
+					}
+				]
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton2",
+			"type": "UI.TextButton",
+			"pageNo": 2,
+			"pIndex": 0,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "G",
+				"textAlign": "center",
+				"value": "团购详情"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton3",
+			"type": "UI.TextButton",
+			"pageNo": 2,
+			"pIndex": 1,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "F",
+				"textAlign": "center",
+				"value": "上一页"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton4",
+			"type": "UI.TextButton",
+			"pageNo": 2,
+			"pIndex": 2,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "A",
+				"textAlign": "center",
+				"value": "地图"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "uRLViewer1",
+			"type": "UI.URLViewer",
+			"pageNo": 2,
+			"pIndex": 3,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "400px",
+				"align": "center",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton5",
+			"type": "UI.TextButton",
+			"pageNo": 3,
+			"pIndex": 0,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "G",
+				"textAlign": "center",
+				"value": "实体店地址"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "baiduMap1",
+			"type": "UI.BaiduMap",
+			"pageNo": 3,
+			"pIndex": 1,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "340px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"center": "114.08248, 22.53705",
+				"longitude": 114.08248,
+				"latitude": 22.53705,
+				"zoom": 14
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton7",
+			"type": "UI.TextButton",
+			"pageNo": 3,
+			"pIndex": 2,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "A",
+				"textAlign": "center",
+				"value": "上一页"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "textButton6",
+			"type": "UI.TextButton",
+			"pageNo": 3,
+			"pIndex": 3,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "38px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"buttontheme": "F",
+				"textAlign": "center",
+				"value": "首页"
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "text2",
+			"type": "UI.Text",
+			"pageNo": 4,
+			"pIndex": 0,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "30px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"inputType": "text",
+				"placeholder": "long",
+				"disabled": false,
+				"readOnly": false,
+				"value": ""
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "text3",
+			"type": "UI.Text",
+			"pageNo": 4,
+			"pIndex": 1,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "30px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"inputType": "text",
+				"placeholder": "latu",
+				"disabled": false,
+				"readOnly": false,
+				"value": ""
+			},
+			"code": "",
+			"html": ""
+		},
+		{
+			"id": "text1",
+			"type": "UI.Text",
+			"pageNo": 4,
+			"pIndex": 2,
+			"parentId": "",
+			"props": {
+				"width": "98%",
+				"height": "30px",
+				"align": "left",
+				"visibility": "visible",
+				"position": "relative",
+				"left": "auto",
+				"top": "auto",
+				"zIndex": "0",
+				"inputType": "text",
+				"placeholder": "detail",
+				"disabled": false,
+				"readOnly": false,
+				"value": ""
+			},
+			"code": "",
+			"html": ""
+		}
+	]
+}

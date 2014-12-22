@@ -77,6 +77,10 @@ UI.State = {
     Destroyed: "Destroyed"
 };
 
+UI.Event = {
+    Resized: "Resized"
+};
+
 /**
  * UI control base class,  subclass can use extend() function to inherit.
  * @param {String|HTMLElement|Container} container  parent element id / reference, or container control
@@ -119,6 +123,8 @@ UI.Control.prototype = {
 
     //event handlers
     onClick: null,
+
+    eventListeners: {},
 
     setParent: function(parent) {
         if (this._rendered)
@@ -242,6 +248,7 @@ UI.Control.prototype = {
             return true;
         if (this._element.parentElement)
             this._container.removeChild(this._element);
+        this.unbind();
         this._rendered = false;
         this._state = UI.State.Detached;
         return true;
@@ -299,6 +306,44 @@ UI.Control.prototype = {
             this._element.style.cssText = styleConfig;
         }
         return true;
+    },
+
+    bind: function(eventName, callback){
+        if(!eventName || !( typeof callback == "function"))
+            return;
+        this.eventListeners[eventName] = this.eventListeners[eventName] || [];
+        var listeners = this.eventListeners[eventName];
+        listeners.push(callback);
+    },
+
+    unbind: function(eventName, callback){
+          if(arguments.length == 0){
+              this.eventListeners = {};
+          }
+        else if(arguments.length == 1){
+              if(this.eventListeners.hasOwnProperty(eventName))
+                  delete this.eventListeners[eventName];
+          }else if(callback!=null){
+              if(this.eventListeners.hasOwnProperty(eventName)){
+                  var listeners = this.eventListeners[eventName];
+                  var index =indexOfArray(listeners, callback);
+                  if(index != -1){
+                      listeners.splice(index, 1);
+                  }
+              }
+          }
+    },
+
+    trigger: function(eventName, data){
+        if(this.eventListeners.hasOwnProperty(eventName)){
+            var listeners = this.eventListeners[eventName];
+            if(listeners){
+                for (var i = 0; i < listeners.length; i++) {
+                    var callback = listeners[i];
+                    callback.call(this, data);
+                }
+            }
+        }
     }
 
 };

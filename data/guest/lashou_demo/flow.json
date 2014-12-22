@@ -1,0 +1,1643 @@
+{
+	"pages": [
+		{
+			"id": "flowpage1",
+			"no": 1,
+			"name": "load"
+		},
+		{
+			"id": "flowpage2",
+			"no": 2,
+			"name": "viewDetail"
+		},
+		{
+			"id": "flowpage3",
+			"no": 3,
+			"name": "toViewAddress"
+		},
+		{
+			"id": "flowpage4",
+			"no": 4,
+			"name": "showAddress"
+		}
+	],
+	"flows": [
+		{
+			"flowroot1": {
+				"parent": "",
+				"children": [
+					"useranchor1",
+					"appanchor1"
+				],
+				"obj": {
+					"id": "flowroot1",
+					"region": "",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 1,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"input_h5wusz": {
+				"children": [
+					"param_hzjfzh"
+				],
+				"parent": "api_6kogyl",
+				"obj": {
+					"region": "USER",
+					"id": "input_h5wusz",
+					"parentId": "api_6kogyl",
+					"height": 32,
+					"pageNo": 1,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1393,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 4004
+				},
+				"depth": 6
+			},
+			"ui_2staso": {
+				"children": [
+					"event_ig8q3g"
+				],
+				"parent": "useranchor1",
+				"obj": {
+					"region": "USER",
+					"id": "ui_2staso",
+					"parentId": "useranchor1",
+					"height": 39,
+					"pageNo": 1,
+					"width": 335,
+					"controlType": "UI.SelectBox",
+					"left": 574,
+					"controlId": "selectBox1",
+					"type": "UI",
+					"depth": 3,
+					"top": 4162
+				},
+				"depth": 3
+			},
+			"useranchor1": {
+				"parent": "flowroot1",
+				"children": [
+					"ui_2staso"
+				],
+				"obj": {
+					"id": "useranchor1",
+					"region": "USER",
+					"parentId": "flowroot1",
+					"height": 40,
+					"pageNo": 1,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"api_jo8ekg": {
+				"children": [
+					"output_tspbvi"
+				],
+				"parent": "event_n01gl5",
+				"obj": {
+					"region": "APP",
+					"icon": "services/lashou_city/icon/lashou_city.png",
+					"alias": "lashou_city",
+					"width": 100,
+					"aid": "lashou_city1",
+					"type": "API",
+					"depth": 4,
+					"isChangePageApi": false,
+					"id": "api_jo8ekg",
+					"parentId": "event_n01gl5",
+					"height": 56,
+					"pageNo": 1,
+					"name": "lashou_city",
+					"left": 822,
+					"top": 4462
+				},
+				"depth": 4
+			},
+			"event_ig8q3g": {
+				"children": [
+					"api_6kogyl"
+				],
+				"parent": "ui_2staso",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/change.png",
+					"alias": "change",
+					"width": 172,
+					"params": [
+						"value"
+					],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_ig8q3g",
+					"parentId": "ui_2staso",
+					"height": 105,
+					"pageNo": 1,
+					"name": "onChange",
+					"left": 985,
+					"top": 4129
+				},
+				"depth": 4
+			},
+			"result_ui_d5ccwu": {
+				"children": [],
+				"parent": "output_tspbvi",
+				"obj": {
+					"region": "APP",
+					"width": 335,
+					"mapping": [
+						{
+							"source": "result.url",
+							"items": [
+								{
+									"source": "city_name",
+									"target": "name",
+									"isArray": false
+								},
+								{
+									"source": "city_id",
+									"target": "value",
+									"isArray": false
+								}
+							],
+							"target": "data",
+							"isArray": true
+						}
+					],
+					"controlType": "UI.SelectBox",
+					"controlId": "selectBox1",
+					"type": "RESULT_UI",
+					"depth": 6,
+					"propName": "",
+					"id": "result_ui_d5ccwu",
+					"parentId": "output_tspbvi",
+					"height": 39,
+					"pageNo": 1,
+					"left": 1158,
+					"mappingType": "DATA",
+					"top": 4469
+				},
+				"depth": 6
+			},
+			"api_6kogyl": {
+				"children": [
+					"input_h5wusz",
+					"output_oux0hl"
+				],
+				"parent": "event_ig8q3g",
+				"obj": {
+					"region": "USER",
+					"icon": "services/lashou/icon/lashou.png",
+					"alias": "lashou",
+					"width": 100,
+					"aid": "lashou1",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": false,
+					"id": "api_6kogyl",
+					"parentId": "event_ig8q3g",
+					"height": 56,
+					"pageNo": 1,
+					"name": "lashou",
+					"left": 1233,
+					"top": 4153
+				},
+				"depth": 5
+			},
+			"output_tspbvi": {
+				"children": [
+					"result_ui_d5ccwu"
+				],
+				"parent": "api_jo8ekg",
+				"obj": {
+					"region": "APP",
+					"id": "output_tspbvi",
+					"parentId": "api_jo8ekg",
+					"height": 32,
+					"pageNo": 1,
+					"name": "OUTPUT",
+					"width": 100,
+					"left": 982,
+					"type": "OUTPUT",
+					"depth": 5,
+					"top": 4474
+				},
+				"depth": 5
+			},
+			"result_ui_d78l3y": {
+				"children": [],
+				"parent": "output_oux0hl",
+				"obj": {
+					"region": "USER",
+					"width": 335,
+					"mapping": [
+						{
+							"source": "result.url",
+							"items": [
+								{
+									"source": "data.display.image",
+									"target": "imgUrl",
+									"isArray": false
+								},
+								{
+									"source": "data.display.title",
+									"target": "title",
+									"isArray": false
+								},
+								{
+									"source": "data.display.shortTitle",
+									"target": "subtitle",
+									"isArray": false
+								},
+								{
+									"source": "data.shops.shop.longitude",
+									"target": "tmp2",
+									"isArray": false
+								},
+								{
+									"source": "data.shops.shop.latitude",
+									"target": "tmp3",
+									"isArray": false
+								},
+								{
+									"source": "data.display.detail",
+									"target": "tmp1",
+									"isArray": ""
+								}
+							],
+							"target": "data",
+							"isArray": true
+						}
+					],
+					"controlType": "UI.ThumbList",
+					"controlId": "thumbList1",
+					"type": "RESULT_UI",
+					"depth": 7,
+					"propName": "",
+					"id": "result_ui_d78l3y",
+					"parentId": "output_oux0hl",
+					"height": 164,
+					"pageNo": 1,
+					"left": 1569,
+					"mappingType": "DATA",
+					"top": 4136
+				},
+				"depth": 7
+			},
+			"appanchor1": {
+				"parent": "flowroot1",
+				"children": [
+					"event_n01gl5"
+				],
+				"obj": {
+					"id": "appanchor1",
+					"region": "APP",
+					"parentId": "flowroot1",
+					"height": 40,
+					"pageNo": 1,
+					"width": 100,
+					"left": 386,
+					"controlType": "APP",
+					"type": "APP_ANCHOR",
+					"controlId": "APP",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			},
+			"event_n01gl5": {
+				"children": [
+					"api_jo8ekg"
+				],
+				"parent": "appanchor1",
+				"obj": {
+					"region": "APP",
+					"icon": "controls/eventicon/init.png",
+					"alias": "Loading",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 3,
+					"id": "event_n01gl5",
+					"parentId": "appanchor1",
+					"height": 105,
+					"pageNo": 1,
+					"name": "onload",
+					"left": 574,
+					"top": 4438
+				},
+				"depth": 3
+			},
+			"param_hzjfzh": {
+				"children": [],
+				"parent": "input_h5wusz",
+				"obj": {
+					"region": "USER",
+					"alias": "cityid",
+					"propMeta": {
+						"designable": true,
+						"valueRange": null,
+						"isCssProperty": false,
+						"formatter": null,
+						"editor": "",
+						"category": "Custom",
+						"browsable": true,
+						"readOnly": false,
+						"description": "",
+						"datatype": "String",
+						"serializable": true,
+						"defaultValue": null,
+						"displayName": "",
+						"useGetterSetter": false
+					},
+					"isRelatedUi": true,
+					"width": 335,
+					"controlId": "selectBox1",
+					"type": "PARAM",
+					"propName": "value",
+					"depth": 7,
+					"id": "param_hzjfzh",
+					"parentId": "input_h5wusz",
+					"height": 39,
+					"pageNo": 1,
+					"name": "cityid",
+					"value": null,
+					"valueType": "UI",
+					"left": 1569,
+					"top": 4001
+				},
+				"depth": 7
+			},
+			"output_oux0hl": {
+				"children": [
+					"result_ui_d78l3y"
+				],
+				"parent": "api_6kogyl",
+				"obj": {
+					"region": "USER",
+					"id": "output_oux0hl",
+					"parentId": "api_6kogyl",
+					"height": 32,
+					"pageNo": 1,
+					"name": "OUTPUT",
+					"width": 100,
+					"left": 1393,
+					"type": "OUTPUT",
+					"depth": 6,
+					"top": 4202
+				},
+				"depth": 6
+			}
+		},
+		{
+			"param_vqwjzk": {
+				"children": [],
+				"parent": "input_uhbhgg",
+				"obj": {
+					"region": "USER",
+					"alias": "pageNo",
+					"isRelatedUi": true,
+					"width": 112,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 7,
+					"id": "param_vqwjzk",
+					"parentId": "input_uhbhgg",
+					"height": 148,
+					"pageNo": 2,
+					"name": "pageNo",
+					"value": 2,
+					"valueType": "PAGE",
+					"left": 1569,
+					"top": 4217
+				},
+				"depth": 7
+			},
+			"result_ui_w73nw5": {
+				"children": [],
+				"parent": "output_n2q11e",
+				"obj": {
+					"region": "USER",
+					"width": 335,
+					"controlType": "UI.Text",
+					"controlId": "text2",
+					"type": "RESULT_UI",
+					"depth": 8,
+					"propName": "value",
+					"id": "result_ui_w73nw5",
+					"parentId": "output_n2q11e",
+					"height": 30,
+					"pageNo": 2,
+					"left": 2049,
+					"mappingType": "SINGLE",
+					"top": 4063
+				},
+				"depth": 8
+			},
+			"flowroot2": {
+				"children": [
+					"useranchor2",
+					"appanchor2"
+				],
+				"parent": "",
+				"obj": {
+					"region": "",
+					"id": "flowroot2",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 2,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"method_it6o7r": {
+				"children": [
+					"output_fnjzuw"
+				],
+				"parent": "ui_uo3nw2",
+				"obj": {
+					"region": "USER",
+					"alias": "getHidTxt1",
+					"width": 153,
+					"params": [],
+					"type": "METHOD",
+					"depth": 6,
+					"id": "method_it6o7r",
+					"parentId": "ui_uo3nw2",
+					"height": 50,
+					"pageNo": 2,
+					"name": "_getTextTmp1",
+					"left": 1644,
+					"output": true,
+					"top": 3962
+				},
+				"depth": 6
+			},
+			"useranchor2": {
+				"children": [
+					"ui_63ssu3"
+				],
+				"parent": "flowroot2",
+				"obj": {
+					"region": "USER",
+					"id": "useranchor2",
+					"parentId": "flowroot2",
+					"height": 40,
+					"pageNo": 2,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"ui_63ssu3": {
+				"children": [
+					"event_z15api"
+				],
+				"parent": "useranchor2",
+				"obj": {
+					"region": "USER",
+					"id": "ui_63ssu3",
+					"parentId": "useranchor2",
+					"height": 164,
+					"pageNo": 2,
+					"width": 335,
+					"controlType": "UI.ThumbList",
+					"left": 574,
+					"controlId": "thumbList1",
+					"type": "UI",
+					"depth": 3,
+					"top": 4209
+				},
+				"depth": 3
+			},
+			"output_n2q11e": {
+				"children": [
+					"result_ui_w73nw5"
+				],
+				"parent": "method_wltsar",
+				"obj": {
+					"region": "USER",
+					"id": "output_n2q11e",
+					"parentId": "method_wltsar",
+					"height": 32,
+					"pageNo": 2,
+					"name": "OUTPUT",
+					"width": 100,
+					"left": 1873,
+					"type": "OUTPUT",
+					"depth": 7,
+					"top": 4062
+				},
+				"depth": 7
+			},
+			"api_hubzv4": {
+				"children": [
+					"input_uhbhgg"
+				],
+				"parent": "event_z15api",
+				"obj": {
+					"region": "USER",
+					"icon": "services/changePage/icon/changePage.png",
+					"alias": "changePage",
+					"width": 100,
+					"aid": "changePage1",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": true,
+					"id": "api_hubzv4",
+					"parentId": "event_z15api",
+					"height": 56,
+					"pageNo": 2,
+					"name": "changePage",
+					"left": 1233,
+					"top": 4263
+				},
+				"depth": 5
+			},
+			"result_ui_of8bsh": {
+				"children": [],
+				"parent": "output_fnjzuw",
+				"obj": {
+					"region": "USER",
+					"width": 335,
+					"controlType": "UI.Text",
+					"controlId": "text1",
+					"type": "RESULT_UI",
+					"depth": 8,
+					"propName": "value",
+					"id": "result_ui_of8bsh",
+					"parentId": "output_fnjzuw",
+					"height": 30,
+					"pageNo": 2,
+					"left": 2049,
+					"mappingType": "SINGLE",
+					"top": 3973
+				},
+				"depth": 8
+			},
+			"method_xedppw": {
+				"children": [
+					"output_9iemz8"
+				],
+				"parent": "ui_uo3nw2",
+				"obj": {
+					"region": "USER",
+					"alias": "getHidTxt3",
+					"width": 153,
+					"params": [],
+					"type": "METHOD",
+					"depth": 6,
+					"id": "method_xedppw",
+					"parentId": "ui_uo3nw2",
+					"height": 50,
+					"pageNo": 2,
+					"name": "_getTextTmp3",
+					"left": 1644,
+					"output": true,
+					"top": 4142
+				},
+				"depth": 6
+			},
+			"output_fnjzuw": {
+				"children": [
+					"result_ui_of8bsh"
+				],
+				"parent": "method_it6o7r",
+				"obj": {
+					"region": "USER",
+					"id": "output_fnjzuw",
+					"parentId": "method_it6o7r",
+					"height": 32,
+					"pageNo": 2,
+					"name": "OUTPUT",
+					"width": 100,
+					"left": 1873,
+					"type": "OUTPUT",
+					"depth": 7,
+					"top": 3972
+				},
+				"depth": 7
+			},
+			"method_wltsar": {
+				"children": [
+					"output_n2q11e"
+				],
+				"parent": "ui_uo3nw2",
+				"obj": {
+					"region": "USER",
+					"alias": "getHidTxt2",
+					"width": 153,
+					"params": [],
+					"type": "METHOD",
+					"depth": 6,
+					"id": "method_wltsar",
+					"parentId": "ui_uo3nw2",
+					"height": 50,
+					"pageNo": 2,
+					"name": "_getTextTmp2",
+					"left": 1644,
+					"output": true,
+					"top": 4052
+				},
+				"depth": 6
+			},
+			"ui_ys5yky": {
+				"children": [
+					"method_44kzyq"
+				],
+				"parent": "event_z15api",
+				"obj": {
+					"region": "USER",
+					"id": "ui_ys5yky",
+					"parentId": "event_z15api",
+					"height": 400,
+					"pageNo": 2,
+					"width": 327,
+					"controlType": "UI.URLViewer",
+					"left": 1233,
+					"controlId": "uRLViewer1",
+					"type": "UI",
+					"depth": 5,
+					"top": 4441
+				},
+				"depth": 5
+			},
+			"param_sdihle": {
+				"children": [],
+				"parent": "input_rjm4ca",
+				"obj": {
+					"region": "USER",
+					"alias": "html",
+					"propMeta": {
+						"designable": true,
+						"valueRange": null,
+						"isCssProperty": false,
+						"formatter": null,
+						"editor": "",
+						"category": "Custom",
+						"browsable": true,
+						"readOnly": false,
+						"description": "",
+						"datatype": "String",
+						"serializable": true,
+						"defaultValue": null,
+						"displayName": "",
+						"useGetterSetter": false
+					},
+					"isRelatedUi": true,
+					"width": 335,
+					"controlId": "text1",
+					"type": "PARAM",
+					"propName": "value",
+					"depth": 8,
+					"id": "param_sdihle",
+					"parentId": "input_rjm4ca",
+					"height": 30,
+					"pageNo": 2,
+					"name": "html",
+					"value": null,
+					"valueType": "UI",
+					"left": 2041,
+					"top": 4604
+				},
+				"depth": 8
+			},
+			"result_ui_9ljigx": {
+				"children": [],
+				"parent": "output_9iemz8",
+				"obj": {
+					"region": "USER",
+					"width": 335,
+					"controlType": "UI.Text",
+					"controlId": "text3",
+					"type": "RESULT_UI",
+					"depth": 8,
+					"propName": "value",
+					"id": "result_ui_9ljigx",
+					"parentId": "output_9iemz8",
+					"height": 30,
+					"pageNo": 2,
+					"left": 2049,
+					"mappingType": "SINGLE",
+					"top": 4153
+				},
+				"depth": 8
+			},
+			"input_rjm4ca": {
+				"children": [
+					"param_sdihle"
+				],
+				"parent": "method_44kzyq",
+				"obj": {
+					"region": "USER",
+					"id": "input_rjm4ca",
+					"parentId": "method_44kzyq",
+					"height": 32,
+					"pageNo": 2,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1865,
+					"type": "INPUT",
+					"depth": 7,
+					"top": 4603
+				},
+				"depth": 7
+			},
+			"method_44kzyq": {
+				"children": [
+					"input_rjm4ca"
+				],
+				"parent": "ui_ys5yky",
+				"obj": {
+					"region": "USER",
+					"alias": "setHTML",
+					"width": 153,
+					"params": [
+						"html"
+					],
+					"type": "METHOD",
+					"depth": 6,
+					"id": "method_44kzyq",
+					"parentId": "ui_ys5yky",
+					"height": 50,
+					"pageNo": 2,
+					"name": "_setHTML",
+					"left": 1636,
+					"output": false,
+					"top": 4593
+				},
+				"depth": 6
+			},
+			"event_z15api": {
+				"children": [
+					"ui_uo3nw2",
+					"api_hubzv4",
+					"ui_ys5yky"
+				],
+				"parent": "ui_63ssu3",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_z15api",
+					"parentId": "ui_63ssu3",
+					"height": 105,
+					"pageNo": 2,
+					"name": "onClick",
+					"left": 985,
+					"top": 4238
+				},
+				"depth": 4
+			},
+			"ui_uo3nw2": {
+				"children": [
+					"method_it6o7r",
+					"method_wltsar",
+					"method_xedppw"
+				],
+				"parent": "event_z15api",
+				"obj": {
+					"region": "USER",
+					"id": "ui_uo3nw2",
+					"parentId": "event_z15api",
+					"height": 164,
+					"pageNo": 2,
+					"width": 335,
+					"controlType": "UI.ThumbList",
+					"left": 1233,
+					"controlId": "thumbList1",
+					"type": "UI",
+					"depth": 5,
+					"top": 3994
+				},
+				"depth": 5
+			},
+			"appanchor2": {
+				"children": [],
+				"parent": "flowroot2",
+				"obj": {
+					"region": "APP",
+					"id": "appanchor2",
+					"parentId": "flowroot2",
+					"height": 40,
+					"pageNo": 2,
+					"width": 100,
+					"controlType": "APP",
+					"left": 386,
+					"controlId": "APP",
+					"type": "APP_ANCHOR",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			},
+			"input_uhbhgg": {
+				"children": [
+					"param_vqwjzk"
+				],
+				"parent": "api_hubzv4",
+				"obj": {
+					"region": "USER",
+					"id": "input_uhbhgg",
+					"parentId": "api_hubzv4",
+					"height": 32,
+					"pageNo": 2,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1393,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 4275
+				},
+				"depth": 6
+			},
+			"output_9iemz8": {
+				"children": [
+					"result_ui_9ljigx"
+				],
+				"parent": "method_xedppw",
+				"obj": {
+					"region": "USER",
+					"id": "output_9iemz8",
+					"parentId": "method_xedppw",
+					"height": 32,
+					"pageNo": 2,
+					"name": "OUTPUT",
+					"width": 100,
+					"left": 1873,
+					"type": "OUTPUT",
+					"depth": 7,
+					"top": 4152
+				},
+				"depth": 7
+			}
+		},
+		{
+			"flowroot3": {
+				"children": [
+					"useranchor3",
+					"appanchor3"
+				],
+				"parent": "",
+				"obj": {
+					"region": "",
+					"id": "flowroot3",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 3,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"ui_fjjss9": {
+				"children": [
+					"event_yhk1t4"
+				],
+				"parent": "useranchor3",
+				"obj": {
+					"region": "USER",
+					"id": "ui_fjjss9",
+					"parentId": "useranchor3",
+					"height": 38,
+					"pageNo": 3,
+					"width": 328,
+					"controlType": "UI.TextButton",
+					"left": 574,
+					"controlId": "textButton3",
+					"type": "UI",
+					"depth": 3,
+					"top": 4450
+				},
+				"depth": 3
+			},
+			"param_p6hxbd": {
+				"children": [],
+				"parent": "input_4ryfxu",
+				"obj": {
+					"region": "USER",
+					"propMeta": {
+						"designable": true,
+						"valueRange": null,
+						"isCssProperty": false,
+						"formatter": null,
+						"editor": "",
+						"category": "Custom",
+						"browsable": true,
+						"readOnly": false,
+						"description": "",
+						"datatype": "String",
+						"serializable": true,
+						"defaultValue": null,
+						"displayName": "",
+						"useGetterSetter": false
+					},
+					"isRelatedUi": true,
+					"width": 335,
+					"controlId": "text3",
+					"type": "PARAM",
+					"propName": "value",
+					"depth": 8,
+					"id": "param_p6hxbd",
+					"parentId": "input_4ryfxu",
+					"height": 30,
+					"pageNo": 3,
+					"name": "latitude",
+					"value": null,
+					"left": 2042,
+					"valueType": "UI",
+					"top": 4211
+				},
+				"depth": 8
+			},
+			"ui_4alj5g": {
+				"children": [
+					"event_th8leq"
+				],
+				"parent": "useranchor3",
+				"obj": {
+					"region": "USER",
+					"id": "ui_4alj5g",
+					"parentId": "useranchor3",
+					"height": 38,
+					"pageNo": 3,
+					"width": 328,
+					"controlType": "UI.TextButton",
+					"left": 574,
+					"controlId": "textButton4",
+					"type": "UI",
+					"depth": 3,
+					"top": 4157
+				},
+				"depth": 3
+			},
+			"param_fnhrvk": {
+				"children": [],
+				"parent": "input_ziezdm",
+				"obj": {
+					"region": "USER",
+					"alias": "pageNo",
+					"isRelatedUi": true,
+					"width": 112,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 7,
+					"id": "param_fnhrvk",
+					"parentId": "input_ziezdm",
+					"height": 148,
+					"pageNo": 3,
+					"name": "pageNo",
+					"value": 3,
+					"valueType": "PAGE",
+					"left": 1562,
+					"top": 3912
+				},
+				"depth": 7
+			},
+			"param_kzspys": {
+				"children": [],
+				"parent": "input_4ryfxu",
+				"obj": {
+					"region": "USER",
+					"propMeta": {
+						"designable": true,
+						"valueRange": null,
+						"isCssProperty": false,
+						"formatter": null,
+						"editor": "",
+						"category": "Custom",
+						"browsable": true,
+						"readOnly": false,
+						"description": "",
+						"datatype": "String",
+						"serializable": true,
+						"defaultValue": null,
+						"displayName": "",
+						"useGetterSetter": false
+					},
+					"isRelatedUi": true,
+					"width": 335,
+					"controlId": "text2",
+					"type": "PARAM",
+					"propName": "value",
+					"depth": 8,
+					"id": "param_kzspys",
+					"parentId": "input_4ryfxu",
+					"height": 30,
+					"pageNo": 3,
+					"name": "longitude",
+					"value": null,
+					"left": 2042,
+					"valueType": "UI",
+					"top": 4131
+				},
+				"depth": 8
+			},
+			"useranchor3": {
+				"children": [
+					"ui_4alj5g",
+					"ui_fjjss9"
+				],
+				"parent": "flowroot3",
+				"obj": {
+					"region": "USER",
+					"id": "useranchor3",
+					"parentId": "flowroot3",
+					"height": 40,
+					"pageNo": 3,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"event_th8leq": {
+				"children": [
+					"api_u1kb0x",
+					"ui_4j5e12"
+				],
+				"parent": "ui_4alj5g",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_th8leq",
+					"parentId": "ui_4alj5g",
+					"height": 105,
+					"pageNo": 3,
+					"name": "onClick",
+					"left": 978,
+					"top": 4123
+				},
+				"depth": 4
+			},
+			"event_yhk1t4": {
+				"children": [
+					"api_13271e"
+				],
+				"parent": "ui_fjjss9",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_yhk1t4",
+					"parentId": "ui_fjjss9",
+					"height": 105,
+					"pageNo": 3,
+					"name": "onClick",
+					"left": 978,
+					"top": 4416
+				},
+				"depth": 4
+			},
+			"input_ziezdm": {
+				"children": [
+					"param_fnhrvk"
+				],
+				"parent": "api_u1kb0x",
+				"obj": {
+					"region": "USER",
+					"id": "input_ziezdm",
+					"parentId": "api_u1kb0x",
+					"height": 32,
+					"pageNo": 3,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1386,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 3970
+				},
+				"depth": 6
+			},
+			"api_13271e": {
+				"children": [],
+				"parent": "event_yhk1t4",
+				"obj": {
+					"region": "USER",
+					"icon": "services/goBack/icon/goBack.png",
+					"alias": "goBack",
+					"width": 100,
+					"aid": "goBack1",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": false,
+					"id": "api_13271e",
+					"parentId": "event_yhk1t4",
+					"height": 56,
+					"pageNo": 3,
+					"name": "goBack",
+					"left": 1226,
+					"top": 4440
+				},
+				"depth": 5
+			},
+			"param_v6pj1s": {
+				"children": [],
+				"parent": "input_4ryfxu",
+				"obj": {
+					"region": "USER",
+					"width": 40,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 8,
+					"id": "param_v6pj1s",
+					"parentId": "input_4ryfxu",
+					"height": 40,
+					"pageNo": 3,
+					"name": "text",
+					"value": "欢迎团购",
+					"left": 2042,
+					"valueType": "VALUE",
+					"top": 4291
+				},
+				"depth": 8
+			},
+			"ui_4j5e12": {
+				"children": [
+					"method_qnb99p"
+				],
+				"parent": "event_th8leq",
+				"obj": {
+					"region": "USER",
+					"id": "ui_4j5e12",
+					"parentId": "event_th8leq",
+					"height": 340,
+					"pageNo": 3,
+					"width": 335,
+					"controlType": "UI.BaiduMap",
+					"left": 1226,
+					"controlId": "baiduMap1",
+					"type": "UI",
+					"depth": 5,
+					"top": 4054
+				},
+				"depth": 5
+			},
+			"input_4ryfxu": {
+				"children": [
+					"param_kzspys",
+					"param_p6hxbd",
+					"param_v6pj1s"
+				],
+				"parent": "method_qnb99p",
+				"obj": {
+					"region": "USER",
+					"id": "input_4ryfxu",
+					"parentId": "method_qnb99p",
+					"height": 32,
+					"pageNo": 3,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1866,
+					"type": "INPUT",
+					"depth": 7,
+					"top": 4209
+				},
+				"depth": 7
+			},
+			"method_qnb99p": {
+				"children": [
+					"input_4ryfxu"
+				],
+				"parent": "ui_4j5e12",
+				"obj": {
+					"region": "USER",
+					"alias": "addMarker",
+					"width": 153,
+					"params": [
+						"longitude",
+						"latitude",
+						"text"
+					],
+					"type": "METHOD",
+					"depth": 6,
+					"id": "method_qnb99p",
+					"parentId": "ui_4j5e12",
+					"height": 50,
+					"pageNo": 3,
+					"name": "addMarker",
+					"left": 1637,
+					"output": false,
+					"top": 4199
+				},
+				"depth": 6
+			},
+			"api_u1kb0x": {
+				"children": [
+					"input_ziezdm"
+				],
+				"parent": "event_th8leq",
+				"obj": {
+					"region": "USER",
+					"icon": "services/changePage/icon/changePage.png",
+					"alias": "changePage",
+					"width": 100,
+					"aid": "changePage2",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": true,
+					"id": "api_u1kb0x",
+					"parentId": "event_th8leq",
+					"height": 56,
+					"pageNo": 3,
+					"name": "changePage",
+					"left": 1226,
+					"top": 3958
+				},
+				"depth": 5
+			},
+			"appanchor3": {
+				"children": [],
+				"parent": "flowroot3",
+				"obj": {
+					"region": "APP",
+					"id": "appanchor3",
+					"parentId": "flowroot3",
+					"height": 40,
+					"pageNo": 3,
+					"width": 100,
+					"controlType": "APP",
+					"left": 386,
+					"controlId": "APP",
+					"type": "APP_ANCHOR",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			}
+		},
+		{
+			"useranchor4": {
+				"children": [
+					"ui_3e8yup",
+					"ui_kg0hya"
+				],
+				"parent": "flowroot4",
+				"obj": {
+					"region": "USER",
+					"id": "useranchor4",
+					"parentId": "flowroot4",
+					"height": 40,
+					"pageNo": 4,
+					"width": 100,
+					"left": 386,
+					"type": "USER_ANCHOR",
+					"depth": 2,
+					"top": 4270
+				},
+				"depth": 2
+			},
+			"input_od291d": {
+				"children": [
+					"param_wfd311"
+				],
+				"parent": "api_to3p05",
+				"obj": {
+					"region": "USER",
+					"id": "input_od291d",
+					"parentId": "api_to3p05",
+					"height": 32,
+					"pageNo": 4,
+					"name": "INPUT",
+					"width": 100,
+					"left": 1393,
+					"type": "INPUT",
+					"depth": 6,
+					"top": 4356
+				},
+				"depth": 6
+			},
+			"param_wfd311": {
+				"children": [],
+				"parent": "input_od291d",
+				"obj": {
+					"region": "USER",
+					"alias": "pageNo",
+					"isRelatedUi": true,
+					"width": 112,
+					"controlId": "",
+					"type": "PARAM",
+					"propName": "",
+					"depth": 7,
+					"id": "param_wfd311",
+					"parentId": "input_od291d",
+					"height": 148,
+					"pageNo": 4,
+					"name": "pageNo",
+					"value": 1,
+					"valueType": "PAGE",
+					"left": 1569,
+					"top": 4298
+				},
+				"depth": 7
+			},
+			"ui_kg0hya": {
+				"children": [
+					"event_fm8ad4"
+				],
+				"parent": "useranchor4",
+				"obj": {
+					"region": "USER",
+					"id": "ui_kg0hya",
+					"parentId": "useranchor4",
+					"height": 38,
+					"pageNo": 4,
+					"width": 335,
+					"controlType": "UI.TextButton",
+					"left": 574,
+					"controlId": "textButton6",
+					"type": "UI",
+					"depth": 3,
+					"top": 4354
+				},
+				"depth": 3
+			},
+			"flowroot4": {
+				"children": [
+					"useranchor4",
+					"appanchor4"
+				],
+				"parent": "",
+				"obj": {
+					"region": "",
+					"id": "flowroot4",
+					"parentId": "",
+					"height": 82,
+					"pageNo": 4,
+					"width": 130,
+					"left": 186,
+					"type": "ROOT",
+					"depth": 1,
+					"top": 4350
+				},
+				"depth": 1
+			},
+			"api_kn8p7j": {
+				"children": [],
+				"parent": "event_9y8wri",
+				"obj": {
+					"region": "USER",
+					"icon": "services/goBack/icon/goBack.png",
+					"alias": "goBack",
+					"width": 100,
+					"aid": "goBack2",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": false,
+					"id": "api_kn8p7j",
+					"parentId": "event_9y8wri",
+					"height": 56,
+					"pageNo": 4,
+					"name": "goBack",
+					"left": 1233,
+					"top": 4164
+				},
+				"depth": 5
+			},
+			"event_fm8ad4": {
+				"children": [
+					"api_to3p05"
+				],
+				"parent": "ui_kg0hya",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_fm8ad4",
+					"parentId": "ui_kg0hya",
+					"height": 105,
+					"pageNo": 4,
+					"name": "onClick",
+					"left": 985,
+					"top": 4320
+				},
+				"depth": 4
+			},
+			"ui_3e8yup": {
+				"children": [
+					"event_9y8wri"
+				],
+				"parent": "useranchor4",
+				"obj": {
+					"region": "USER",
+					"id": "ui_3e8yup",
+					"parentId": "useranchor4",
+					"height": 38,
+					"pageNo": 4,
+					"width": 335,
+					"controlType": "UI.TextButton",
+					"left": 574,
+					"controlId": "textButton7",
+					"type": "UI",
+					"depth": 3,
+					"top": 4174
+				},
+				"depth": 3
+			},
+			"api_to3p05": {
+				"children": [
+					"input_od291d"
+				],
+				"parent": "event_fm8ad4",
+				"obj": {
+					"region": "USER",
+					"icon": "services/changePage/icon/changePage.png",
+					"alias": "changePage",
+					"width": 100,
+					"aid": "changePage3",
+					"type": "API",
+					"depth": 5,
+					"isChangePageApi": true,
+					"id": "api_to3p05",
+					"parentId": "event_fm8ad4",
+					"height": 56,
+					"pageNo": 4,
+					"name": "changePage",
+					"left": 1233,
+					"top": 4344
+				},
+				"depth": 5
+			},
+			"event_9y8wri": {
+				"children": [
+					"api_kn8p7j"
+				],
+				"parent": "ui_3e8yup",
+				"obj": {
+					"region": "USER",
+					"icon": "controls/eventicon/click.png",
+					"alias": "click",
+					"width": 172,
+					"params": [],
+					"type": "EVENT",
+					"depth": 4,
+					"id": "event_9y8wri",
+					"parentId": "ui_3e8yup",
+					"height": 105,
+					"pageNo": 4,
+					"name": "onClick",
+					"left": 985,
+					"top": 4140
+				},
+				"depth": 4
+			},
+			"appanchor4": {
+				"children": [],
+				"parent": "flowroot4",
+				"obj": {
+					"region": "APP",
+					"id": "appanchor4",
+					"parentId": "flowroot4",
+					"height": 40,
+					"pageNo": 4,
+					"width": 100,
+					"controlType": "APP",
+					"left": 386,
+					"controlId": "APP",
+					"type": "APP_ANCHOR",
+					"depth": 2,
+					"top": 4470
+				},
+				"depth": 2
+			}
+		}
+	],
+	"apiMetas": {
+		"goBack": {
+			"result": {
+				"return": false
+			},
+			"icon": "services/goBack/icon/goBack.png",
+			"hasCallback": false,
+			"jsFileName": "goBack.js",
+			"name": "goBack",
+			"className": "",
+			"provider": "SYSTEM",
+			"params": [],
+			"functionName": "goBack",
+			"type": "System",
+			"displayName": "goBack"
+		},
+		"lashou": {
+			"result": {
+				"return": true,
+				"format": "  \n<urlset>\n    <url>\n        <loc>\n            <![CDATA[\nhttp://dongxiang.lashou.com/deal/8304280.html?union_pid=&union_sign=\n]]>\n        </loc>\n        <wapLoc>\n            <![CDATA[\nhttp://m.lashou.com/detail.php?id=8304280?union_pid=(none)&union_sign=\n]]>\n        </wapLoc>\n        <data>\n            <display>\n                <website>拉手网</website>\n                <identifier>8304280</identifier>\n                <siteurl>http://dongxiang.lashou.com/</siteurl>\n                <city>东乡</city>\n                <title>\n                    <![CDATA[ 仅售10元，市场价16元的东乡天幕国际影城观影小吃餐，无需预约，不仅是享受视觉盛宴，还可享受美食 ]]>\n                </title>\n                <shortTitle>\n                    <![CDATA[ 东乡天幕国际影城：观影小吃餐，无需预约 ]]>\n                </shortTitle>\n                <image>\n                    http://s1.lashouimg.com/cms/M00/34/85/CqgBJlOf1WKAG01LAAEl05BDURo394.jpg\n                </image>\n                <class>\n                    <![CDATA[ 餐饮美食 ]]>\n                </class>\n                <subClass>\n                    <![CDATA[ 快餐休闲 ]]>\n                </subClass>\n                <startTime>1402993373</startTime>\n                <endTime>1422719400</endTime>\n                <value>16.00</value>\n                <price>10.00</price>\n                <rebate>6.3</rebate>\n                <bought>59</bought>\n                <maxQuota>9999999</maxQuota>\n                <minQuota>1</minQuota>\n                <post>no</post>\n                <soldOut>no</soldOut>\n                <tip>\n                    <![CDATA[\n【温馨提示】 ]]>\n                </tip>\n                <merchantEndTime>2015-01-31 23:59:59</merchantEndTime>\n                <detail>\n                    <![CDATA[ ]]>\n                </detail>\n            </display>\n            <shops>\n                <shop>\n                    <name>\n                        <![CDATA[ 天幕国际影城 ]]>\n                    </name>\n                    <tel>\n                        <![CDATA[ 0794-7095566 ]]>\n                    </tel>\n                    <addr>\n                        <![CDATA[ 江西东乡龙山北路东信百货3楼 ]]>\n                    </addr>\n                    <area>\n                        <![CDATA[ 东信财富 ]]>\n                    </area>\n                    <openTime>\n                        <![CDATA[ 10:00-24:00 ]]>\n                    </openTime>\n                    <longitude>116.60621</longitude>\n                    <latitude>28.24083</latitude>\n                    <trafficInfo>\n                        <![CDATA[ ]]>\n                    </trafficInfo>\n                </shop>\n            </shops>\n        </data>\n    </url>\n    <url>\n        <loc>\n            <![CDATA[\nhttp://dongxiang.lashou.com/deal/8439279.html?union_pid=&union_sign=\n]]>\n        </loc>\n        <wapLoc>\n            <![CDATA[\nhttp://m.lashou.com/detail.php?id=8439279?union_pid=(none)&union_sign=\n]]>\n        </wapLoc>\n        <data>\n            <display>\n                <website>拉手网</website>\n                <identifier>8439279</identifier>\n                <siteurl>http://dongxiang.lashou.com/</siteurl>\n                <city>东乡</city>\n                <title>\n                    <![CDATA[ 仅售20元，市场价34元的东乡天幕国际影城休闲观影双人餐，需自取，不仅是享受视觉盛宴，还可享受美食 ]]>\n                </title>\n                <shortTitle>\n                    <![CDATA[ 东乡天幕国际影城：休闲观影双人餐，需自取 ]]>\n                </shortTitle>\n                <image>\n                    http://s1.lashouimg.com/cms/M00/31/41/CqgBVFOfpOOAeQbsAAEl05BDURo659.jpg\n                </image>\n                <class>\n                    <![CDATA[ 餐饮美食 ]]>\n                </class>\n                <subClass>\n                    <![CDATA[ 快餐休闲 ]]>\n                </subClass>\n                <startTime>1402993120</startTime>\n                <endTime>1422719400</endTime>\n                <value>34.00</value>\n                <price>20.00</price>\n                <rebate>5.9</rebate>\n                <bought>32</bought>\n                <maxQuota>9999999</maxQuota>\n                <minQuota>1</minQuota>\n                <post>no</post>\n                <soldOut>no</soldOut>\n                <tip>\n                    <![CDATA[\n【温馨提示】 有效期：2014-06-17至2014-11-30]]>\n                </tip>\n                <merchantEndTime>2015-01-31 23:59:59</merchantEndTime>\n                <detail>\n                    <![CDATA[]]>\n                </detail>\n            </display>\n            <shops>\n                <shop>\n                    <name>\n                        <![CDATA[ 天幕国际影城 ]]>\n                    </name>\n                    <tel>\n                        <![CDATA[ 0794-7095566 ]]>\n                    </tel>\n                    <addr>\n                        <![CDATA[ 江西东乡龙山北路东信百货3楼 ]]>\n                    </addr>\n                    <area>\n                        <![CDATA[ 东信财富 ]]>\n                    </area>\n                    <openTime>\n                        <![CDATA[ 10:00-24:00 ]]>\n                    </openTime>\n                    <longitude>116.60621</longitude>\n                    <latitude>28.24083</latitude>\n                    <trafficInfo>\n                        <![CDATA[ ]]>\n                    </trafficInfo>\n                </shop>\n            </shops>\n        </data>\n    </url>\n</urlset> ",
+				"type": "xml"
+			},
+			"icon": "services/lashou/icon/lashou.png",
+			"hasCallback": true,
+			"jsFileName": "lashou.js",
+			"name": "lashou",
+			"className": "wd_service.lashou",
+			"provider": "guest",
+			"params": [
+				"cityid"
+			],
+			"functionName": "request",
+			"type": "System",
+			"displayName": "lashou"
+		},
+		"lashou_city": {
+			"result": {
+				"return": true,
+				"format": "<urlset>\n    <url>\n        <city_name>安达</city_name>\n        <city_id>232800</city_id>\n        <city_deals_url>\n            <![CDATA[\nhttp://open.lashou.com/opendeals/lashou/232800.xml?union_pid=&union_sign=\n]]>\n        </city_deals_url>\n    </url>\n    <url>\n        <city_name>安庆</city_name>\n        <city_id>68</city_id>\n        <city_deals_url>\n            <![CDATA[\nhttp://open.lashou.com/opendeals/lashou/68.xml?union_pid=&union_sign=\n]]>\n        </city_deals_url>\n    </url>\n </urlset>",
+				"type": "xml"
+			},
+			"icon": "services/lashou_city/icon/lashou_city.png",
+			"hasCallback": true,
+			"jsFileName": "lashou_city.js",
+			"name": "lashou_city",
+			"className": "wd_service.lashou_city",
+			"provider": "guest",
+			"params": [],
+			"functionName": "request",
+			"type": "System",
+			"displayName": "lashou_city"
+		},
+		"changePage": {
+			"result": {
+				"return": false
+			},
+			"icon": "services/changePage/icon/changePage.png",
+			"hasCallback": false,
+			"jsFileName": "changePage.js",
+			"name": "changePage",
+			"className": "",
+			"provider": "SYSTEM",
+			"params": [
+				"pageNo"
+			],
+			"functionName": "changePage",
+			"type": "System",
+			"displayName": "changePage"
+		}
+	},
+	"assets": {
+		"uiDataMetas": {
+			"UI.ThumbList": [
+				{
+					"imgUrl": "",
+					"title": " ",
+					"subtitle": "",
+					"url": "",
+					"tmp1": "",
+					"tmp2": "",
+					"tmp3": "",
+					"tmp4": ""
+				}
+			],
+			"UI.SelectBox": [
+				{
+					"name": "meapalias|显示文本",
+					"value": "meapalias|选项值"
+				}
+			],
+			"UI.Text": null
+		}
+	}
+}

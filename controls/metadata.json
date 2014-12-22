@@ -337,7 +337,21 @@
         {
             "category": "Widget",
             "controls": [
-
+             {
+                    "name": "UI.URLViewer",
+                    "dir": "ui.urlviewer",
+                    "outlineIcon": "ui.urlviewer.png",
+                    "toolbarIcon": "ui.urlviewer.png",
+                    "effectIcon": "ui.urlviewer.ef.png",
+                    "runtime": {
+                        "js": ["ui.urlviewer.js"]
+                    },
+                    "designer": {
+                        "js": ["ui.urlviewer_designer.js"]
+                    },
+                    "dependControl": [],
+                    "description": "View Information By URL"
+                }
             ]
         }
     ]

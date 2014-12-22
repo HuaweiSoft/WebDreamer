@@ -1,8 +1,8 @@
 {
-"enable": true,
-"host": "proxycn2.huawei.com",
-"port": 8080,
-"username": "c00251935",
-"password": "07303222_cyl",
+"enable": false,
+"host": "127.0.0.1",
+"port": 3128,
+"username": "",
+"password": "",
 "nonProxyHost": "localhost,127.0.0.1,*.huwei.com,10.*"
 }

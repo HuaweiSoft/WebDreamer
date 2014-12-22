@@ -117,7 +117,7 @@ public class PublishAppToCfUtil {
                     putMsg(uuid, "Start to deploy app package.");
                     boolean uploadAppWarResult = uploadAppWar(client, warpath, name, uuid);
                     if (uploadAppWarResult) {
-                        putMsg(uuid, "App package has been depoyed.");
+                        putMsg(uuid, "App package has been deployed.");
                         putMsg(uuid, "Ready for starting app.");
                         startApp(client, name, uuid);
                     } else {

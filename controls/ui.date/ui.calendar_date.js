@@ -7,16 +7,17 @@
  */
 UI.Calendar_Date = function(container) {
     arguments.callee.superClass.constructor.apply(this, arguments);
+    var strDate = formatDateString( new Date(),"-", false, false);
+    this._html =  '<div>'
+        + '	<div param="date" name="Set date" class="ui_time ui_shadow_out ui_corner_all">'
+        + '			<span class="ui_time_icon time_icon_date"></span>'
+        + '				<span class="time_text">'+strDate+'</span>'
+        + '	</div></div>';
 };
 
 extend(UI.Calendar_Date, UI.Control, {
         type: "UI.Calendar_Date",
 
-        _html: '<div>'
-            + '	<div param="date" name="Set date" class="ui_time ui_shadow_out ui_corner_all">'
-            + '			<span class="ui_time_icon time_icon_date"></span>'
-            + '				<span class="time_text">2013-01-10</span>'
-            + '	</div></div>',
 
         _date_div: null,
         _cal2013: null,  //jquery object

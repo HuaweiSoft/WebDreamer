@@ -119,7 +119,7 @@ extend(UI.TextList, UI.Control, {
             if (li.length == 0) li = $(this._defaultContent);
             var height = 40 * value.length;
             //处理不同子类不同处理
-            if (ul.find('li:first:[id=title]').length != 0) {
+            if (ul.find('li:first[id=title]').length != 0) {
                 ul.find('li:gt(0)').remove();
                 height += 31;
             }
@@ -142,8 +142,9 @@ extend(UI.TextList, UI.Control, {
             if (this.$('#moreRecords').css('display') == 'block') {
                 height += 33;
             }
-            $(this._textlist).parent().height(height).parent().find('#objectSelection').height(height);
+            $(this._textlist).parent().height(height);
             this.bindEvent();
+            this.trigger(UI.Event.Resized, {});
     },
 
     /**

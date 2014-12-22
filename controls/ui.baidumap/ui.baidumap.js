@@ -24,13 +24,13 @@ extend(UI.BaiduMap, UI.Control, {
         this._map = new BMap.Map(this._element);
         this.centerAndZoom();
         this._map.addControl(new BMap.NavigationControl());
-        //this._map.addControl(new BMap.GeolocationControl());
+        // this._map.addControl(new BMap.GeolocationControl());
         this._rendered = true;
         return true;
     },
 
     getLatitude: function() {
-        return  this._latitude;
+        return this._latitude;
     },
 
     setLatitude: function(latitude) {
@@ -43,7 +43,7 @@ extend(UI.BaiduMap, UI.Control, {
     },
 
     getLongitude: function() {
-        return  this._longitude;
+        return this._longitude;
     },
 
     setLongitude: function(longitude) {
@@ -56,10 +56,11 @@ extend(UI.BaiduMap, UI.Control, {
     },
 
     getCenter: function() {
-        return   this._longitude + ", " + this._latitude;
+        return this._longitude + ", " + this._latitude;
     },
 
-    setCenter: function(center) {
+    setCenter: function(longitude, latitude) {
+        var center = longitude + "," + latitude;
         var array = this.parseLongLat(center);
         if (!array)
             return;
@@ -69,7 +70,7 @@ extend(UI.BaiduMap, UI.Control, {
     },
 
     getZoom: function() {
-        return  this._zoom;
+        return this._zoom;
     },
 
     setZoom: function(zoom) {
@@ -88,10 +89,28 @@ extend(UI.BaiduMap, UI.Control, {
         this._map.centerAndZoom(point, this._zoom);
     },
 
-
     setCenterAndZoom: function(center, zoom) {
         this._zoom = zoom || this._zoom;
         this.setCenter(center);
+    },
+
+    addMarker: function(longitude, latitude, text) {
+        if (!longitude || longitude == "") {
+            longitude = "116.358222";
+            latitude = "39.898884";
+        }
+        this.setCenter(longitude, latitude);
+        if (!text) {
+            text = "";
+        }
+        var marker1 = new BMap.Marker(new BMap.Point(longitude, latitude)); // 创建标注
+        this._map.addOverlay(marker1);
+        if (text != "") {
+            var infoWindow1 = new BMap.InfoWindow(text);
+            marker1.addEventListener("click", function() {
+                this.openInfoWindow(infoWindow1);
+            });
+        }
     },
 
     /**
@@ -102,18 +121,18 @@ extend(UI.BaiduMap, UI.Control, {
      *        this.driving("四季花城", "华为基地");
      *        this.driving("114.08248, 22.53705", "114.060538, 22.626434");
      */
-    driving: function(from, to) {
+    driving: function(fromLong, fromLat, toLong, toLat) {
         if (!this._map)
             return;
         var driving = new BMap.DrivingRoute(this._map, {
             renderOptions: {
                 map: this._map,
-                /*panel : this._element.id,*/
+                /* panel : this._element.id, */
                 autoViewport: true
             }
         });
-        from = from.trim();
-        to = to.trim();
+        var from = fromLong + "," + fromLat;
+        var to = toLong + "," + toLat;
         this._map.clearOverlays();
         var reg = /^\d+\.?\d*\s*\,\s*\d+\.?\d*$/;
         if (from.match(reg) && to.match(reg)) {
@@ -122,12 +141,10 @@ extend(UI.BaiduMap, UI.Control, {
             var fromPoint = new BMap.Point(fa[0], fa[1]);
             var toPoint = new BMap.Point(ta[0], ta[1]);
             driving.search(fromPoint, toPoint);
-        }
-        else {
+        } else {
             driving.search(from, to);
         }
     },
-
 
     /**
      * 显示当前我的位置，有可能定位失败
@@ -146,10 +163,9 @@ extend(UI.BaiduMap, UI.Control, {
         var lat = parseFloat(array[1].trim());
         if (isNaN(lat) || isNaN(long))
             return null;
-        return [long, lat];
+        return [ long, lat ];
     }
 });
-
 
 UI.BaiduMap.prototype.__defineGetter__('latitude', UI.BaiduMap.prototype.getLatitude);
 UI.BaiduMap.prototype.__defineSetter__('latitude', UI.BaiduMap.prototype.setLatitude);

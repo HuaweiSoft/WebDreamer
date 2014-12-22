@@ -251,7 +251,8 @@ extend(UI.RadioButtonH, UI.Control, {
             }
         }
 
-        this.$ul.parent().css('height', _height).parent().find('#objectSelection').css("height", _height);
+        this.$ul.parent().css('height', _height);
+        this.trigger(UI.Event.Resized, {});
     },
 
     /**

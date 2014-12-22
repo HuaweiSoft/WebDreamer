@@ -191,7 +191,7 @@ extend(UI.ThumbList, UI.Control, {
             _height = this._thumlist.height(); //_height * (jsonObj?jsonObj.length:0);
             if (isFilter)_height += 35;			// 是否加文本框
             // 调整高度适应
-            this._thumlist.parent().css("height", _height).parent().find('#objectSelection').css("height", _height + 2);
+            this._thumlist.parent().css('height', 'auto');
         }
         else {
 
@@ -204,10 +204,10 @@ extend(UI.ThumbList, UI.Control, {
             else {
                 this._thumlist.parent().css('padding', "0px");
             }
-
         }
         this._showDatas = jsonObj;			// 记录当前保存信息
         this.bindEvent();
+        this.trigger(UI.Event.Resized, {});
     },
 
     /**
@@ -670,9 +670,10 @@ extend(UI.ThumbList, UI.Control, {
         // 控制编辑datas数据时是面板增加模式还是使用模式
         this.$el.append('<span style="display:none" id="handleListPic_save"></span>');
         // 更多栏设置监听事件
-        this._thumlist.parent().find('#moreRecords').bind('click', function() {
+        this._thumlist.parent().find('#moreRecords').bind('click', function(event) {
             self._currentPage++;
             self._setDataspanel(self._showDatas, true);
+            event.stopPropagation();
         });
 
         if (checkRuntime() == RUNTIME_DESIGN) {

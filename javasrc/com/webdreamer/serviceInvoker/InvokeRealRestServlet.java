@@ -109,13 +109,6 @@ public class InvokeRealRestServlet extends HttpServlet {
     private void forwardResponse(HttpURLConnection httpConn, HttpServletResponse response, String responseFormat)
             throws IOException {
 
-        String responseContent = getResponse(httpConn);
-        // do not convert xml to json here, execute conversion in web
-       /* if (responseFormat.equals("xml")) {
-            JSONObject responseJson = XML.toJSONObject(responseContent);
-            responseContent = responseJson.toString();
-        }*/
-
         response.setCharacterEncoding("utf-8");
         if (httpConn.getContentType() != null) {
             response.setContentType(httpConn.getContentType());
@@ -149,13 +142,20 @@ public class InvokeRealRestServlet extends HttpServlet {
             response.setHeader(key, valueStr);
         }
 
-        // forward body
-       /* OutputStream ostream = response.getOutputStream();
-        ostream.write(responseContent.getBytes());
+        InputStream istream = httpConn.getInputStream();
+        OutputStream ostream = response.getOutputStream();
+        byte[] buffer = new byte[1024];
+        int length = 0;
+        while ((length = istream.read(buffer)) > 0) {
+            ostream.write(buffer, 0, length);
+        }
+        istream.close();
         ostream.flush();
-        ostream.close();*/
-        response.getWriter().print(responseContent);
-        response.getWriter().close();
+        ostream.close();
+
+        // String responseContent = getResponse(httpConn);
+        // response.getWriter().print(responseContent);
+        // response.getWriter().close();
     }
 
     private String getResponse(HttpURLConnection httpConn) throws IOException {
@@ -214,7 +214,6 @@ public class InvokeRealRestServlet extends HttpServlet {
                 encoding = contentType.substring(idx + 8);
             }
         }
-
         String errorMsg = new String(responseByte, encoding);
         return errorMsg;
     }

@@ -54,6 +54,8 @@
 					<select id="method" class="input-select">
 						<option value="GET">GET</option>
 						<option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
 					</select>
 				</td>
 			</tr>
@@ -76,9 +78,10 @@
 				<td class="service-param">parameter format</td>
 				<td>
 					<select id="parameterFormat" class="input-select">
-						<option value="normal">p1=v1&p2=v2</option>
+						<option value="normal">p1=v1&amp;p2=v2</option>
+                        <option value="ParameterPath">path/{p1}/{p2}</option>
 						<option value="SlashWithPV">p1/v1/p2/v2</option>
-						<option value="SLashWithP">v1/v2</option>
+						<option value="SlashWithP">v1/v2</option>
 					</select>
 				</td>
 			</tr>

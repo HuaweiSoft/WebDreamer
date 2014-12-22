@@ -495,7 +495,7 @@ define(
                     myUnit.id = this.model.createNewId(myUnit.type);
                     myUnit.aid = this.model.createNewApiId(apiName);
                     myUnit.name = apiName;
-                    myUnit.alias = apiMeta.displayName || apiMeta.alias;
+                    myUnit.alias = apiMeta.displayName || apiMeta.alias || apiName;
                     myUnit.icon = apiMeta.icon || "";
                     myUnit.width = parseInt($apiMoving.css("width"));
                     myUnit.height = parseInt($apiMoving.css("height"));
@@ -1033,7 +1033,7 @@ define(
                     var eventUnit = new FlowModel.EventUnit();
                     eventUnit.id = this.model.createNewId(eventUnit.type);
                     eventUnit.name = eventName;
-                    eventUnit.alias = item.displayName || item.alias;
+                    eventUnit.alias = item.displayName || item.alias || eventName;
                     eventUnit.icon = item.icon;
                     eventUnit.width = 172;
                     eventUnit.height = 105;
@@ -1143,7 +1143,7 @@ define(
                     var methodUnit = new FlowModel.MethodUnit();
                     methodUnit.id = this.model.createNewId(methodUnit.type);
                     methodUnit.name = item.name;
-                    methodUnit.alias = item.displayName || item.alias;
+                    methodUnit.alias = item.displayName || item.alias || item.name;
                     methodUnit.width = 153;
                     methodUnit.height = 50;
                     methodUnit.parentId = unit.id;
@@ -1279,7 +1279,7 @@ define(
                                 var item = params[i];
                                 var paramUnit = new FlowModel.ParamUnit({
                                     name: item.name,
-                                    alias: item.alias || item.displayName,
+                                    alias: item.alias || item.displayName || item.name,
                                     valueType: "",
                                     value: null,
                                     controlId: "",

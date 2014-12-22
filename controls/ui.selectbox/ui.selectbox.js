@@ -14,7 +14,7 @@ extend(UI.SelectBox, UI.Control, {
 
     _html: '<div><div class="ui-select" style="height:100%;width:100%;"><div style="height:100%;width:100%;margin:0;"'
         + 'class="ui-btn ui-btn-icon-right ui-btn-corner-all ui-shadow ui-btn-up-c">'
-        + '<span class="ui-btn-inner ui-btn-corner-all" style="margin-top: 0px;height: 30px;line-height: 33px;">'
+        + '<span class="ui-btn-inner ui-btn-corner-all" style="margin-top: 0px;height: 30px;line-height: 25px;">'
         + '<span class="ui-btn-text" id="selectBoxValue">DisplayName1</span>'
         + '<span class="ui-icon ui-icon-arrow-d ui-icon-shadow"></span> '
         + '</span><select><option value="value1">DisplayName1</option>'

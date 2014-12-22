@@ -153,7 +153,7 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
             var controlCreator = util.getObjValueByJPath(window, controlType);
             if (typeof controlCreator != "function") {
                 console.error("Control [%s] create failed, because can't find the creator function of control type [%s].", bean.id, controlType);
-                return false;
+                return null;
             }
             // TODO, set the parent of new control
             var containerId = bean.parentId || "controlContainer";
@@ -179,6 +179,8 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                     designer.setPropValue("width", "98%");
                 if (designer.defaultHeight)
                     designer.setPropValue("height", designer.defaultHeight + "px");
+                else
+                    designer.setPropValue("height",  "auto");
             }
 
             // add control to array
@@ -214,7 +216,11 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                 }, false);
             }
             this.setDragEventHandler(control.id);
-            return true;
+
+            control.bind(UI.Event.Resized, function(){
+                _this.handleControlResized(this);
+            });
+            return control;
         },
 
         /**
@@ -238,8 +244,8 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
                     if (!bean.props.hasOwnProperty(propName) || !(propName in propMetas))
                         continue;
                     var defaultValue = propMetas[propName].defaultValue;
-                    if(defaultValue  ||  defaultValue == false ){
-                         designer.setPropValue(propName, defaultValue);
+                    if (defaultValue || defaultValue == false) {
+                        designer.setPropValue(propName, defaultValue);
                     }
                     bean.props[propName] = designer.getPropValue(propName);
                 }
@@ -500,9 +506,13 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
             this.highlightSelectedControl(controlId);
         },
 
+        handleControlResized: function(control){
+            this.highlightSelectedControl(this.currentSelectedControlId);
+        },
+
         highlightSelectedControl: function(controlId) {
 
-            if (controlId == "" || this.currentSelectedControlId == controlId) {
+            if (controlId == "") {
                 return;
             }
             var $currentSelectedControl;
@@ -529,6 +539,7 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
 
             this.currentSelectedControlId = controlId;
         },
+
         unhighlight: function() {
             this.currentSelectedControlId = "";
             var $controlSelected = $("#controlSelected");

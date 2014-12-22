@@ -5,7 +5,7 @@ wd_service.getAirlinesTime.prototype = {
     httpMethod: 'GET',
     request: function(successHandler, errorHandler, startCity, lastCity, theDate, userID) {
         var parameters = 'startCity=' + encodeURIComponent(startCity) + '&' + 'lastCity=' + encodeURIComponent(lastCity)
-            + '&' + 'theDate=' + encodeURIComponent(theDate) + '&' + 'userID=' + encodeURIComponent(userID || "");
+            + '&' + 'theDate=' + encodeURIComponent(theDate) + '&' + 'userID=' + encodeURIComponent(userID);
         RMI.sendRealRESTRequest(successHandler, errorHandler, this.requestUrl, this.httpMethod, "xml", "normal", parameters);
     }
 }

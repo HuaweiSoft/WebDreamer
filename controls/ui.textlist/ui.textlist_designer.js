@@ -17,10 +17,7 @@ UI.TextList_Designer.prototype.meta = UI.extendMeta(UI.TextList_Designer.prototy
         "height": {
             datatype: "String",
             readOnly: true,
-            designable: false,
-            category: "Common",
-            description: "the height of UI component",
-            serializable: false
+            designable: false
         },
         lstText: {//列表数据
             datatype: "Object",

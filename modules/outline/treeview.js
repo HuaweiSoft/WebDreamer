@@ -187,6 +187,8 @@ define(
                             var type = data.bean.type;
                             var name = data.bean.id;
                             var pageNode = this._treeView.getNodeByProperty("attachPageNo", data.bean.pageNo);
+                            if (!pageNode)
+                                return null;
 
                             var label = this._buildNodeLabel(type, name);
                             var node = new YAHOO.widget.TextNode({

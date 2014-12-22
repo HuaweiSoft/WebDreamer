@@ -349,9 +349,11 @@ UI.Designer.prototype = {
                 break;
             case "width":
                 element.style.width = propValue;
+                this._control.trigger(UI.Event.Resized);
                 break;
             case "height":
                 element.style.height = propValue;
+                this._control.trigger(UI.Event.Resized);
                 break;
             case "align":
                 element.style.textAlign = propValue;

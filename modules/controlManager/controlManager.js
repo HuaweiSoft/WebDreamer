@@ -87,7 +87,7 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
             }
 
             this.showPage(1);
-            this.bindEventHandler("control_item");
+            //this.bindEventHandler("control_item");
             this.notifyLoadControlsJS();
             this.notifyControlMetaData();
             this.subscribeMsg();
@@ -104,9 +104,9 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
             if (!pageNo) {
                 pageNo = 1;
             }
-           
+
             var startIndex = (pageNo - 1) * this.numsPerPage;
-            if (startIndex < 0 ) {
+            if (startIndex < 0) {
                 return;
             }
             var endIndex = startIndex + this.numsPerPage;
@@ -126,6 +126,7 @@ define([ "text!controls/metadata.json", "css!modules/controlManager/control", "t
                 this.$el.append(itemHTML);
                 this.currentPageNO = pageNo;
             }
+            this.bindEventHandler("control_item");
 
         },
         nextPage: function() {

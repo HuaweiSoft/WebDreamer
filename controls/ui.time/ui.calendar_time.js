@@ -7,16 +7,27 @@
  */
 UI.Calendar_Time = function(container) {
     arguments.callee.superClass.constructor.apply(this, arguments);
+    var fs = function(d) {
+        return d < 10 ? "0" + d.toString() : d.toString();
+    };
+    var date = new Date();
+    var  strTime =  fs(date.getHours()) + ":" + fs(date.getMinutes())
+    if(date.getHours()>=0 && date.getHours()<=11)
+        strTime+="AM";
+    else
+        strTime+="PM";
+
+    this._html= '<div>'
+        + '	<div param="time" name="Set Time" class="ui_time ui_shadow_out ui_corner_all">'
+        + '			<span class="ui_time_icon time_icon_clock"></span>'
+        + '				<span class="time_text">'+ strTime+'</span>'
+        + '	</div></div>';
+
 };
 
 extend(UI.Calendar_Time, UI.Control, {
     type: "UI.Calendar_Time",
 
-    _html: '<div>'
-        + '	<div param="time" name="Set Time" class="ui_time ui_shadow_out ui_corner_all">'
-        + '			<span class="ui_time_icon time_icon_clock"></span>'
-        + '				<span class="time_text">08:30AM</span>'
-        + '	</div></div>',
 
     _time_div: null,
     _cal2013: null, //jquery object

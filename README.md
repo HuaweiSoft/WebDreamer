@@ -2,7 +2,7 @@
 
 Web Dreamer is an online tool to build mobile web apps, no coding required. A graphic tool for creating quickly mobile Apps.
 
-Demo Address:[http://webdreamer.paas.sdpaep.com](http://webdreamer.paas.sdpaep.com)
+Demo Address:[http://webdreamer.powerapp.io](http://webdreamer.powerapp.io) or [http://webdreamer.paas.sdpaep.com](http://webdreamer.paas.sdpaep.com)
 
 This repository contains the WebDreamer source code.
 

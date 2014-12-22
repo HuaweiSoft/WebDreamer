@@ -35,29 +35,68 @@ UI.BaiduMap_Designer.prototype.meta = UI.extendMeta(UI.Designer.prototype.meta, 
     },
     events: {},
     methods: {
-        driving: {alias: "drivingLine", params: [
-            {name: "from"},
-            {name: "to"}
-        ]},
-        getCenter: {params: [], output: true},
-        setCenter: {params: [
-            {name: "center"}
-        ]},
+        driving: {
+            alias: "drivingLine",
+            params: [ {
+                name: "fromLong"
+            }, {
+                name: "fromLat"
+            }, {
+                name: "toLong"
+            }, {
+                name: "toLat"
+            } ]
+        },
+        getCenter: {
+            params: [],
+            output: true
+        },
+        setCenter: {
+            params: [ {
+                name: "longitude"
+            }, {
+                name: "latitude"
+            } ]
+        },
+        addMarker: {
+            alias: "addMarker",
+            params: [ {
+                name: "longitude"
+            }, {
+                name: "latitude"
+            }, {
+                name: "text"
+            } ]
+        },
+        getLatitude: {
+            params: [],
+            output: true
+        },
+        setLatitude: {
+            params: [ {
+                name: "latitude"
+            } ]
+        },
 
-        getLatitude: {params: [], output: true},
-        setLatitude: {params: [
-            {name: "latitude"}
-        ]},
+        getLongitude: {
+            params: [],
+            output: true
+        },
+        setLongitude: {
+            params: [ {
+                name: "longitude"
+            } ]
+        },
 
-        getLongitude: {params: [], output: true},
-        setLongitude: {params: [
-            {name: "longitude"}
-        ]},
-
-        getZoom: {params: [], output: true},
-        setZoom: {params: [
-            {name: "zoom"}
-        ]},
+        getZoom: {
+            params: [],
+            output: true
+        },
+        setZoom: {
+            params: [ {
+                name: "zoom"
+            } ]
+        },
     },
     defaultProperty: "center",
     defaultEvent: "",

@@ -8,7 +8,7 @@ UI.ThumbList_Designer = function(control) {
 
 extend(UI.ThumbList_Designer, UI.Designer, {
     /*defaultWidth: 295,*/
-    /*defaultHeight: 165*/
+    defaultHeight: 0
 });
 
 UI.ThumbList_Designer.prototype.meta = UI.extendMeta(UI.ThumbList_Designer.prototype.meta, {
@@ -24,7 +24,7 @@ UI.ThumbList_Designer.prototype.meta = UI.extendMeta(UI.ThumbList_Designer.proto
             datatype: "String",
             readOnly: true,
             designable: false,
-            browsable: false,
+            browsable: true,
             defaultValue: "auto"
         },
         search: {
@@ -48,7 +48,7 @@ UI.ThumbList_Designer.prototype.meta = UI.extendMeta(UI.ThumbList_Designer.proto
         }
     },
 
-    dataFormat: [{"imgUrl":"","title":" ","subtitle":"","url":""}],
+    dataFormat: [{"imgUrl":"","title":" ","subtitle":"","url":"","tmp1":"","tmp2":"","tmp3":"","tmp4":""}],
 
     events: {
         onClick: {params: [], icon: "controls/eventicon/click.png", alias: "click"}

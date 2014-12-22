@@ -102,8 +102,8 @@ extend(UI.Switch, UI.Control, {
             }
 
             // $(this._switch).css('left',_left);
-            $(this._switch).css('width', _width).parent().find('#objectSelection').css("width", _width);
-
+            $(this._switch).css('width', _width).parent();
+            this.trigger(UI.Event.Resized, {});
         }
     },
 
