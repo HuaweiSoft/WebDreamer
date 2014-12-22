@@ -1,21 +1,19 @@
 /**
- * UI.TextBox 设计器
- * @dependency  stdfunc.js、metadata.js、ui.textbox.js
+ * Switch Designer
+ * @constructor
+ * @supperClass UI.Designer
  */
-
 UI.Switch_Designer = function(control) {
     arguments.callee.superClass.constructor.apply(this, arguments);
 };
 
-// 声明继承自基本设计器 UI.Designer
 extend(UI.Switch_Designer, UI.Designer, {
     defaultWidth: 0,
     defaultHeight: 32
 });
 
-// 声明元信息，也保持元信息的继承
 UI.Switch_Designer.prototype.meta = UI.extendMeta(UI.Switch_Designer.prototype.meta, {
-    type: "UI.Switch", // UI.Switch.prototype.type
+    type: "UI.Switch", 
     props: {
         "width": {
             datatype: "String",
