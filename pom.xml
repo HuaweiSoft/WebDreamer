@@ -17,7 +17,9 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20141113</version>
+            <version>20140107</version>
+            <!-- Org.json -->
+           <!-- <scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -44,6 +46,24 @@
             <artifactId>ant</artifactId>
             <version>1.9.4</version>
         </dependency>
+        <!-- Servlet -->
+        <!--<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>-->
 
     </dependencies>
 
@@ -64,22 +84,37 @@
                 <configuration>
                     <warName>webdreamer</warName>
                     <webXml>WEB-INF\web.xml</webXml>
-                    <packagingExcludes>.git/,.settings/,.idea/,javasrc/,target/</packagingExcludes>
                     <webResources>
                         <resource>
+                            <directory>controls</directory>
+                            <targetPath>controls</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>data</directory>
+                            <targetPath>data</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>jslibs</directory>
+                            <targetPath>jslibs</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>modules</directory>
+                            <targetPath>modules</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>resources</directory>
+                            <targetPath>resources</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>services</directory>
+                            <targetPath>services</targetPath>
+                        </resource>
+                        <resource>
                             <directory>./</directory>
-                            <excludes>
-                                <exclude>.classpath</exclude>
-                                <exclude>.project</exclude>
-                                <exclude>.gitignore</exclude>
-                                <exclude>.tomcatplugin</exclude>
-                                <exclude>LICENSE</exclude>
-                                <exclude>pom.xml</exclude>
-                                <exclude>README.md</exclude>
-                                <exclude>**/*.java</exclude>
-                                <exclude>settings/*</exclude>
-                                <exclude>target/*</exclude>
-                            </excludes>
+                            <includes>
+                                <include>index.html</include>
+                                <include>webdreamer.ico</include>
+                            </includes>
                         </resource>
                     </webResources>
                 </configuration>
@@ -137,4 +172,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
