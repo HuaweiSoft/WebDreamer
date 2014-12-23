@@ -15,7 +15,7 @@ Web Dreamer is also a java web app running with Tomcat. To compile and install i
  - Maven 2.0 [or latest version](http://maven.apache.org/)
  - Tomcat 7.0
 
-Here are the steps to compile and install Web Dreamer:
+Here are steps to compile and install Web Dreamer:
 
 ###Step1: run 'mvn clean package' command in the project root directory
 If maven build the project successfully, you will see a 'BUILD SUCCESS' message from the command console.
