@@ -1,6 +1,6 @@
 {
-"username": "caiyunlong",
-"password": "123",
-"url": "moguyun",
+"username": "username",
+"password": "password",
+"url": "http://api.run.pivotal.io",
 "space": "dev"
 }

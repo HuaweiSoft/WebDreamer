@@ -48,7 +48,26 @@ define([ "css!modules/simulator/simulator", "text!modules/simulator/model.json",
                 "opacity": 0.97,
                 "showGif": false
             });
-            $("#project_simulator_iframe")[0].src = url;
+            var iframe = $("#project_simulator_iframe")[0];
+            iframe.src = url;
+            iframe.onload = iframe.onreadystatechange =function(){
+                var contentWindow =  this.contentWindow;
+                contentWindow["IS_RUNTIME_PREVIEW"] = true;
+                var loc = contentWindow.location;
+                var path = loc.origin + loc.pathname;
+                path = path.substring(0, path.lastIndexOf("/")) + "/controls/";
+                $(this.contentWindow.document.body).find("img").each(function(index, el){
+                    if(el.src){
+                        var index1 = el.src.indexOf(path);
+                        var index2 = el.src.indexOf("controls/");
+                        if(index1 == 0){
+                            el.src = "../../../controls/" +  el.src.substring(path.length);
+                        }else if(index2 == 0){
+                            el.src = "../../../" +  el.src;
+                        }
+                    }
+                });
+            };
             $("#" + this.viewId).show();
         },
         close: function() {

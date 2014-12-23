@@ -36,18 +36,13 @@ var RUNTIME_PREVIEW = "preview";
 var RUNTIME_APP = "app";
 
 function checkRuntime() {
-    if ("undefined" != typeof RUNTIME_IS_DESIGN) {
+    if (typeof IS_RUNTIME_DESIGN == "boolean") {
         return RUNTIME_DESIGN;
     }
-    else {
-        var pathName = window.location.pathname;
-        var pathArray = pathName.split("/");
-        if (pathArray.length == 6 && pathArray[2] == "data") {
-            return RUNTIME_PREVIEW;
-        }
-        else
-            return RUNTIME_APP;
-    }
+    else if (typeof IS_RUNTIME_PREVIEW == "boolean")
+        return RUNTIME_PREVIEW;
+    else
+        return RUNTIME_APP;
 }
 
 /**

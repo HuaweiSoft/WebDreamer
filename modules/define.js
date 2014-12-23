@@ -418,7 +418,7 @@ EVENT_IMAGES_WALL_SUBSCRIBE_OPEN = "imagesWall/open";
  */
 EVENT_IMAGES_WALL_PUBLISH_SELECTED_IMAGE = "imagesWall/selectedImage";
 
-RUNTIME_IS_DESIGN = true;
+IS_RUNTIME_DESIGN = true;
 
 PROJECT_PATH = "";
 
