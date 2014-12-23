@@ -18,8 +18,6 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20140107</version>
-            <!-- Org.json -->
-           <!-- <scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>log4j</groupId>

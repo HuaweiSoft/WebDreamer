@@ -1,24 +1,31 @@
-# WebDreamer
+# Web Dreamer
 
-Web Dreamer is an online tool to build mobile web apps, no coding required. A graphic tool for creating quickly mobile Apps.
+Web Dreamer is an online IDE to create mobile web apps, also a complete visual design tool, no any coding required.
 
-Demo Address:[http://webdreamer.powerapp.io](http://webdreamer.powerapp.io) or [http://webdreamer.paas.sdpaep.com](http://webdreamer.paas.sdpaep.com)
+Main showcase: [http://webdreamer.powerapp.io](http://webdreamer.powerapp.io)
 
-This repository contains the WebDreamer source code.
+## License
 
-Our document is being created.
+Web Dreamer uses the Apache 2 license. See LICENSE for details.
 
-## Install/Compile
+## Compile/Install
+Web Dreamer is also a java web app running with Tomcat. To compile and install it, you need to setup the following software environments:
 
-This repository is a Tomcat Project will be convert to Maven Project in the future.
+ - JDK 1.7
+ - Maven 2.0 [or latest version](http://maven.apache.org/)
+ - Tomcat 7.0
 
-```
-1.WebDreamer is a javaEE project and runtime JDK requires version 1.7.0 and above and Tomcat requires version 7.0 and above.
+Here are the steps to compile and install Web Dreamer:
 
-2.This project is a standard tomcat project built on eclipse so we suggest that you should install tomcat plugin on your IDE such as eclipse before importing this project in to your workplace then base on it quickly deploy app on Tomcat or undeploy app from Tomcat.Tomcat plugin of eclipse please visit http://www.eclipsetotale.com/tomcatPlugin.html
+###Step1: run 'mvn clean package' command in the project root directory
+If maven build the project successfully, you will see a 'BUILD SUCCESS' message from the command console.
 
-3.You can also copy directly this directory to {tomcat_home}/webapps/ and visit http://localhost:{port}/webdreamer to test WebDreamer after Tomcat has been started.
-```
+###Step2: copy the target/webdreamer.war file to {tomcat_home}/webapps/ directory
+
+###Step3: start tomcat, and visit http://localhost:8080/webdreamer in web browser.
+
+It's recommended to use Chrome or Firefox browser to visit Web Dreamer.
+
 
 ## Ask Questions
 
@@ -32,4 +39,4 @@ Bugs can be filed using Github Issues within the various repositories of the [Hu
 
 ## Contributions
 
-Welcome everyone to join WebDreamer Open Source Project.
+Everyone is welcome to join WebDreamer Open Source Project to make contributions.
