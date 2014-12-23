@@ -177,9 +177,7 @@ public class InvokeRealRestServlet extends HttpServlet {
                 encodeType = matcher.group(1).toUpperCase();
         }
         String response = "";
-        if (contentType != null && contentType.indexOf("image/") == 0) {
-            response = (new sun.misc.BASE64Encoder()).encode(output.toByteArray());
-        } else if (encodeType.equals("UTF-8")) {
+       if (encodeType.equals("UTF-8")) {
             response = output.toString("UTF-8");
         } else {
             try {
