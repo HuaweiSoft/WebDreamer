@@ -98,6 +98,8 @@ define(
                                         + 'page.png" align="absmiddle" class="control_icon">' + text;
                             } else { // control
                                 var control = this._getControlMetadata(type);
+                                if(!control)
+                                    return "";
                                 var imagePath = control.outlineIcon;
 
                                 label = '<img src="' + imagePath + '" align="absmiddle" class="control_icon">' + text;
