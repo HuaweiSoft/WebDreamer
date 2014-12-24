@@ -58,6 +58,7 @@ requirejs.config({
         "controlBean": "modules/projectManager/ControlBean",
         "metaHub": "modules/metadata/metaHub",
 
+        "ide": "modules/core/ide",
         "logger": "modules/log/logger",
         "localstorage": "modules/localstorage/localstorage",
         "config": "modules/config/config",

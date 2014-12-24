@@ -778,10 +778,13 @@ define([ "css!modules/formDesigner/formCanvas/formCanvas", "text!modules/formDes
          * control about
          */
         controlAdd: function(bean, newAdded) {
-            this.generateControl(bean, newAdded);
+            var control = this.generateControl(bean, newAdded);
+            if(!control)
+                return false;
             this.insertControlToIndex(bean.id, bean.pIndex, bean.pageNo, true);
             this.updateControlProperties(bean, newAdded);
             this.controlClicked(bean.id);
+            return true;
         },
 
         controlRemove: function(data) {

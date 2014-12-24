@@ -418,6 +418,18 @@ EVENT_IMAGES_WALL_SUBSCRIBE_OPEN = "imagesWall/open";
  */
 EVENT_IMAGES_WALL_PUBLISH_SELECTED_IMAGE = "imagesWall/selectedImage";
 
+/**
+ * event for begin to load all control lib js 
+ * @param null
+ */
+EVENT_BEGIN_LOAD_ALL_CONTROL_JS = "controljs/load/begin";
+/**
+ * event for all control lib js have been loaded
+ * @param null
+ */
+EVENT_FINISH_LOAD_ALL_CONTROL_JS = "controljs/load/finish";
+
+
 IS_RUNTIME_DESIGN = true;
 
 PROJECT_PATH = "";

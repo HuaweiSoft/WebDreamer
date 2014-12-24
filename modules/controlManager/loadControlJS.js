@@ -18,8 +18,8 @@
 /**
  * Dynamically load all javascript files of controls depend on to runtime
  */
-define([ "jquery", "util", "HashMap" ],
-    function($, util, HashMap) {
+define([ "jquery", "util", "HashMap", "ide" ],
+    function($, util, HashMap, ide) {
 
         return {
             init: function() {
@@ -132,6 +132,9 @@ define([ "jquery", "util", "HashMap" ],
                     if (index >= controlJSArray.length)
                    {
                        console.debug("Control lib js all have been loaded!");
+                       ide.isLoadingControlLib = false;
+                       ide.isControlLibLoaded = true;
+                       Arbiter.publish(EVENT_FINISH_LOAD_ALL_CONTROL_JS, {});
                        return;
                    }
                     var scriptElm = document.createElement('script');
@@ -154,6 +157,9 @@ define([ "jquery", "util", "HashMap" ],
                     var headElm = document.head || document.getElementsByTagName('head')[0];
                     headElm.appendChild(scriptElm);
                 }
+
+                ide.isLoadingControlLib = true;
+                Arbiter.publish(EVENT_BEGIN_LOAD_ALL_CONTROL_JS, {});
 
                 loadNext();
             },
