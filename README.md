@@ -17,9 +17,9 @@ Web Dreamer is also a java web app running with Tomcat. To compile and install i
 
 Here are steps to compile and install Web Dreamer:
 
-> 1. Run 'mvn clean package' command in the project root directory.
+> 1. Run **'mvn clean package'** command in the project root directory.
 
-> 2. Copy the target/webdreamer.war file to {tomcat_home}/webapps/ directory
+> 2. Copy the **target/webdreamer.war** file to {tomcat_home}/webapps/ directory
 
 > 3. Start tomcat, and visit http://localhost:8080/webdreamer in web browser.
 

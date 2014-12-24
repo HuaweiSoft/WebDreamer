@@ -109,7 +109,7 @@ public class InvokeRealRestServlet extends HttpServlet {
     private void forwardResponse(HttpURLConnection httpConn, HttpServletResponse response, String responseFormat)
             throws IOException {
 
-        response.setCharacterEncoding("utf-8");
+        //response.setCharacterEncoding("utf-8");
         if (httpConn.getContentType() != null) {
             response.setContentType(httpConn.getContentType());
         } else {
@@ -123,7 +123,7 @@ public class InvokeRealRestServlet extends HttpServlet {
         }
 
         // set original headers
-        Map<String, List<String>> headerFields = httpConn.getHeaderFields();
+        /*Map<String, List<String>> headerFields = httpConn.getHeaderFields();
         for (String key : headerFields.keySet()) {
             if (key == null) {
                 continue;
@@ -140,7 +140,7 @@ public class InvokeRealRestServlet extends HttpServlet {
                 valueStr = valueStr.substring(0, valueStr.length() - 2);
             }
             response.setHeader(key, valueStr);
-        }
+        }*/
 
         InputStream istream = httpConn.getInputStream();
         OutputStream ostream = response.getOutputStream();
